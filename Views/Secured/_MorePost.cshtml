@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
+
+
+
+
+@foreach (var item in Model)
+{
+
+    <article class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-sales-consulting tag-consulting tag-sales tag-tips">
+        <div class="entry-wrapper">
+
+
+            <div class="entry-cover">
+                <h4 class="entry-time">
+                    <span class="entry-day">
+                        @item.DatePosted.ToString("dd")
+                    </span>
+                    <span class="entry-month">
+                        @item.DatePosted.ToString("MMM")
+                    </span>
+                </h4>
+                <a href="@Url.Action("Details", "Blog", new { id = item.Id })">
+                    <img width="600" height="413" src="~/Uploads/@item.ImageUrl" class="attachment-portfolio-medium-crop size-portfolio-medium-crop wp-post-image" alt="">
+                </a>
+            </div>
+
+
+
+            <div class="entry-content-wrap">
+                <div class="entry-header">
+                    <h2 class="entry-title">
+                        <a href="@Url.Action("Details", "Blog", new { id = item.Id })">@item.PostTite</a>
+                    </h2>
+                </div>
+
+
+                <div class="entry-footer">
+
+                    <div class="entry-meta">
+                        <i class="fa fa-user"></i>
+                        <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="">
+                            <a href="#" class="entry-author-link" itemprop="url" rel="author">
+                                <span class="entry-author-name" itemprop="name">EDI</span>
+                            </a>
+                        </span>
+                        <i class="fa fa-folder-open"></i>
+                        <span class="entry-categories">
+                            <a href="#" rel="category tag">Easternprenur</a>
+                        </span>
+
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+  
+}

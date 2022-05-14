@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.School>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> School Management</h3>
+
+                <div class="box-tools">
+                    @Html.ActionLink("New School", "SchoolRegistration", "Data", new { area = "" }, new { @class = "btn btn-primary", style = "padding: 7px;" })
+                </div>
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SchoolName)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.City)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateofRegistration)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SchoolName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateofRegistration)
+                                </td>
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Action
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+
+
+                                            <li class="">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, null)</li>
+                                            <li class="">@Html.ActionLink("Details", "Details", new { id = item.Id }, null)</li>
+
+                                            <li class="">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, null)</li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+@section Style {
+
+    <link rel="stylesheet" href="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}

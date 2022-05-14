@@ -1,0 +1,39 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Profile
+
+@if (Model != null)
+{
+<div class="user-panel">
+    <div class="pull-left image">
+      
+        @if (!String.IsNullOrEmpty(Model.PassportUrl))
+        {
+            <img src="~/Uploads/@Model.PassportUrl" class="img-circle img-responsive" />
+
+        }
+        else
+        {
+            <img src="~/Content/images/ico.png" class="img-circle img-responsive" />
+
+        }
+    </div>
+    <div class="pull-left info">
+        <p>@Model.Surname @Model.FirstName
+            
+        </p>
+       
+        <p style="text-wrap:normal;">
+            @if (User.IsInRole("Admin"))
+            {
+                <span>(Admin)</span>
+            }
+            else
+            {
+                <span>(Participant)</span>
+            }
+
+            
+        </p>
+      
+    </div>
+</div>
+}

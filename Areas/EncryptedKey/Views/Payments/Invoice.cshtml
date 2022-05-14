@@ -1,0 +1,149 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Payment
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Areas/EncryptedKey/Views/Shared/_InvoiceLayout.cshtml";
+}
+
+
+<div class="container-fluid invoice-container">
+
+
+    <div class="row">
+        <div class="col-sm-7">
+
+            <p><img src="~/Content/slider/logo EDI.png" title="edi"></p>
+            <h3>Invoice #@Model.Id</h3>
+
+        </div>
+        <div class="col-sm-5 text-center">
+
+            <div class="invoice-status">
+                @if (Model.PaymentStatus == ExwhyzeeEDI.Web.Models.Entities.Enum.PaymentStatus.Pending)
+                {
+                    <span class="unpaid">Unpaid</span>
+                }
+                else if (Model.PaymentStatus == ExwhyzeeEDI.Web.Models.Entities.Enum.PaymentStatus.Successful)
+                {
+                    <span class="paid">Paid</span>
+                }
+                else if (Model.PaymentStatus == ExwhyzeeEDI.Web.Models.Entities.Enum.PaymentStatus.Failed)
+                {
+                    <span class="unpaid">Failed</span>
+                }
+                else
+                {
+                    <span class="unpaid">Canceled</span>
+                }
+            </div>
+
+            <div class="small-text">
+                Due Date: @Model.PaymentInitalizedDate.ToShortDateString()
+            </div>
+            <div class="payment-btn-container" align="center">
+
+
+                <a href="@Url.Action("PayNow", "Payments", new { programId = Model.UserProgramId, paymentId = Model.Id })">
+                    <img src="~/Content/slider/interswitch_button.gif" height="94" width="252" border="0" title="Pay Now with MasterCard Naira Debit, VISA, Verve, or QuickTeller (Instant Activation)" />
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+
+    <div class="row">
+        <div class="col-sm-6 pull-sm-right text-right-sm">
+            <strong>Pay To:</strong>
+            <address class="small-text">
+                For Cash, Bank Transfer, or Cheques,   <br>
+                Payment can be made at any branch of<br>
+                <br>
+                Bank Name: GT Bank<br>
+                Account Name: EXWHYZEE TECHNOLOGIES LTD<br>
+                Account Number (NUBAN): 0039800205<br>
+
+                <br>
+                Bank Name: UBA<br>
+                Account Name: EXWHYZEE TECHNOLOGIES LTD<br>
+                Account Number (NUBAN): 1018822552<br>
+                <br>
+                Bank Name: Zenith Bank<br>
+                Account Name: EXWHYZEE TECHNOLOGIES LTD<br>
+                Account Number (NUBAN): 1010858065<br>
+
+                <hr style="margin:5px;padding:3px;" />
+                <hr style="margin:5px;padding:3px;" />
+
+                <span style="color:#ff6a00;font-weight:800;">
+                    Forward Payment teller or reciept via Whatsapp Number: 08029991100
+                </span><br />
+
+            </address>
+        </div>
+        <div class="col-sm-6">
+            <strong>Invoiced To:</strong>
+            <address class="small-text">
+                <strong> Name:</strong> @ViewBag.profile.Surname @ViewBag.profile.FirstName @ViewBag.profile.OtherName <br />
+                <strong> EDI Center:</strong> @ViewBag.profile.GetSchool.SchoolName Ltd<br>
+                <strong> Address:</strong> @ViewBag.profile.ContactAddress<br>
+                @ViewBag.profile.LocalGovernmentArea in @ViewBag.profile.StateofOrigin<br>
+                Nigeria
+            </address>
+        </div>
+    </div>
+
+
+    <br>
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><strong>Invoice Items</strong></h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <td><strong>Description</strong></td>
+                            <td width="20%" class="text-center"><strong>Amount</strong></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td>@ViewBag.uprogram.ProgramCourse.Title *</td>
+                            <td class="text-center">N @Model.Amount</td>
+                        </tr>
+                        <tr>
+                            <td class="total-row text-right"><strong>Sub Total</strong></td>
+                            <td class="total-row text-center">N @Model.Amount</td>
+                        </tr>
+                        <tr>
+                            <td class="total-row text-right"><strong>5.00% VAT</strong></td>
+                            <td class="total-row text-center">N @ViewBag.percentVat.00</td>
+                        </tr>
+
+                        <tr>
+                            <td class="total-row text-right"><strong>Total</strong></td>
+                            <td class="total-row text-center">N @ViewBag.total</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" value="@ViewBag.profile.Surname @ViewBag.profile.FirstName @ViewBag.profile.OtherName" id="name123" />
+    <div class="pull-right btn-group btn-group-sm hidden-print">
+        <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+        <a href="#" onclick="myFunction()" class="btn btn-default"><i class="fa fa-download"></i> Download</a>
+    </div>
+
+
+</div>

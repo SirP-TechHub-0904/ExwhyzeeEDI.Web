@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
+
+@using System.Text.RegularExpressions;
+@helper Truncate(string input, int lenght)
+{
+    /**/
+
+    try
+    {
+
+        if (input.Length <= lenght)
+        {
+            @Html.Raw(input)
+        }
+        else
+        {
+            @Html.Raw(input.Substring(0, input.IndexOf(" ", lenght)).ToString())
+        }
+
+    }
+    catch (Exception c) { }
+}
+
+
+@foreach (var item in Model)
+{
+
+    
+    @*<a href="@Url.Action(" Details", "Blog" , new { id=item.Id })" class="btn-read-more">Read more</a>*@
+
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 single-blog-post">
+    <div class="img-holder hvr-rectangle-out">
+        @if (!String.IsNullOrEmpty(item.ImageUrl))
+        {
+            <img src="~/Uploads/@item.ImageUrl" alt="" class="">
+
+        }
+        <div class="date">
+            <b>@item.DatePosted.ToString("dd")</b> <br> @item.DatePosted.ToString("MMM")
+        </div>
+    </div>
+    <a href="#"><h2>@item.PostTite</h2></a>
+    <p>  @Truncate(item.PostContentPreview, 170)</p>
+    <ul>
+        <li><span><b>By: </b> E.D.I</span></li>
+        <li><a href="#">Better Nigeria</a></li>
+    </ul>
+</div>
+
+}

@@ -1,0 +1,60 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.AboutUsImage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> About Us Image Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ImageName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ImageName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ImageUrl)
+                        </dt>
+
+                        <dd>
+                            <img src="~/Uploads/Advert/@Model.ImageUrl" class="img-responsive" style="height:200px;" />
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Default)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Default)
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

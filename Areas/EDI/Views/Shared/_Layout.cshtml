@@ -1,0 +1,183 @@
+﻿
+<!DOCTYPE html>
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="zxx" style="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--====== USEFULL META ======-->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>EXWHYZEE ENTERPRENURSHIP HUB</title>
+
+    <!--====== FAVICON ICON =======-->
+    <link rel="shortcut icon" type="image/ico" href="">
+
+    <!--====== STYLESHEETS ======-->
+    <link href="~/Content/Comingsoon/css/normalize.css" rel="stylesheet" />
+    <link href="~/Content/Comingsoon/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/Comingsoon/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/Comingsoon/css/typed.css" rel="stylesheet" />
+    <link href="~/Content/Comingsoon/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href=".//normalize.css">
+        <link rel="stylesheet" href=".//animate.css">
+        <link rel="stylesheet" href=".//magnific-popup.css">
+        <link rel="stylesheet" href=".//typed.css">
+        <link href=".//bootstrap.min.css" rel="stylesheet">
+        <link href=".//font-awesome.min.css" rel="stylesheet">*@
+
+    <!--====== MAIN STYLESHEETS ======-->
+    <link href="~/Content/Comingsoon/css/style.css" rel="stylesheet" />
+    <link href="~/Content/Comingsoon/css/responsive.css" rel="stylesheet" />
+    @*<link href=".//style.css" rel="stylesheet">
+        <link href=".//responsive.css" rel="stylesheet">*@
+    <script src="~/Content/Comingsoon/js/modernizr-2.8.3.min.js"></script>
+    @*<script src=".//modernizr-2.8.3.min.js.download"></script>*@
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body class="transparent-layer move-perticle">
+
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!--- PRELOADER -->
+    <div class="preeloader" style="display: none;">
+        <div class="preloader-spinner">
+            <img src="~/Content/Comingsoon/img/loading.svg" alt="">
+        </div>
+    </div>
+
+    <!--START MAIN AREA-->
+    <div class="main-area" id="home" style="height: 608px;">
+        <div class="main-area-bg"></div>
+        <canvas id="demo-perticle" width="1366" height="608"></canvas>
+        <!--WELCOME AREA CONTENT-->
+        <div class="welcome-text-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 col-sm-12 col-xs-12">
+                        <div class="welcome-text text-center">
+                            <div class="clock-countdown">
+                                <div class="site-config" data-date="01/07/2019 00:00:00" data-date-timezone="+0"></div>
+                                <div class="days-counter">
+                                    <div class="digit">
+                                        <span class="days">30</span>
+                                        <span class="txt">days TO GO</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h3>Enterprenurship Development Institute</h3>
+                            @RenderBody()
+                            
+                            <h1 class="visible-xs">Coming Soon</h1>
+                            <h1 class="hidden-xs cd-headline clip is-full-width">
+                                <!--<span class="hero-text">Coming</span>-->
+                                <span class="cd-words-wrapper" style="width: 361px;">
+                                    <b class="is-hidden">E D I</b>
+                                    <b class="is-visible">Powered by Exwhyzee Technologies</b>
+                                    <b class="is-hidden">Coming Soon</b>
+                                </span>
+                            </h1>
+
+                            <div class="home-button">
+                                <a class="contact-button" href="@Url.Action("Index","Secured", new { area = "" })">Home Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-book-mark">
+            <ul>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+        </div>
+        <div class="information-contact">
+           
+        </div>
+        <!--WELCOME AREA CONTENT END-->
+        <!--LEFT CONTACT CONTENT-->
+        
+      
+        <!--LEFT CONTACT CONTENT END-->
+        <!--RIGHT ABOUT AREA-->
+        <div class="right-details-content" tabindex="1" style="overflow: hidden; outline: none;">
+            <div class="push-content-close"><i class="fa fa-close"></i></div>
+            <div class="about-area section-padding">
+              
+               
+           <div class="footer-area dark-bg">
+                <div class="footer-copyright text-center">
+                    Copyright © 2016 Enterprenurship Development Institute. Powered by <a href="http://exwhyzee.ng" target="_blank">EXWHYZEE TECHNOLOGIES LTD.</a>
+
+                </div>
+            </div>
+        </div>
+        <!--RIGHT ABOUT AREA END-->
+
+    </div>
+        </div>
+    <!--END MAIN AREA-->
+    <!--====== SCRIPTS JS ======-->
+    @*<script src=".//jquery-1.12.4.min.js.download"></script>*@
+    <script src="~/Content/Comingsoon/js/jquery-1.12.4.min.js"></script>
+    <script src="~/Content/Comingsoon/js/bootstrap.min.js"></script>
+    @*<script src=".//bootstrap.min.js.download"></script>*@
+
+    <!--====== PLUGINS JS ======-->
+    <script src="~/Content/Comingsoon/js/jquery.easing.1.3.js"></script>
+    <script src="~/Content/Comingsoon/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Content/Comingsoon/js/typed.js"></script>
+    <script src="~/Content/Comingsoon/js/jquery.downCount.js"></script>
+    <script src="~/Content/Comingsoon/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Content/Comingsoon/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/Comingsoon/js/jquery.ajaxchimp.js"></script>
+    <script src="~/Content/Comingsoon/js/contact-form.js"></script>
+    <script src="~/Content/Comingsoon/js/TweenLite.min.js"></script>
+    <script src="~/Content/Comingsoon/js/EasePack.min.js"></script>
+    <script src="~/Content/Comingsoon/js/canvas.js"></script>
+
+
+    @*<script src=".//jquery.easing.1.3.js.download"></script>
+        <script src=".//jquery-migrate-1.2.1.min.js.download"></script>
+        <script src=".//typed.js.download"></script>
+        <script src=".//jquery.downCount.js.download"></script>
+        <script src=".//jquery.nicescroll.min.js.download"></script>
+        <script src=".//jquery.magnific-popup.min.js.download"></script>
+        <script src=".//jquery.ajaxchimp.js.download"></script>
+        <script src=".//contact-form.js.download"></script>
+        <script src=".//TweenLite.min.js.download"></script>
+        <script src=".//EasePack.min.js.download"></script>
+        <script src=".//canvas.js.download"></script>*@
+
+    <!--===== ACTIVE JS=====-->
+    <script src="~/Content/Comingsoon/js/main.js"></script>
+    <div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr" style="width: 2px; z-index: 9; cursor: default; position: absolute; top: 0px; left: -2px; height: 608px; touch-action: none; opacity: 0; display: block;">
+        <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 0px; height: 320px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px; touch-action: none;"></div>
+    </div>
+    <div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 2px; z-index: 9; top: 606px; left: -683px; position: absolute; cursor: default; display: none; width: 681px; opacity: 0;">
+        <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 0px; width: 683px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;">
+        </div>
+    </div>
+    <div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr" style="width: 2px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 2047px; height: 608px; touch-action: none; opacity: 0; display: block;">
+        <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 0px; height: 269px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 2px; z-index: 9; top: 606px; left: 1366px; position: absolute; cursor: default; display: none; width: 681px; opacity: 0;">
+        <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 0px; width: 683px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;"></div>
+    </div>
+
+
+
+</body>
+</html>

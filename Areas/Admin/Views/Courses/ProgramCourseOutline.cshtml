@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Class Management</h3>
+
+               
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>
+Program                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Topic)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GetProgramCourse.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Topic)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Action
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+
+
+                                            <li class="">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, null)</li>
+                                            <li class="">@Html.ActionLink("Details", "Details", new { id = item.Id }, null)</li>
+
+                                            <li class="">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, null)</li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>

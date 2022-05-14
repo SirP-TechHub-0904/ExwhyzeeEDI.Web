@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "users";
+}
+
+<h2>users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.VerifyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComfirmVerifyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.VerifyCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComfirmVerifyCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolId)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

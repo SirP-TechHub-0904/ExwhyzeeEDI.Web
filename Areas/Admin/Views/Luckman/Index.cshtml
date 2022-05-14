@@ -1,0 +1,299 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Profile>
+
+@using ExwhyzeeEDI.Web.Helper
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> LUCKMAN (@Model.Count()) </h3>
+                @Html.ActionLink("New Applicant", "Reg", "Data", new { area = "" }, new { @class = "btn btn-primary", style = "padding: 7px;" })
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            <div>
+                
+                <ul style="display:block;">
+                    <li>
+                        PaidForTraining (@ViewBag.PaidForTraining/@ViewBag.PaidForTrainingn)
+                    </li>
+                    <li>
+                        Attendance (@ViewBag.Attendance/
+                        @ViewBag.Attendancen
+                    </li>
+                    <li>
+                        CollectedCertificate (@ViewBag.CollectedCertificate/
+                        @ViewBag.CollectedCertificaten)
+                    </li>
+                    <li>
+                        CertificatePrinted ( @ViewBag.CertificatePrinted/
+                        @ViewBag.CertificatePrintedn)
+                    </li>
+                    <li>
+                        NirsalPayment ( @ViewBag.NirsalPayment/
+                        @ViewBag.NirsalPaymentn)
+                    </li>
+                    <li>
+                        BusinessPlanUpload( @ViewBag.BusinessPlanUpload/
+                        @ViewBag.BusinessPlanUploadn)
+                    </li>
+                    <li>
+                        FormStatus(    @ViewBag.FormStatus/
+                        @ViewBag.FormStatusn)
+                    </li>
+
+                </ul>
+            </div>
+            @ViewBag.Cert
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            
+                            <th>S/N</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RegistrationNumber)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Surname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OtherName)
+                            </th>
+                            <th>Phone</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateRegistered)
+                            </th>
+
+                            <th>Cert ID</th>
+                            <th>
+                                Data
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+
+
+                                <td style="word-break: break-all;">
+                                    @Html.DisplayFor(modelItem => item.RegistrationNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Surname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OtherName)
+                                </td>
+                                <td>
+                                    @if (item.User != null)
+                                    {
+                                        @item.User.PhoneNumber
+
+                                    }
+
+
+                                </td>
+                                <td>
+                                    @item.DateRegistered.ToShortDateString()
+                                </td>
+                                <td style="word-break: break-all;">
+                                    @Html.DisplayFor(modelItem => item.CertificateId)
+                                </td>
+                                <td>
+                                    <style>
+                                        #iwi td, th {
+                                            white-space: normal !important;
+                                            padding: 4px;
+                                            font-size: 10px;
+                                        }
+                                    </style>
+                                    <table id="iwi">
+                                        <tr>
+                                            <td>PaidForTraining</td>
+                                            <td> @Html.DisplayFor(modelItem => item.PaidForTraining)</td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "PaidForTraining", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>Attendance</td>
+                                            <td>
+                                                @if (item.Attendance == ExwhyzeeEDI.Web.Models.Entities.Enum.EdiStatus.Yes)
+                                                {
+                                                    <span>YES</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>NO</span>
+                                                }
+                                            </td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "Attendance", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>CollectedCertificate</td>
+                                            <td>@Html.DisplayFor(modelItem => item.CollectedCertificate)</td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "CollectedCertificate", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>CertificatePrinted</td>
+                                            <td>
+                                                @if (item.CertificatePrinted == ExwhyzeeEDI.Web.Models.Entities.Enum.EdiStatus.Yes)
+                                                {
+                                                    <span>YES</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>NO</span>
+                                                }
+                                            </td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "CertificatePrinted", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>NirsalPayment</td>
+                                            <td>
+                                                @if (item.NirsalPayment == ExwhyzeeEDI.Web.Models.Entities.Enum.EdiStatus.Yes)
+                                                {
+                                                    <span>YES</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>NO</span>
+                                                }
+                                            </td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "NirsalPayment", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>BusinessPlanUpload</td>
+                                            <td>
+                                                @if (item.BusinessPlanUpload == ExwhyzeeEDI.Web.Models.Entities.Enum.EdiStatus.Yes)
+                                                {
+                                                    <span>YES</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>NO</span>
+                                                }
+                                            </td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "BusinessPlanUpload", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>FormStatus</td>
+                                            <td>
+                                                @if (item.FormStatus == ExwhyzeeEDI.Web.Models.Entities.Enum.FormStatus.Seen)
+                                                {
+                                                    <span>SEEN</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>NOT SEEN</span>
+                                                }
+                                            </td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                                            {
+                                                <td>@Html.ActionLink("update", "FormStatus", new { Id = item.UserId }, new { @class = "btn btn-sm", target = "_blank" })</td>
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td>@item.BusinessPlanDateUploaded.ToShortDateString()</td>
+                                        </tr>
+                                        <tr>
+                                            @Html.ActionLink("Print Certificate", "PrintCertificate", "Users", new { UserId = item.UserId, Area = "Admin" }, new { @class = "btn btn-success", target = "_blank" })
+
+                                        </tr>
+
+                                    </table>
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Edit", "EditProfile", "Users", new { uid = item.UserId, Area = "Admin" }, new { @class = "btn btn-success", target = "_blank" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+@section Style {
+
+    <link rel="stylesheet" href="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}

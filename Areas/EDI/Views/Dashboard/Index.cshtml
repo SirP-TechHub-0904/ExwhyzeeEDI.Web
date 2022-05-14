@@ -1,0 +1,223 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Profile
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<style>
+    #timer {
+        font-size: 3em;
+        font-weight: 100;
+        color: black;
+        text-shadow: 0 0 20px #48C8FF;
+    }
+
+    .mydiv {
+        display: inline-block;
+        min-width: 90px;
+    }
+
+    .myspan {
+        color: #000000;
+        display: block;
+        font-size: .35em;
+        font-weight: 400;
+    }
+</style>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 text-center">
+        <div id="timer" class="text-center"></div>
+    </div>
+    <div class="col-md-3"></div>
+
+</div>
+<div class="row">
+    @Html.Action("_Profile", "Dashboard", new { area = "EDI" })
+    <!-- /.col -->
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6 vv">
+        <!-- PRODUCT LIST -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Membership Benefit</h3>
+
+                <div class="box-tools pull-right">
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <ul class="products-list product-list-in-box">
+
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>  Access to a platform for funding & supporting viable business plans.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Facilitation and packaging of business plans & feasibility.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Opportunity to attend, interact and participate in business roundtables and connects, seminars, dinner etc.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Platform to advertise and package distinguished entrepreneurs and businesses.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Participation in foreign business investment seminars.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Opportunity to shop for internal investors and fund managers in the South East.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Access to iconic business mentors in the South East.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Platform for incubation and exchange of business ideas.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class="">
+                                <i class="fa fa-thumbs-up"></i>
+                                Updates on government policies as it affects entrepreneurs in the South East.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+
+                        <div class="">
+
+                            <p class=""><i class="fa fa-thumbs-up"></i>   Literature on contemporary, everyday opportunities, challenges and solutions, particularly in the South-Eastern Nigeria (internal) microeconomics. </p>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-center">
+                <a href="javascript:void(0)" class="uppercase">Know More</a>
+            </div>
+            <!-- /.box-footer -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+
+@if (ViewBag.unpaidAvailable == "Yes")
+{
+    <div id="abcdef" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Registered Program</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Action("_RegisteredProgram", "Dashboard")
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+<script>
+    function updateTimer() {
+        future = Date.parse("October 07, 2019 00:30:00");
+        now = new Date();
+        diff = future - now;
+
+        days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hours = Math.floor(diff / (1000 * 60 * 60));
+        mins = Math.floor(diff / (1000 * 60));
+        secs = Math.floor(diff / 1000);
+
+        d = days;
+        h = hours - days * 24;
+        m = mins - hours * 60;
+        s = secs - mins * 60;
+
+        document.getElementById("timer")
+            .innerHTML =
+            '<div class="mydiv">' + d + '<span class="myspan">days</span></div>' +
+            '<div class="mydiv">' + h + '<span class="myspan">hours</span></div>' +
+            '<div class="mydiv">' + m + '<span class="myspan">minutes</span></div>' +
+            '<div class="mydiv">' + s + '<span class="myspan">seconds</span></div>';
+    }
+    setInterval('updateTimer()', 1000);
+
+</script>
+@if (ViewBag.unpaidAvailable == "Yes")
+{
+
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#abcdef').modal('show');
+        });
+
+    </script>
+}

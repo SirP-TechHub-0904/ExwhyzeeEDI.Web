@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Gallery>
+
+@foreach (var item in Model)
+{
+
+
+    <div class="single-project-item mix  tank outside">
+        <div class="img-wrap">
+            <img src="~/Uploads/Gallery/@item.ImageUrl" alt="">
+            <div class="content-wrapper hvr-sweep-to-right">
+                <div class="content">
+                    <div class="button-box">
+                        <a class="fancybox" data-fancybox-group="home-gallery" title="Easternpreneurs" href="~/Uploads/Gallery/@item.ImageUrl"><i class="fa fa-search-plus"></i></a>
+                    </div>
+                    <div class="text-box">
+                        <h4>Easternpreneurs</h4>
+                        <span>Building an active entrepreneurs that will drive the private sector of our economy.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

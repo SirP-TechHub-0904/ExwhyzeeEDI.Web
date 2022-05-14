@@ -1,0 +1,568 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    //Layout = "~/Views/Shared/_ClientLayout.cshtml";
+
+}
+
+@Html.Action("_Slider", "Secured")
+
+
+<section id="construction-welcome" style="padding-top:30px;padding-bottom:20px !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 single-construction-welcome text-center" style="margin-bottom:10px;">
+                <h1 style="" class="text-uppercase">Welcome to Eastenpreneur</h1>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 single-construction-welcome">
+                <div class="welcome-member">
+                    <h2>Vision</h2>
+                </div>
+
+                <p style="margin-bottom:10px;margin-top:5px;">
+                    To raise active entrepreneurs that will drive the private sector of our economy
+                </p>
+
+                <div class="welcome-member">
+                    <h2>Mission</h2>
+                </div>
+                <p>
+                    By the year <span style="font-weight:bold;color:#e09f1e">2025</span>, and beyond. We must have created atleast <span style="font-weight:bold;color:#e09f1e">1000</span>
+                    entrepreneurs in the South East and Nation atlarge who are self sustained, This we intend to do by providing world class entrepreneurship training, mentorship, providing
+                    access to continous funding and building global market linkage.
+                </p>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 single-construction-welcome">
+
+                <div class="welcome-member">
+                    <h2>Benefits</h2>
+                </div>
+
+                <ul style="margin-top:0px;">
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Access to a funding and support.</li>
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Facilitation and packaging of business plans.</li>
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Opportunity to attend business roundtables, connects etc.</li>
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Platform to advertise entrepreneurs and businesses.</li>
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Participation in foreign business investment seminars.</li>
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Opportunity to shop for internal investors in the South East.</li>
+                    <li><i class="fa fa-arrow-circle-o-right"></i>Access to iconic business mentors in the South East.</li>
+
+                </ul>
+            </div>
+
+            <div class="col-md-12">
+                <a href="#" class="btn hvr-bounce-to-about" style="background-color:#e09f1e;color:white;font-weight:bold;border-radius:0px;">Know More</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- #service-we-provide -->
+<section id="service-we-provide" class="construct" style="padding:30px 0px !important;">
+    <div class="container" style="text-align:justify !important;">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 single-construction-welcome text-center" style="margin-bottom:10px;">
+                <h1 style="" class="text-uppercase">A G S M E I S FUNDING</h1>
+                <h4 style="" class="">Agri-Business Small and Medium Enterprises Investment Scheme</h4>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 single-construction-welcome">
+                <div class="welcome-member">
+                    <h2>About</h2>
+                </div>
+
+                <p style="margin-bottom:10px;margin-top:5px;text-align:justify;">
+                    Agri-Business Small and Medium Enterprises Investment Scheme (AGSMEIS) is an initiative of the Bankers’ Committee in a bid to support and complement the Federal Governments’ efforts at promoting Agri-businesses/Small and Medium Enterprises as a vehicle for sustainable economic development and employment generation. This initiative requires all Deposit Money Banks (DMBs) to set aside 5% of their annual profit after tax (PAT).
+                </p>
+                <div class="welcome-member">
+                    <h2>Establishments of the Scheme.</h2>
+                </div>
+                <ul id="infodata" style="margin-top:4px;">
+                    <li>
+                        <span style="color:#e09f1e;font-weight:900;">>>></span> The Agri-Business/Small and Medium Enterprises Investment Scheme is a voluntary initiative
+                        of the Bankers' Committee approved at its 331st meeting held on 9th February, 2017
+                    </li>
+
+                    <li><span style="color:#e09f1e;font-weight:900;">>>></span> The Scheme requires all banks in Nigeria to set aside 5% of their profit after tax (PAT) annually.</li>
+                </ul>
+
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 single-construction-welcome">
+
+                <div class="welcome-member">
+                    <h2>Objectives of the Scheme.</h2>
+                </div>
+
+                <ul style="margin-top:0px;" id="doit">
+                    <li id="lido">
+                        Ensur access to finance for Small and Medium Enterprises (SMEs) as these
+                        enterprises are the engine growth of the Nigerian economy
+                    </li>
+                    <li id="lido"> Generate much-needed employment opportunites in Nigeria</li>
+                    <li id="lido"> Develop agricultural value chain and ensure sustainable agricultural practices.</li>
+                    <li id="lido"> Boost the managerial capacity of Agri-Business/SMEs as pipelines of growing enterprises that can become large corperate organizations.</li>
+                </ul>
+            </div>
+
+            <div class="col-md-12">
+                <a href="#" class="btn hvr-bounce-to-about" style="background-color:#e09f1e;color:white;font-weight:bold;border-radius:0px;">Know More</a>
+
+            </div>
+        </div>
+    </div>
+</section> <!-- /#service-we-provide -->
+
+
+<section id="project-version-one" class="construct home" style="padding:30px 0px !important;">
+    <div class="container">
+        <div class="section-title">
+            <h1>our Gallery</h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row normal-gallery gallery-v4" id="image-gallery-mix">
+
+            @Html.Action("_Gallery", "Secured")
+        </div>
+        <div class="view-all-btn text-center"><a href="project-v1.html" class="view-all hvr-bounce-to-right">view all</a></div>
+    </div>
+</section>
+
+
+<section id="video-section-construction" style="padding:30px 0px !important;">
+    <div class="container">
+        <div class="clearfix">
+            <div class="video-preview">
+                @if (Request.Browser.IsMobileDevice)
+                {
+
+                    <div class='embed-container'><iframe src='https://www.youtube.com/embed/LEtsCfQsuJI' frameborder='0' allowfullscreen></iframe></div>
+
+                }
+                else
+                {
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/LEtsCfQsuJI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                }
+
+            </div>
+            <div class="video-text">
+                <h2>Checkout out entrepreneurs with a difference</h2>
+                <p>
+                    Building an active entrepreneurs that will drive the private sector of our economy.
+                    <br />
+                    We intend to do by providing world class entrepreneurship training, mentorship, providing
+                    access to continous funding and building global market linkage.
+                </p>
+
+                <a href="#" class="contact-us hvr-bounce-to-right">Contact Us Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="welcome-to-construct" style="padding:25px 0px 30px !important;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:white;padding:30px 20px;">
+                <h2>Welcome to E.D.I</h2>
+                <p>
+                    The Easternpreneurs is a forum and platform put together by project consultants, portfolio business managers, commercial law consultants and investment consultants to provide a network for entrepreneurs, commercial and business agencies and companies for interaction, business roundtable, investors exchange platform and development of international trade and business connections.
+                </p>
+                <h3>We are available for 24/7 for you requirements</h3>
+                <div class="list-box clearfix">
+                    <ul>
+                        <li><i class="fa fa-hand-o-right"></i> BUSINESS MANAGEMENT TRAINING</li>
+                        <li><i class="fa fa-hand-o-right"></i> BANKABLE BUSINESS PLAN</li>
+                    </ul>
+                    <ul>
+                        <li><i class="fa fa-hand-o-right"></i> PRACTICAL ENTREPRENEURSHIP TRAINING</li>
+                        <li><i class="fa fa-hand-o-right"></i> C.B.N LOAN</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="testimonials-construct-home" style="padding:20px 0px !important;">
+    <div class="container">
+        <div class="section-title">
+            <h1>testimonials</h1>
+        </div>
+
+        <div class="clearfix">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="single-testimonial-construct clearfix">
+                        <div class="img-holder hvr-rectangle-out">
+                            <img src="~/Content/images/t3.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Eng. Jude Ngama</h3>
+                            <p>
+                                I was looking for a huge amount of money to start my business, but at the training, I learnt I could start small. Truly, I started small and I am now a business owner.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="single-testimonial-construct clearfix">
+                        <div class="img-holder hvr-rectangle-out">
+                            <img src="~/Content/images/t2.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Innoson Motors</h3>
+                            <p>Automobiles gave me the orientation, skill and mental capacity to succeed in my business. I learnt how to be more organized and coordinate my activities</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="single-testimonial-construct clearfix">
+                        <div class="img-holder hvr-rectangle-out">
+                            <img src="~/Content/images/t1.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Global Pr. Academy</h3>
+                            <p>
+                                Helping training innovators opened my eyes to believe that no person is born with an empty brain
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="single-testimonial-construct clearfix">
+                        <div class="img-holder hvr-rectangle-out">
+                            <img src="~/Content/images/t4.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Exwhyzee Technologies</h3>
+                            <p>
+                                Technology can be our best friend, and technology can also be the biggest party pooper of our lives
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="our-team-construct" style="padding:30px 0px !important;">
+    <div class="container">
+        <div class="section-title">
+            <h1>Our dedicated team</h1>
+        </div>
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/EDI Iamge 1.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Eng. Jude Ngama</h2>
+                        <p>
+                            His a Nigerian Serial entrepreneur, Manager of Ochiagha farms and M.D of Exwhyzee Technologies Ltd.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/EDI Iamge 3.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Innocent I. Chukwuma</h2>
+                        <p>
+                            His a Nigerian business magnate and investor. He is the founder and CEO of Innoson Vehicle Manufacturing.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/EDI Iamge 2.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Ogalabu Chinenye </h2>
+                        <p>
+                            Shes the Chairman of Global Prof. Academy, and recognized by The Chartered institute of Bankers in Nigeria.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/Benedine Obiekea.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Benedine Obiekea</h2>
+                        <p>She is a business consultant and an entrepreneur in waste recycling, fashion, and business development.</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/mrsamuel.jpeg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Eng. Ikpegbu Samuel</h2>
+                        <p>
+                            He is a Certified Enterprenurship Manager, M.D Jaeet Nigerian Ltd, and a 2016 Mandela Washington Fellow.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/peteronwuka.jpeg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Onwuka Peter</h2>
+                        <p>
+                            He is the lead Software Developer at Exwhyzee Technologies and an Enterpreneur.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/EDI Iamge 1.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Eng. Jude Ngama</h2>
+                        <p>
+                            His a Nigerian Serial entrepreneur, Manager of Ochiagha farms and M.D of Exwhyzee Technologies Ltd.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/EDI Iamge 3.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Innocent I. Chukwuma</h2>
+                        <p>
+                            His a Nigerian business magnate and investor. He is the founder and CEO of Innoson Vehicle Manufacturing.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/EDI Iamge 2.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Ogalabu Chinenye </h2>
+                        <p>
+                            Shes the Chairman of Global Prof. Academy, and recognized by The Chartered institute of Bankers in Nigeria.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/Benedine Obiekea.jpg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Benedine Obiekea</h2>
+                        <p>She is a business consultant and an entrepreneur in waste recycling, fashion, and business development.</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/mrsamuel.jpeg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Eng. Ikpegbu Samuel</h2>
+                        <p>
+                            He is a Certified Enterprenurship Manager, M.D Jaeet Nigerian Ltd, and a 2016 Mandela Washington Fellow.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-construct-member">
+                    <div class="img-holder">
+                        <img src="~/Content/images/peteronwuka.jpeg" alt="">
+                    </div>
+                    <div class="content hvr-bounce-to-bottom">
+                        <h2>Onwuka Peter</h2>
+                        <p>
+                            He is the lead Software Developer at Exwhyzee Technologies and an Enterpreneur.
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="blog-construct" style="padding:30px 0px !important;">
+    <div class="container">
+        <div class="section-title">
+            <h1>Blogs</h1>
+        </div>
+        <div class="row">
+            @Html.Action("_LatestNews", "Secured")
+
+        </div>
+    </div>
+</section>
+
+
+<!-- #clients -->
+<section id="clients" class="construct" style="padding:30px 0px !important;">
+    <div class="container" style="padding:20px 0px !important;">
+        <div class="section-title">
+            <h1>our partners</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="owl-carousel owl-theme">
+                    <div class="item">
+                        <img src="~/Content/images/EXWHYZEE  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/Global  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/CBN EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/Govt of Abia State  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/Innoson main  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/EXWHYZEE  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/Global  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/CBN EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/Govt of Abia State  EDITED.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/Innoson main  EDITED.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!-- /#clients -->
+
+
+<section id="great-construct-team" style="padding:30px 0px !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Easternpreneurs Inquiry Teamy</h2>
+                <p>If you have any business, ideas but lack fund. all you need to do is very simple. call us today.</p>
+                <p class="has-btn"><b>+234 806 381 2435</b> or <a href="#" class="hvr-bounce-to-right">Contact Us</a></p>
+            </div>
+        </div>
+    </div>
+</section>

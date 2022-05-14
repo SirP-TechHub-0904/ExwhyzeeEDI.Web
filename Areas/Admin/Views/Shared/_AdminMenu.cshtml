@@ -1,0 +1,43 @@
+﻿
+<li class="header">ADMIN NAVIGATION</li>
+<li><a href="@Url.Action("Index", "Main", new { area="Admin"})"><i class="fa fa-dashboard"></i> <span>Admin Dashboard</span></a></li>
+<li><a href="@Url.Action("Index", "Schools", new { area="Admin"})"><i class="fa fa-home"></i> <span>Schools</span></a></li>
+<li><a href="@Url.Action("Index", "Luckman", new { area="Admin"})"><i class="fa fa-home"></i> <span>Luck Man</span></a></li>
+<li><a href="@Url.Action("Index", "BatchB", new { area="Admin"})"><i class="fa fa-home"></i> <span>Batch B</span></a></li>
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-users"></i> <span> Users Management</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("Index", "Users", new { area="Admin"})"><i class="fa fa-circle-o"></i> All Users</a></li>
+        <li><a href="@Url.Action("TrainingList", "Users", new { area="Admin"})"><i class="fa fa-circle-o"></i> Training List</a></li>
+        <li><a href="@Url.Action("MainList", "Users", new { area="Admin"})"><i class="fa fa-circle-o"></i> Main List</a></li>
+        <li><a href="@Url.Action("Enrolled", "Users", new { area="Admin"})"><i class="fa fa-circle-o"></i> Enrolled Users</a></li>
+        <li><a href="@Url.Action("CompletedTraining", "Users", new { area="Admin"})"><i class="fa fa-circle-o"></i> Completed Training</a></li>
+        <li><a href="@Url.Action("PendingTraining", "Users", new { area="Admin"})"><i class="fa fa-circle-o"></i> Pending</a></li>
+
+    </ul>
+</li>
+
+
+<li><a href="@Url.Action("Certified", "Users", new { area="Admin"})"><i class="fa fa-users"></i> <span>Certified EDIs</span></a></li>
+<li><a href="@Url.Action("Index", "Authors", new { area="Admin"})"><i class="fa fa-book"></i> <span>Trainners</span></a></li>
+<li><a href="@Url.Action("Index", "ProgramCourses", new { area="Admin"})"><i class="fa fa-certificate"></i> <span>Programs/Trainings</span></a></li>
+<li><a href="@Url.Action("Index", "BusinessPlans", new { area="Admin"})" style="color:#dd4b39;"><i class="fa fa-book"></i> <span>Business Plan</span></a></li>
+<li><a href="@Url.Action("Index", "UserPrograms", new { area="Admin"})" style="color:#dd4b39;"><i class="fa fa-users"></i> <span>Registered Programs</span></a></li>
+
+
+<li><a href="@Url.Action("Index", "Categories", new { area="Admin"})"><i class="fa fa-file-code-o"></i> <span>Categories</span></a></li>
+<li><a href="@Url.Action("Index", "Posts", new { area="Admin"})"><i class="fa fa-bookmark"></i> <span>Post</span></a></li>
+<li><a href="@Url.Action("Index", "Galleries", new { area="Admin"})"><i class="fa fa-image"></i> <span>Image</span></a></li>
+<li><a href="@Url.Action("Index", "AboutUsImages", new { area="Admin"})"><i class="fa fa-image"></i> <span>About Us Advert Images</span></a></li>
+
+
+<li><a href="@Url.Action("Index", "Sliders", new { area="Admin"})"><i class="fa fa-image"></i> <span>Slider</span></a></li>
+<li><a href="@Url.Action("ChangePassword", "Data", new { area=""})"><i class="fa fa-lock"></i> <span>Change Password</span></a></li>
+<li><a href="@Url.Action("Index", "CertificateInfoes", new { area="Admin"})"><i class="fa fa-file"></i> <span>Certificate Data</span></a></li>
+<li><a href="@Url.Action("IndexABP", "Users", new { area="Admin"})"><i class="fa fa-file"></i> <span>ABP</span></a></li>
+<li><a href="@Url.Action("Index", "ApplicantCategories", new { area="Admin"})"><i class="fa fa-file"></i> <span>Applicant Categories</span></a></li>

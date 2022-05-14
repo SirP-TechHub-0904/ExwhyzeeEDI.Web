@@ -1,0 +1,54 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    #site-content #page-header .title, #site-content #page-header .subtitle {
+        color: #7b2d2d !important;
+    }
+</style>
+<div id="site-content">
+    <div id="page-header" data-stellar-background-ratio="0.2" style="background-position: 0% -113.6px;">
+        <div class="wrapper">
+
+            <div class="page-title">
+                <h2 class="title">Details</h2>
+
+            </div>
+        </div>
+        <!-- /.wrapper -->
+    </div>
+
+
+    <!-- /#page-header -->
+
+
+    <div id="page-body">
+        <div class="wrapper">
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h4 class="no-margin-top">@Model.PostTite</h4>
+                    <div class="text-center">
+                        <img src="~/Uploads/@Model.ImageUrl" class="img-responsive" style="margin:0 auto !important;max-height:200px;" alt="">
+
+                    </div>
+                    <p class="">
+                        @Html.Raw(Model.PostContent)
+                    </p>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            
+            <!-- /.content-wrap -->
+
+        </div>
+        <!-- /.wrapper -->
+    </div>
+    <!-- /#page-body -->
+
+</div>
+<hr />

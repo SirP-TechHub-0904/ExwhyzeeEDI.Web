@@ -1,0 +1,66 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.UserProgram
+
+@{
+    ViewBag.Title = "CourseRegistration";
+    //Layout = "~/Views/Shared/_FormLayout.cshtml";
+
+
+    Layout = "~/Views/Shared/_Viewlay.cshtml";
+
+}
+
+<style>
+    label {
+        margin-bottom: 0px !important;
+        margin-top: 19px !important;
+    }
+
+    h6 {
+        color: #c36552;
+        font-weight: 900;
+        margin: 50px 0 0 0 !important;
+    }
+   
+</style>
+
+<div class="col-md-3"></div>
+<div class="col-md-6" style="margin-bottom:300px;margin-top:100px;">
+    @using (Html.BeginForm("CourseRegistration", "Data", new { userId = ViewBag.userId }, FormMethod.Post, new { id = "Form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Training Applied For</h4>
+        <hr style="margin-bottom:0px;margin-top:5px;" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="row">
+
+
+            <div class="col-md-12">
+
+                @Html.Label("Select Program", htmlAttributes: new { @class = "" })
+                @Html.DropDownList("ProgramCourseId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProgramCourseId, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+        <br />
+        <div class="">
+            <input type="submit" value="Submit Selected Program" class="btn btn-default" />
+        </div>
+    </div>
+
+    }
+    </div>
+  
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

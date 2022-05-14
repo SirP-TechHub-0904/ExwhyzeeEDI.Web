@@ -1,0 +1,66 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.UserProgram
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserProgram</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GetSchool.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GetSchool.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgramCourse.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramCourse.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRegisterd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRegisterd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

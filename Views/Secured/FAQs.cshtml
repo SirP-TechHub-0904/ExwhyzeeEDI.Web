@@ -1,0 +1,339 @@
+﻿
+@{
+    ViewBag.Title = "FAQs";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<style>
+
+    .accordion {
+        font-size: 1rem;
+        width: 100% margin: 0 auto;
+        border-radius: 5px;
+    }
+
+    .accordion-header,
+    .accordion-body {
+        background: white;
+    }
+
+    .accordion-header {
+        padding: 1.5em 1.5em;
+        background: #dc9b12;
+        text-transform: uppercase;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        letter-spacing: .1em;
+        transition: all .3s;
+        font-weight:600;
+    }
+
+        .accordion-header:hover {
+            background: #efa600;
+            position: relative;
+            z-index: 5;
+        }
+
+    .accordion-body {
+        background: #fcfcfc;
+        color: #3f3c3c;
+        display: none;
+    }
+
+    .accordion-body__contents {
+        padding: 1.5em 1.5em;
+        font-size: 14px;
+        text-transform: capitalize;
+        font-weight: 400;
+        border-left: 5px solid #dc9b12;
+        padding-left:30px;
+        color:#000000;
+    }
+
+    .accordion__item.active:last-child .accordion-header {
+        border-radius: none;
+    }
+
+    .accordion:first-child > .accordion__item > .accordion-header {
+        border-bottom: 1px solid #eae2e280;
+    }
+
+    .accordion__item > .accordion-header:after {
+        content: "|||";
+        font-family: IonIcons;
+        font-size: 1.2em;
+        float: right;
+        position: relative;
+        top: -2px;
+        transition: .3s all;
+        transform: rotate(0deg);
+    }
+
+    .accordion__item.active > .accordion-header:after {
+        transform: rotate(-180deg);
+    }
+
+    .accordion__item.active .accordion-header {
+        background: #efa600;
+    }
+
+    .accordion__item .accordion__item .accordion-header {
+        background: #efa600;
+        color: black;
+    }
+
+    @@media screen and (max-width: 1000px) {
+
+
+        .accordion {
+            width: 100%;
+        }
+    }
+    ul, li{
+        list-style-type: decimal !important;
+    }
+</style>
+<section id="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- .title -->
+                <div class="title pull-left">
+                    <h1>FAQs</h1>
+                </div> <!-- /.title -->
+                <!-- .page-breadcumb -->
+                <div class="page-breadcumb pull-right">
+                    <i class="fa fa-home"></i> <a href="/">Home</a> <i class="fa fa-angle-right"></i> <span>FAQs</span>
+                </div> <!-- /.page-breadcumb -->
+            </div>
+        </div>
+    </div>
+</section> <!-- /#page-title -->
+<!-- #our-mission -->
+<section id="our-mission">
+    <div class="container">
+        <div class="section-title">
+            <h1>FAQs</h1>
+        </div>
+
+        <div class="container" style="margin-top:30px;">
+            <div class="accordion js-accordion">
+
+                <div class="accordion__item js-accordion-item active">
+                    <div class="accordion-header js-accordion-header">WHAT IS AGSMEIS</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            AGRIBUSINESS, SMALL & MEDIUM ENTERPRISE INVESTMENT SCHEME
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">WHAT IS THE INTEREST RATE</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            THE INTEREST RATE IS JUST 5% to 9% WITH NO OTHER HIDDEN CHARGE
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">WHAT IS IT FOR</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <ul>
+                                <li>
+                                    IT IS A FEDERAL GOVERNMENT INTERVENTION FUND
+                                </li>
+                                <li>
+                                    IT IS MORE OF AN INVESTMENT SCHEME FOR SMEs
+                                </li>
+                                <li>
+
+                                    IT IS FOR BUILDING SMEs
+                                </li>
+                                <li>
+
+                                    IT IS TO BRING DOWN THE COST OF DOING BUSINESS FOR SMEs
+                                </li>
+                                <li>
+
+                                    IT IS TO HELP SMEs COMPETE FAVOURABLE IN THE MARKET
+                                </li>
+                                <li>
+
+                                    IT IS TO HELP CREATE MORE JOBS
+                                </li>
+                                <li>
+
+                                    IT IS TO ELIMINATE THE PROBLEM OF COLLATERARISED FUNDS
+                                </li>
+                                <li>
+
+                                    IT IS TO MAKE FUNDS EASILY AVAILABLE FOR SMEs
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">HOW DO I QUALIFY?</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <ul>
+                                <li>
+                                    YOU MUST HAVE A REGISTERED BUSINESS NAME WITH CAC
+
+                                </li>
+                                <li>
+                                    YOU MUST HAVE EVIDENCE OF PAYING PERSONAL INCOME TAX
+
+                                </li>
+                                <li>
+                                    YOU MUST HAVE A BVN AND A PERSONAL CURRENT ACCOUNT
+
+                                </li>
+                                <li>
+                                    YOU MUST GET A LETTER OF INTRODUCTION FROM ANY OF THE FOLLOWING – PASTOR, IMMAM, VILLAGE HEAD OR SENIOR CIVIL SERVANT OF NOT LESS THAN LEVEL 14
+
+                                </li>
+                                <li>
+                                    YOU MUST BE CERTIFIED BY AN EDI(ENTREPRENEUR DEVELOPMENT INTITUTION).
+
+                                </li>
+                                <li>
+                                    YOU MUST HAVE A VALID MEANS OF IDENTIFICATION
+
+                                </li>
+                                <li>
+                                    YOU MUST FILL THE CBN AGSMEIS LOAN FORM
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">HOW DO I PREPARE FOR THE INTERVIEW TO PASS?</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <h6>
+                                IT IS THE RESPONSIBILITY OF THE EDIs TO TAKE YOU THROUGH A CERTIFICATION PROCESS TO PREPARE YOU .
+                            </h6>
+                            <h6>
+                                IT IS ALSO THE DUTY OF THE EDIs TO PREPARE YOU FOR THE EFFECTIVE USE OF THE FUND FOR MAXIMUM UTILISATION AND PROFITABILITY
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">IS THERE ANY MORATORIUM PERIOD?</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <ul>
+                                <li>
+                                    YES THERE IS A MORATOIUM OF 6 MONTHS FOR INTEREST
+
+                                </li>
+                                <li>
+                                    THERE IS ALSO 18 MONTHS FOR THE PRINCIPAL
+
+                                </li>
+                                <li>
+                                    THIS MEANS THAT FOR THE FIRST 6 MONTHS OF TAKING THE LOAN YOU WILL ENJOY THE LOAN WITHOUT PAYING ANYTHING.
+
+                                </li>
+                                <li>
+                                    AFTER 6 MONTHS YOU BEGING THE PAYMENT OF THE INTEREST ONLY TILL 18 MONTHS
+
+                                </li>
+                                <li>
+                                    AFTER 18 MONTHS YOU WILL NOW BE PAYING BOTH PRINCIPAL AND INTEREST
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">HOW WILL I KNOW IF AM QUALIFIED FOR THE LOAN?</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <ul>
+                                <li>
+                                    WHEN ALL YOUR DOCUMENTATIONS ARE COMPLETE THE EDI WILL FORWARD YOUR PROPOSAL/FORM TO THE CBN
+
+                                </li>
+                                <li>
+                                    THE CBN AFTER SCRUTINISING YOUR DOCUMENTS WILL CALL YOU FOR AN INTERVIEW TO DEFEND YOUR PROPOSAL
+
+                                </li>
+                                <li>
+                                    WHEN YOU PASS THE CBN  YOU WILL BE INFORMED VIA A CREDIT ALERT IN YOUR PERSONAL BANK ACCOUNT
+                                </li>
+                            </ul>                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">WHO CAN BENEFIT?</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <ul>
+                                <li>
+                                    SMALL SCALE MANUFACTURERS
+
+                                </li>
+                                <li>
+                                    SCHOOL OWNERS
+
+                                </li>
+                                <li>
+                                    FARMERS
+
+                                </li>
+                                <li>
+                                    SERVICE PROVIDERS
+
+                                </li>
+                                <li>
+                                    ENTERTAINERS
+
+                                </li>
+                                <li>
+                                    FASHION DESIGNERS
+
+                                </li>
+                                <li>
+                                    CONFECTIONARY/BAKERS
+
+                                </li>
+                                <li>
+                                    CATERERS
+
+                                </li>
+                                <li>
+                                    AGRO PROCESSORS
+                                </li><li>MARKETERS</li>
+                            </ul>                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">FOR HOW LONG CAN I USE THE MONEY</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            THE MAXIMUM TENOR OF THE LOAN IS 7 YEARS DEPENDING ON YOUR LINE OF BUSINESS
+                        </div>
+
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+</div></section>

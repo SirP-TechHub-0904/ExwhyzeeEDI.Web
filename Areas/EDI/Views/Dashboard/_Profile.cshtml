@@ -1,0 +1,68 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Profile
+@using ExwhyzeeEDI.Web.Models;
+<div class="col-md-6">
+
+    <!-- Profile Image -->
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+            <img class="profile-user-img img-responsive img-circle" src="~/Uploads/@Model.PassportUrl" alt="User profile picture">
+
+            <h3 class="profile-username text-center">@Html.DisplayFor(model => model.Title) @Html.DisplayFor(model => model.Surname) @Html.DisplayFor(model => model.FirstName)</h3>
+
+            <p class="text-muted text-center">Participant</p>
+
+            <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                    <b>E.D.I Reg. Number</b> <a class="pull-right">@Model.RegistrationNumber</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Centre</b> <a class="pull-right">  @HelperClass.CentreName(Model.SchoolId)</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Available Funding</b> <a class="pull-right">10+</a>
+                </li>
+            </ul>
+
+            <a href="#" class="btn btn-primary btn-block"><b>Update Coming Soon...</b></a>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    <!-- About Me Box -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">About Me</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+            <p class="text-muted">
+                @Model.EducationalQualification from @Model.SchoolAttended
+            </p>
+
+            <hr>
+
+            <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+            <p class="text-muted">@Model.ContactAddress</p>
+
+            <hr>
+
+            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+            <p>
+                <span class="label label-danger">@Model.SpecifyVocation</span>
+             
+            </p>
+
+            <hr>
+
+            <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+            <p>@Model.WhatsTheBenefitOfEDI</p>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>

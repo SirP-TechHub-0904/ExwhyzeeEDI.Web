@@ -1,0 +1,83 @@
+﻿@model ExwhyzeeEDI.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "New Applicant";
+    //Layout = "~/Views/Shared/_FormLayout.cshtml";
+
+    Layout = "~/Views/Shared/_Viewlay.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+
+
+
+            <h3 class="">
+                Apply Now
+                @Html.ActionLink("Continue from previous session", "Continue", null, new { @class = "btn btn-warning pull-right", id = "Form" })
+
+            </h3>
+            <hr>
+            <p style="color:#000000;"><span style="font-weight:900;font-size:14px;">VISION:</span> To raise active entrepreneurs that will drive the private sector of our economy</p>
+            @if (TempData["msg"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                    @TempData["msg"]
+                </div>
+            }
+
+            @using (Html.BeginForm("Apply", "Data", FormMethod.Post, new { @class = "", role = "" }))
+            {
+                @Html.AntiForgeryToken()
+                <p style="color:#c36552;margin-top:15px;font-weight:600;">Kindly fill the form and make sure you avoid any form of mistake.</p>
+                <hr style="margin-top:3px;" />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Fullname (surname first)", new { @class = "control-label" })
+                    <div class="">
+                        @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                    <div class="">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+                    <div class="">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BVN, new { @class = "control-label" })
+                    <div class="">
+                        @Html.TextBoxFor(m => m.BVN, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Applicant Category", htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        @Html.DropDownList("ApplicantCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <input type="hidden" value="Nirsal@123" name="Password"/>
+                <input type="hidden" value="Nirsal@123" name="ConfirmPassword"/>
+              
+                <br />
+                <div class="form-group">
+                    <div class="">
+                        <input type="submit" class="btn btn-default" value="Continue" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,1286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{409248A0-1F96-4968-9A5B-C7208DE1D309}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExwhyzeeEDI.Web</RootNamespace>
+    <AssemblyName>ExwhyzeeEDI.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44368</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>packages\FluentValidation.8.6.2\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Html.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Html.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Html.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Razor, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Razor.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\QRCoder.1.3.6\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.4.5.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=1.0.4727.18517, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.2.1.1\lib\net20\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutUsImagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicantCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusinessPlansController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CertificateInfoesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GalleriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImageFilesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BatchBController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LuckmanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MainController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PartialViewController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProgramCoursesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RegisteredProgramsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SchoolsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserProgramsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\YoungMindAdminController.cs" />
+    <Compile Include="Areas\EDI\Controllers\BusinessPlansController.cs" />
+    <Compile Include="Areas\EDI\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\EDI\Controllers\ProfileAccountController.cs" />
+    <Compile Include="Areas\EDI\EDIAreaRegistration.cs" />
+    <Compile Include="Areas\EncryptedKey\Controllers\PaymentsController.cs" />
+    <Compile Include="Areas\EncryptedKey\EncryptedKeyAreaRegistration.cs" />
+    <Compile Include="Controllers\ABPController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\SecuredController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TechClubController.cs" />
+    <Compile Include="Controllers\YoungMindsController.cs" />
+    <Compile Include="DataServices\AboutImagesService\AboutImagesServices.cs" />
+    <Compile Include="DataServices\AboutImagesService\IAboutImagesServices.cs" />
+    <Compile Include="DataServices\AuthorService\AuthorServices.cs" />
+    <Compile Include="DataServices\AuthorService\IAuthorServices.cs" />
+    <Compile Include="DataServices\CourseService\CourseServices.cs" />
+    <Compile Include="DataServices\CourseService\ICourseServices.cs" />
+    <Compile Include="DataServices\ImageService\IImageServices.cs" />
+    <Compile Include="DataServices\ImageService\ImageServices.cs" />
+    <Compile Include="DataServices\PaymentService\IPaymentServices.cs" />
+    <Compile Include="DataServices\PaymentService\PaymentServices.cs" />
+    <Compile Include="DataServices\PaystackService\IPaystackTransactionService.cs" />
+    <Compile Include="DataServices\PaystackService\PaystackTransactionService.cs" />
+    <Compile Include="DataServices\ProgramCourseService\IProgramCourseServices.cs" />
+    <Compile Include="DataServices\ProgramCourseService\ProgramCourseServices.cs" />
+    <Compile Include="DataServices\ReviewService\IReviewServices.cs" />
+    <Compile Include="DataServices\ReviewService\ReviewServices.cs" />
+    <Compile Include="DataServices\SchoolService\ISchoolServices.cs" />
+    <Compile Include="DataServices\SchoolService\SchoolServices.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\HelperClass.cs" />
+    <Compile Include="Migrations\201906191432134_states.cs" />
+    <Compile Include="Migrations\201906191432134_states.Designer.cs">
+      <DependentUpon>201906191432134_states.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909151745116_newupdateyoungminds.cs" />
+    <Compile Include="Migrations\201909151745116_newupdateyoungminds.Designer.cs">
+      <DependentUpon>201909151745116_newupdateyoungminds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909182019034_hjh.cs" />
+    <Compile Include="Migrations\201909182019034_hjh.Designer.cs">
+      <DependentUpon>201909182019034_hjh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909221319509_ini.cs" />
+    <Compile Include="Migrations\201909221319509_ini.Designer.cs">
+      <DependentUpon>201909221319509_ini.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001060820125_NirsalUpdate.cs" />
+    <Compile Include="Migrations\202001060820125_NirsalUpdate.Designer.cs">
+      <DependentUpon>202001060820125_NirsalUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001141220232_UserUpgrade.cs" />
+    <Compile Include="Migrations\202001141220232_UserUpgrade.Designer.cs">
+      <DependentUpon>202001141220232_UserUpgrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001141314589_dataupdate.cs" />
+    <Compile Include="Migrations\202001141314589_dataupdate.Designer.cs">
+      <DependentUpon>202001141314589_dataupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002261112260_certificate.cs" />
+    <Compile Include="Migrations\202002261112260_certificate.Designer.cs">
+      <DependentUpon>202002261112260_certificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002262315106_certverify.cs" />
+    <Compile Include="Migrations\202002262315106_certverify.Designer.cs">
+      <DependentUpon>202002262315106_certverify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002262356481_cert-update.cs" />
+    <Compile Include="Migrations\202002262356481_cert-update.Designer.cs">
+      <DependentUpon>202002262356481_cert-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281042117_cert.cs" />
+    <Compile Include="Migrations\202002281042117_cert.Designer.cs">
+      <DependentUpon>202002281042117_cert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004111131471_hope.cs" />
+    <Compile Include="Migrations\202004111131471_hope.Designer.cs">
+      <DependentUpon>202004111131471_hope.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009211634049_abp-cert.cs" />
+    <Compile Include="Migrations\202009211634049_abp-cert.Designer.cs">
+      <DependentUpon>202009211634049_abp-cert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101080512578_update3.cs" />
+    <Compile Include="Migrations\202101080512578_update3.Designer.cs">
+      <DependentUpon>202101080512578_update3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101182303482_tes.cs" />
+    <Compile Include="Migrations\202101182303482_tes.Designer.cs">
+      <DependentUpon>202101182303482_tes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101182340440_tesf.cs" />
+    <Compile Include="Migrations\202101182340440_tesf.Designer.cs">
+      <DependentUpon>202101182340440_tesf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101201111148_tesfl.cs" />
+    <Compile Include="Migrations\202101201111148_tesfl.Designer.cs">
+      <DependentUpon>202101201111148_tesfl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101201724329_ghd.cs" />
+    <Compile Include="Migrations\202101201724329_ghd.Designer.cs">
+      <DependentUpon>202101201724329_ghd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101202131583_ghdl.cs" />
+    <Compile Include="Migrations\202101202131583_ghdl.Designer.cs">
+      <DependentUpon>202101202131583_ghdl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101211239401_apply.cs" />
+    <Compile Include="Migrations\202101211239401_apply.Designer.cs">
+      <DependentUpon>202101211239401_apply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102140002373_data.cs" />
+    <Compile Include="Migrations\202102140002373_data.Designer.cs">
+      <DependentUpon>202102140002373_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102180802432_jd.cs" />
+    <Compile Include="Migrations\202102180802432_jd.Designer.cs">
+      <DependentUpon>202102180802432_jd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091645512_dff.cs" />
+    <Compile Include="Migrations\202108091645512_dff.Designer.cs">
+      <DependentUpon>202108091645512_dff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108180518035_gh.cs" />
+    <Compile Include="Migrations\202108180518035_gh.Designer.cs">
+      <DependentUpon>202108180518035_gh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dtos\AreaOfInterestDto.cs" />
+    <Compile Include="Models\Dtos\BVN_Response.cs" />
+    <Compile Include="Models\Dtos\CheckDto.cs" />
+    <Compile Include="Models\Dtos\Paystack\AppConstants.cs" />
+    <Compile Include="Models\Dtos\Paystack\Data\AuthorizationRequest.cs" />
+    <Compile Include="Models\Dtos\Paystack\Data\TransactionInitializationRequest.cs" />
+    <Compile Include="Models\Dtos\Paystack\PaymentInitalizationResponse.cs" />
+    <Compile Include="Models\Dtos\Paystack\TransactionInitializationRequestModel.cs" />
+    <Compile Include="Models\Dtos\Paystack\TransactionResponse.cs" />
+    <Compile Include="Models\Dtos\ProfileDto.cs" />
+    <Compile Include="Models\Dtos\ProgramDetailsDto.cs" />
+    <Compile Include="Models\Dtos\RegistrationDto.cs" />
+    <Compile Include="Models\Entities\AboutUsImage.cs" />
+    <Compile Include="Models\Entities\ABP.cs" />
+    <Compile Include="Models\Entities\ApplicantCategory.cs" />
+    <Compile Include="Models\Entities\Author.cs" />
+    <Compile Include="Models\Entities\BusinessPlan.cs" />
+    <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\Entities\CertificateInfo.cs" />
+    <Compile Include="Models\Entities\Comment.cs" />
+    <Compile Include="Models\Entities\Course.cs" />
+    <Compile Include="Models\Entities\Enum.cs" />
+    <Compile Include="Models\Entities\ExwhyzeeModel.cs" />
+    <Compile Include="Models\Entities\Gallery.cs" />
+    <Compile Include="Models\Entities\ImageFile.cs" />
+    <Compile Include="Models\Entities\LocalGovs.cs" />
+    <Compile Include="Models\Entities\Payment.cs" />
+    <Compile Include="Models\Entities\Post.cs" />
+    <Compile Include="Models\Entities\Profile.cs" />
+    <Compile Include="Models\Entities\ProgramCourse.cs" />
+    <Compile Include="Models\Entities\Review.cs" />
+    <Compile Include="Models\Entities\School.cs" />
+    <Compile Include="Models\Entities\Slider.cs" />
+    <Compile Include="Models\Entities\States.cs" />
+    <Compile Include="Models\Entities\UserProgram.cs" />
+    <Compile Include="Models\Entities\YoungMind.cs" />
+    <Compile Include="Models\HelperClass.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\admin-signature.png" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cert-img.jpg" />
+    <Content Include="Content\certificate-template.jpg" />
+    <Content Include="Content\dataverify.jpg" />
+    <Content Include="Content\datepicker\css\datepicker.css" />
+    <Content Include="Content\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Content\EXWHYZEE_TECHNOLOGIES_LTD_small.png" />
+    <Content Include="Content\FileSaver.js-master\FileSaver.js-master\dist\FileSaver.js" />
+    <Content Include="Content\FileSaver.js-master\FileSaver.js-master\dist\FileSaver.min.js" />
+    <Content Include="Content\FileSaver.js-master\FileSaver.js-master\src\FileSaver.js" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Form-Theme\css\animate.css" />
+    <Content Include="Content\Form-Theme\css\bootstrap.min.css" />
+    <Content Include="Content\Form-Theme\css\color-switcher.css" />
+    <Content Include="Content\Form-Theme\css\css-plugin-collections.css" />
+    <Content Include="Content\Form-Theme\css\custom-bootstrap-margin-padding.css" />
+    <Content Include="Content\Form-Theme\css\font-awesome.min.css" />
+    <Content Include="Content\Form-Theme\css\hover.css" />
+    <Content Include="Content\Form-Theme\css\jquery-ui.min.css" />
+    <Content Include="Content\Form-Theme\css\jquery.fancybox.css" />
+    <Content Include="Content\Form-Theme\css\layers.css" />
+    <Content Include="Content\Form-Theme\css\menuzord-rounded-boxed.css" />
+    <Content Include="Content\Form-Theme\css\navigation.css" />
+    <Content Include="Content\Form-Theme\css\owl.carousel.css" />
+    <Content Include="Content\Form-Theme\css\owl.theme.default.min.css" />
+    <Content Include="Content\Form-Theme\css\preloader.css" />
+    <Content Include="Content\Form-Theme\css\responsive.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\closedhand.cur" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\index.php" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\layers.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\ares.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\custom.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\dione.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\erinyen.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\gyges.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\hades.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\hebe.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\hephaistos.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\hermes.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\hesperiden.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\metis.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\persephone.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\uranus.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation-skins\zeus.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\navigation.css" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\openhand.cur" />
+    <Content Include="Content\Form-Theme\css\revolution-slider\settings.css" />
+    <Content Include="Content\Form-Theme\css\settings.css" />
+    <Content Include="Content\Form-Theme\css\strocke-gap-icons-style.css" />
+    <Content Include="Content\Form-Theme\css\style-main.css" />
+    <Content Include="Content\Form-Theme\css\style.css" />
+    <Content Include="Content\Form-Theme\css\theme-skin-blue.css" />
+    <Content Include="Content\Form-Theme\js\bootstrap.min.js" />
+    <Content Include="Content\Form-Theme\js\circle-progress.js" />
+    <Content Include="Content\Form-Theme\js\color-switcher.js" />
+    <Content Include="Content\Form-Theme\js\custom.js" />
+    <Content Include="Content\Form-Theme\js\dynamicscrollspy.min.js" />
+    <Content Include="Content\Form-Theme\js\gmap.js" />
+    <Content Include="Content\Form-Theme\js\isotope.pkgd.min.js" />
+    <Content Include="Content\Form-Theme\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\Form-Theme\js\jquery-2.2.4.min.js" />
+    <Content Include="Content\Form-Theme\js\jquery-plugin-collection.js" />
+    <Content Include="Content\Form-Theme\js\jquery-ui.min.js" />
+    <Content Include="Content\Form-Theme\js\jquery.appear.js" />
+    <Content Include="Content\Form-Theme\js\validate.js" />
+    <Content Include="Content\Form-Theme\js\wow.js" />
+    <Content Include="Content\html2canvas.js" />
+    <Content Include="Content\ICON-CLUB.png" />
+    <Content Include="Content\images\Benedine Obiekea.jpg" />
+    <Content Include="Content\images\bg101.jpg" />
+    <Content Include="Content\images\CBN 380 320.png" />
+    <Content Include="Content\images\CBN EDITED.png" />
+    <Content Include="Content\images\EDI Iamge 1.jpg" />
+    <Content Include="Content\images\EDI Iamge 2.jpg" />
+    <Content Include="Content\images\EDI Iamge 3.jpg" />
+    <Content Include="Content\images\edi-about %281%29.jpg" />
+    <Content Include="Content\images\EXWHYZEE  EDITED.png" />
+    <Content Include="Content\images\Global  EDITED.png" />
+    <Content Include="Content\images\Govt of Abia State  EDITED.png" />
+    <Content Include="Content\images\ico.png" />
+    <Content Include="Content\images\Innoson main  EDITED.png" />
+    <Content Include="Content\images\mrsamuel.jpeg" />
+    <Content Include="Content\images\patner\CBN.png" />
+    <Content Include="Content\images\patner\Exwhyzee.png" />
+    <Content Include="Content\images\patner\Global.png" />
+    <Content Include="Content\images\patner\Govt of Abia State.png" />
+    <Content Include="Content\images\patner\Innoson main.png" />
+    <Content Include="Content\images\peteronwuka.jpeg" />
+    <Content Include="Content\images\t1.jpg" />
+    <Content Include="Content\images\t2.jpg" />
+    <Content Include="Content\images\t3.jpg" />
+    <Content Include="Content\images\t4.jpg" />
+    <Content Include="Content\images\youtube.png" />
+    <Content Include="Content\invoice.css" />
+    <Content Include="Content\loading.css" />
+    <Content Include="Content\overrides.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sign.png" />
+    <Content Include="Content\signature.png" />
+    <Content Include="Content\slider\edi banner new.jpg" />
+    <Content Include="Content\slider\edi-one.jpg" />
+    <Content Include="Content\slider\edi-three.jpg" />
+    <Content Include="Content\slider\edi-two.jpg" />
+    <Content Include="Content\slider\Image 1.jpg" />
+    <Content Include="Content\slider\image 3.jpg" />
+    <Content Include="Content\slider\image 7.jpg" />
+    <Content Include="Content\slider\interswitch_button.gif" />
+    <Content Include="Content\slider\logo EDI.png" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\Theme\css\animate.css" />
+    <Content Include="Content\Theme\css\bootstrap.min.css" />
+    <Content Include="Content\Theme\css\font-awesome.min.css" />
+    <Content Include="Content\Theme\css\hover.css" />
+    <Content Include="Content\Theme\css\jquery.fancybox.css" />
+    <Content Include="Content\Theme\css\owl.carousel.css" />
+    <Content Include="Content\Theme\css\owl.theme.default.min.css" />
+    <Content Include="Content\Theme\css\responsive.css" />
+    <Content Include="Content\Theme\css\revolution-slider\closedhand.cur" />
+    <Content Include="Content\Theme\css\revolution-slider\index.php" />
+    <Content Include="Content\Theme\css\revolution-slider\layers.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\ares.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\custom.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\dione.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\erinyen.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\gyges.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\hades.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\hebe.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\hephaistos.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\hermes.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\hesperiden.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\metis.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\persephone.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\uranus.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation-skins\zeus.css" />
+    <Content Include="Content\Theme\css\revolution-slider\navigation.css" />
+    <Content Include="Content\Theme\css\revolution-slider\openhand.cur" />
+    <Content Include="Content\Theme\css\revolution-slider\settings.css" />
+    <Content Include="Content\Theme\css\strocke-gap-icons-style.css" />
+    <Content Include="Content\Theme\css\style.css" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\css\helper.css" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\css\index.php" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\fonts\index.php" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\index.php" />
+    <Content Include="Content\Theme\fonts\revicons\index.php" />
+    <Content Include="Content\Theme\fonts\revicons\revicons.svg" />
+    <Content Include="Content\Theme\fonts\Stroke-Gap-Icons.svg" />
+    <Content Include="Content\Theme\img\404\404-bg.jpg" />
+    <Content Include="Content\Theme\img\404\404-man.png" />
+    <Content Include="Content\Theme\img\about\1.jpg" />
+    <Content Include="Content\Theme\img\about\2.jpg" />
+    <Content Include="Content\Theme\img\about\icon\1.png" />
+    <Content Include="Content\Theme\img\about\icon\2.png" />
+    <Content Include="Content\Theme\img\about\icon\3.png" />
+    <Content Include="Content\Theme\img\about\icon\4.png" />
+    <Content Include="Content\Theme\img\blog-construct\1.jpg" />
+    <Content Include="Content\Theme\img\blog-construct\2.jpg" />
+    <Content Include="Content\Theme\img\blog-construct\3.jpg" />
+    <Content Include="Content\Theme\img\blog-page\1.jpg" />
+    <Content Include="Content\Theme\img\blog-page\2.jpg" />
+    <Content Include="Content\Theme\img\blog-page\3.jpg" />
+    <Content Include="Content\Theme\img\blog-page\4.jpg" />
+    <Content Include="Content\Theme\img\blog-popular-post\1.jpg" />
+    <Content Include="Content\Theme\img\blog-popular-post\2.jpg" />
+    <Content Include="Content\Theme\img\blog-popular-post\3.jpg" />
+    <Content Include="Content\Theme\img\blog-single\1.jpg" />
+    <Content Include="Content\Theme\img\blog-single\com_1.jpg" />
+    <Content Include="Content\Theme\img\blog-single\com_2.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\1.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\2.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\3.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\4.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\5.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\6.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\7.jpg" />
+    <Content Include="Content\Theme\img\blog-v2\8.jpg" />
+    <Content Include="Content\Theme\img\blog\1.jpg" />
+    <Content Include="Content\Theme\img\blog\2.jpg" />
+    <Content Include="Content\Theme\img\blog\3.jpg" />
+    <Content Include="Content\Theme\img\caption-box-image\1.jpg" />
+    <Content Include="Content\Theme\img\cart\1.jpg" />
+    <Content Include="Content\Theme\img\cart\select-box-bg.png" />
+    <Content Include="Content\Theme\img\clients\1.png" />
+    <Content Include="Content\Theme\img\clients\2.png" />
+    <Content Include="Content\Theme\img\clients\3.png" />
+    <Content Include="Content\Theme\img\clients\4.png" />
+    <Content Include="Content\Theme\img\clients\5.png" />
+    <Content Include="Content\Theme\img\construction-welcome\1.jpg" />
+    <Content Include="Content\Theme\img\construction-welcome\2.jpg" />
+    <Content Include="Content\Theme\img\construction-welcome\bg.jpg" />
+    <Content Include="Content\Theme\img\contact-page\icon\1.png" />
+    <Content Include="Content\Theme\img\contact-page\icon\2.png" />
+    <Content Include="Content\Theme\img\contact-page\icon\3.png" />
+    <Content Include="Content\Theme\img\emergency\bg.png" />
+    <Content Include="Content\Theme\img\emergency\man.png" />
+    <Content Include="Content\Theme\img\fancybox\blank.gif" />
+    <Content Include="Content\Theme\img\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Content\Theme\img\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\Theme\img\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\Theme\img\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Content\Theme\img\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\Theme\img\faqs\1.jpg" />
+    <Content Include="Content\Theme\img\featured-service\1.jpg" />
+    <Content Include="Content\Theme\img\featured-service\2.jpg" />
+    <Content Include="Content\Theme\img\featured-service\3.jpg" />
+    <Content Include="Content\Theme\img\featured-service\4.jpg" />
+    <Content Include="Content\Theme\img\featured-service\bg.jpg" />
+    <Content Include="Content\Theme\img\flicker-widget\1.jpg" />
+    <Content Include="Content\Theme\img\flicker-widget\2.jpg" />
+    <Content Include="Content\Theme\img\flicker-widget\3.jpg" />
+    <Content Include="Content\Theme\img\flicker-widget\4.jpg" />
+    <Content Include="Content\Theme\img\flicker-widget\5.jpg" />
+    <Content Include="Content\Theme\img\flicker-widget\6.jpg" />
+    <Content Include="Content\Theme\img\icons\helper-icon.png" />
+    <Content Include="Content\Theme\img\our-projects\1.jpg" />
+    <Content Include="Content\Theme\img\our-projects\2.jpg" />
+    <Content Include="Content\Theme\img\our-projects\3.jpg" />
+    <Content Include="Content\Theme\img\our-projects\4.jpg" />
+    <Content Include="Content\Theme\img\our-projects\5.jpg" />
+    <Content Include="Content\Theme\img\our-projects\6.jpg" />
+    <Content Include="Content\Theme\img\our-projects\bg.jpg" />
+    <Content Include="Content\Theme\img\our-specialist\1.png" />
+    <Content Include="Content\Theme\img\our-specialist\2.png" />
+    <Content Include="Content\Theme\img\our-specialist\3.png" />
+    <Content Include="Content\Theme\img\our-specialist\4.png" />
+    <Content Include="Content\Theme\img\our-team-construct\1.png" />
+    <Content Include="Content\Theme\img\our-team-construct\2.png" />
+    <Content Include="Content\Theme\img\our-team-construct\3.png" />
+    <Content Include="Content\Theme\img\our-team-construct\4.png" />
+    <Content Include="Content\Theme\img\owl\ajax-loader.gif" />
+    <Content Include="Content\Theme\img\owl\owl.video.play.png" />
+    <Content Include="Content\Theme\img\product-details\1.jpg" />
+    <Content Include="Content\Theme\img\product-details\2.jpg" />
+    <Content Include="Content\Theme\img\product-details\3.jpg" />
+    <Content Include="Content\Theme\img\product-details\add_1.jpg" />
+    <Content Include="Content\Theme\img\product-details\add_2.jpg" />
+    <Content Include="Content\Theme\img\product-details\main-item.jpg" />
+    <Content Include="Content\Theme\img\product-details\shop-item-1.jpg" />
+    <Content Include="Content\Theme\img\product-details\shop-item-2.jpg" />
+    <Content Include="Content\Theme\img\product-details\shop-item-3.jpg" />
+    <Content Include="Content\Theme\img\project-v1\1.jpg" />
+    <Content Include="Content\Theme\img\project-v1\10.jpg" />
+    <Content Include="Content\Theme\img\project-v1\2.jpg" />
+    <Content Include="Content\Theme\img\project-v1\3.jpg" />
+    <Content Include="Content\Theme\img\project-v1\4.jpg" />
+    <Content Include="Content\Theme\img\project-v1\5.jpg" />
+    <Content Include="Content\Theme\img\project-v1\6.jpg" />
+    <Content Include="Content\Theme\img\project-v1\7.jpg" />
+    <Content Include="Content\Theme\img\project-v1\8.jpg" />
+    <Content Include="Content\Theme\img\project-v1\9.jpg" />
+    <Content Include="Content\Theme\img\project-v2\1.jpg" />
+    <Content Include="Content\Theme\img\project-v2\10.jpg" />
+    <Content Include="Content\Theme\img\project-v2\2.jpg" />
+    <Content Include="Content\Theme\img\project-v2\3.jpg" />
+    <Content Include="Content\Theme\img\project-v2\4.jpg" />
+    <Content Include="Content\Theme\img\project-v2\5.jpg" />
+    <Content Include="Content\Theme\img\project-v2\6.jpg" />
+    <Content Include="Content\Theme\img\project-v2\7.jpg" />
+    <Content Include="Content\Theme\img\project-v2\8.jpg" />
+    <Content Include="Content\Theme\img\project-v2\9.jpg" />
+    <Content Include="Content\Theme\img\project-v3\1.jpg" />
+    <Content Include="Content\Theme\img\project-v3\2.jpg" />
+    <Content Include="Content\Theme\img\project-v3\3.jpg" />
+    <Content Include="Content\Theme\img\project-v3\4.jpg" />
+    <Content Include="Content\Theme\img\project-v3\5.jpg" />
+    <Content Include="Content\Theme\img\project-v3\6.jpg" />
+    <Content Include="Content\Theme\img\project-v3\7.jpg" />
+    <Content Include="Content\Theme\img\project-v3\8.jpg" />
+    <Content Include="Content\Theme\img\project-v4\1.jpg" />
+    <Content Include="Content\Theme\img\project-v4\10.jpg" />
+    <Content Include="Content\Theme\img\project-v4\2.jpg" />
+    <Content Include="Content\Theme\img\project-v4\3.jpg" />
+    <Content Include="Content\Theme\img\project-v4\4.jpg" />
+    <Content Include="Content\Theme\img\project-v4\5.jpg" />
+    <Content Include="Content\Theme\img\project-v4\6.jpg" />
+    <Content Include="Content\Theme\img\project-v4\7.jpg" />
+    <Content Include="Content\Theme\img\project-v4\8.jpg" />
+    <Content Include="Content\Theme\img\project-v4\9.jpg" />
+    <Content Include="Content\Theme\img\project-v5\1.jpg" />
+    <Content Include="Content\Theme\img\project-v5\2.jpg" />
+    <Content Include="Content\Theme\img\project-v5\3.jpg" />
+    <Content Include="Content\Theme\img\project-v5\4.jpg" />
+    <Content Include="Content\Theme\img\resources\contact-bg.png" />
+    <Content Include="Content\Theme\img\resources\footer-bg.jpg" />
+    <Content Include="Content\Theme\img\resources\footer-crane.png" />
+    <Content Include="Content\Theme\img\resources\footer-man.png" />
+    <Content Include="Content\Theme\img\resources\great-construct-team-bg.jpg" />
+    <Content Include="Content\Theme\img\resources\header-v2-banner-lines.png" />
+    <Content Include="Content\Theme\img\resources\header-v5-bg.png" />
+    <Content Include="Content\Theme\img\resources\logo-2.png" />
+    <Content Include="Content\Theme\img\resources\logo.png" />
+    <Content Include="Content\Theme\img\resources\map-marker.png" />
+    <Content Include="Content\Theme\img\resources\our-expertize-bg.jpg" />
+    <Content Include="Content\Theme\img\resources\page-title-bg.jpg" />
+    <Content Include="Content\Theme\img\resources\paypal.png" />
+    <Content Include="Content\Theme\img\resources\preloader.gif" />
+    <Content Include="Content\Theme\img\resources\pricing-faq-bg.jpg" />
+    <Content Include="Content\Theme\img\resources\project-section-title-bg.png" />
+    <Content Include="Content\Theme\img\resources\service.jpg" />
+    <Content Include="Content\Theme\img\resources\team-section-bg.png" />
+    <Content Include="Content\Theme\img\revolution-slider\coloredbg.png" />
+    <Content Include="Content\Theme\img\revolution-slider\gridtile.png" />
+    <Content Include="Content\Theme\img\revolution-slider\gridtile_3x3.png" />
+    <Content Include="Content\Theme\img\revolution-slider\gridtile_3x3_white.png" />
+    <Content Include="Content\Theme\img\revolution-slider\gridtile_white.png" />
+    <Content Include="Content\Theme\img\revolution-slider\loader.gif" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\fb.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\fr.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\ig.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\post.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\revolution_slide1.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\revolution_slide2.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\tw.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\vm.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\wc.png" />
+    <Content Include="Content\Theme\img\revolution-slider\sources\yt.png" />
+    <Content Include="Content\Theme\img\search-page\1.jpg" />
+    <Content Include="Content\Theme\img\search-page\2.jpg" />
+    <Content Include="Content\Theme\img\search-page\3.jpg" />
+    <Content Include="Content\Theme\img\search-page\4.jpg" />
+    <Content Include="Content\Theme\img\search-page\5.jpg" />
+    <Content Include="Content\Theme\img\search-page\6.jpg" />
+    <Content Include="Content\Theme\img\service-that-we-offer\1.jpg" />
+    <Content Include="Content\Theme\img\service-that-we-offer\2.jpg" />
+    <Content Include="Content\Theme\img\service-that-we-offer\3.jpg" />
+    <Content Include="Content\Theme\img\service-that-we-offer\bg.jpg" />
+    <Content Include="Content\Theme\img\service-two-tab-content\1.jpg" />
+    <Content Include="Content\Theme\img\service-two-tab-content\2.jpg" />
+    <Content Include="Content\Theme\img\service-we-provide\1.jpg" />
+    <Content Include="Content\Theme\img\service-we-provide\2.png" />
+    <Content Include="Content\Theme\img\sidebar\1.jpg" />
+    <Content Include="Content\Theme\img\slides\construct-banner.jpg" />
+    <Content Include="Content\Theme\img\slides\image1.jpg" />
+    <Content Include="Content\Theme\img\slides\image10.jpg" />
+    <Content Include="Content\Theme\img\slides\image2.jpg" />
+    <Content Include="Content\Theme\img\slides\image3.jpg" />
+    <Content Include="Content\Theme\img\slides\image4.jpg" />
+    <Content Include="Content\Theme\img\slides\image5.jpg" />
+    <Content Include="Content\Theme\img\slides\image6.jpg" />
+    <Content Include="Content\Theme\img\slides\image7.jpg" />
+    <Content Include="Content\Theme\img\slides\image8.jpg" />
+    <Content Include="Content\Theme\img\slides\image9.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\1.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\2.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\3.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\4.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\5.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\6.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\7.jpg" />
+    <Content Include="Content\Theme\img\testimonial2\8.jpg" />
+    <Content Include="Content\Theme\img\testimonials-construct\1.jpg" />
+    <Content Include="Content\Theme\img\testimonials-construct\2.jpg" />
+    <Content Include="Content\Theme\img\testimonials-construct\bg.jpg" />
+    <Content Include="Content\Theme\img\testimonial\1.jpg" />
+    <Content Include="Content\Theme\img\testimonial\2.jpg" />
+    <Content Include="Content\Theme\img\testimonial\3.jpg" />
+    <Content Include="Content\Theme\img\testimonial\4.jpg" />
+    <Content Include="Content\Theme\img\testimonial\5.jpg" />
+    <Content Include="Content\Theme\img\testimonial\6.jpg" />
+    <Content Include="Content\Theme\img\testimonial\7.jpg" />
+    <Content Include="Content\Theme\img\testimonial\8.jpg" />
+    <Content Include="Content\Theme\img\video-construction\1.jpg" />
+    <Content Include="Content\Theme\img\video-construction\bg.jpg" />
+    <Content Include="Content\Theme\img\video-construction\video-play-icon.png" />
+    <Content Include="Content\Theme\img\we-are-expert\1.jpg" />
+    <Content Include="Content\Theme\img\welcome-to-construct\1.jpg" />
+    <Content Include="Content\Theme\img\welcome-to-construct\bg.jpg" />
+    <Content Include="Content\Theme\img\who-we-are\1.jpg" />
+    <Content Include="Content\Theme\img\who-we-are\2.jpg" />
+    <Content Include="Content\Theme\img\who-we-are\3.jpg" />
+    <Content Include="Content\Theme\img\why-choose-us\icon\1.png" />
+    <Content Include="Content\Theme\img\why-choose-us\icon\2.png" />
+    <Content Include="Content\Theme\img\why-choose-us\icon\3.png" />
+    <Content Include="Content\Theme\img\why-choose-us\icon\4.png" />
+    <Content Include="Content\Theme\js\bootstrap.min.js" />
+    <Content Include="Content\Theme\js\circle-progress.js" />
+    <Content Include="Content\Theme\js\custom.js" />
+    <Content Include="Content\Theme\js\dynamicscrollspy.min.js" />
+    <Content Include="Content\Theme\js\gmap.js" />
+    <Content Include="Content\Theme\js\isotope.pkgd.min.js" />
+    <Content Include="Content\Theme\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\Theme\js\jquery.appear.js" />
+    <Content Include="Content\Theme\js\jquery.countTo.js" />
+    <Content Include="Content\Theme\js\jquery.easing.min.js" />
+    <Content Include="Content\Theme\js\jquery.fancybox.pack.js" />
+    <Content Include="Content\Theme\js\jquery.mixitup.min.js" />
+    <Content Include="Content\Theme\js\jquery.scrolly.js" />
+    <Content Include="Content\Theme\js\owl.carousel.min.js" />
+    <Content Include="Content\Theme\js\respond.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\index.php" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.actions.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.carousel.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.kenburn.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.migration.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\revolution.extension.video.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\index.php" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.actions.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.carousel.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.kenburn.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.layeranimation.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.migration.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.navigation.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.parallax.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.slideanims.js" />
+    <Content Include="Content\Theme\js\revolution-slider\extensions\source\revolution.extension.video.js" />
+    <Content Include="Content\Theme\js\revolution-slider\index.php" />
+    <Content Include="Content\Theme\js\revolution-slider\jquery.themepunch.enablelog.js" />
+    <Content Include="Content\Theme\js\revolution-slider\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\Theme\js\revolution-slider\source\index.php" />
+    <Content Include="Content\Theme\js\revolution-slider\source\jquery.themepunch.enablelog.js" />
+    <Content Include="Content\Theme\js\revolution-slider\source\jquery.themepunch.revolution.js" />
+    <Content Include="Content\Theme\js\revolution-slider\source\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\Theme\js\validate.js" />
+    <Content Include="Content\Theme\js\wow.js" />
+    <Content Include="Content\xl\demo\index.html" />
+    <Content Include="Content\xl\dist\jquery.table2excel.js" />
+    <Content Include="Content\xl\dist\jquery.table2excel.min.js" />
+    <Content Include="Content\xl\Gruntfile.js" />
+    <Content Include="Content\xl\src\jquery.table2excel.js" />
+    <Content Include="Content\XYZ-CLUB-LOGO.png" />
+    <Content Include="Content\youngmind\application_recent_minify.min.css" />
+    <Content Include="Content\youngmind\application_recent_minify.min.js" />
+    <Content Include="Content\youngmind\bat.js" />
+    <Content Include="Content\youngmind\fbevents.js" />
+    <Content Include="Content\youngmind\gtm.js" />
+    <Content Include="Content\youngmind\heap-2156268856.js" />
+    <Content Include="Content\youngmind\inferredEvents.js" />
+    <Content Include="Content\youngmind\jquery.fancybox.css" />
+    <Content Include="Content\youngmind\new_vendor_minify.min.css" />
+    <Content Include="Content\youngmind\new_vendor_minify.min.js" />
+    <Content Include="Content\youngmind\swiper.min.css" />
+    <Content Include="Content\youngmind\vendor_minify.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\ProgramCourses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProgramCourses\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProgramCourses\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProgramCourses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProgramCourses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageFiles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageFiles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageFiles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageFiles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ImageFiles\Index.cshtml" />
+    <Content Include="Areas\EDI\Views\web.config" />
+    <Content Include="Areas\EDI\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\EDI\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\EDI\Views\ProfileAccount\Create.cshtml" />
+    <Content Include="Areas\EDI\Views\ProfileAccount\Delete.cshtml" />
+    <Content Include="Areas\EDI\Views\ProfileAccount\Details.cshtml" />
+    <Content Include="Areas\EDI\Views\ProfileAccount\Edit.cshtml" />
+    <Content Include="Areas\EDI\Views\ProfileAccount\Index.cshtml" />
+    <Content Include="Areas\EDI\Views\Dashboard\Index.cshtml" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RegisteredPrograms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RegisteredPrograms\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RegisteredPrograms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RegisteredPrograms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RegisteredPrograms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\LayoutProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\LayoutProfileTitle.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\LayoutSchoolName.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ParticipantMenu.cshtml" />
+    <Content Include="Areas\EDI\Views\Dashboard\_Profile.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\ProgramCourseOutline.cshtml" />
+    <Content Include="Areas\Admin\Views\Galleries\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Galleries\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Galleries\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Galleries\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Galleries\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Schools\CompleteAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\Schools\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Schools\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Schools\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Schools\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AboutUsImages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AboutUsImages\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AboutUsImages\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AboutUsImages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AboutUsImages\Index.cshtml" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Theme\fonts\FontAwesome.otf" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\Theme\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\Theme\fonts\revicons\revicons.eot" />
+    <Content Include="Content\Theme\fonts\revicons\revicons.ttf" />
+    <Content Include="Content\Theme\fonts\revicons\revicons.woff" />
+    <Content Include="Content\Theme\fonts\Stroke-Gap-Icons.eot" />
+    <Content Include="Content\Theme\fonts\Stroke-Gap-Icons.ttf" />
+    <Content Include="Content\Theme\fonts\Stroke-Gap-Icons.woff" />
+    <Content Include="Content\Theme\js\revolution-slider\.DS_Store" />
+    <Content Include="Areas\Admin\Views\Sliders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Index.cshtml" />
+    <Content Include="Content\datepicker\less\datepicker.less" />
+    <Content Include="Areas\Admin\Views\PartialView\LayoutDaashboardIcon.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\web.config" />
+    <Content Include="Areas\EncryptedKey\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Create.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Delete.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Details.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Edit.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Index.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Complete.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\PaymentDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\users.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\Delete.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Payments\Invoice.cshtml" />
+    <Content Include="Areas\EncryptedKey\Views\Shared\_InvoiceLayout.cshtml" />
+    <Content Include="Areas\EDI\Views\Dashboard\RegisteredProgram.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\RegisteredProgram.cshtml" />
+    <Content Include="Areas\Admin\Views\YoungMindAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\YoungMindAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\YoungMindAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\YoungMindAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\YoungMindAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\UpdateProgram.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\DetailsInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\EDI\Views\BusinessPlans\Create.cshtml" />
+    <Content Include="Areas\EDI\Views\BusinessPlans\Delete.cshtml" />
+    <Content Include="Areas\EDI\Views\BusinessPlans\Details.cshtml" />
+    <Content Include="Areas\EDI\Views\BusinessPlans\Edit.cshtml" />
+    <Content Include="Areas\EDI\Views\BusinessPlans\Index.cshtml" />
+    <Content Include="Areas\EDI\Views\BusinessPlans\UploadBusinessPlan.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\_AdminDashbar.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessPlans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessPlans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessPlans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessPlans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessPlans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessPlans\UploadBusinessPlan.cshtml" />
+    <Content Include="Areas\Admin\Views\UserPrograms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserPrograms\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserPrograms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserPrograms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserPrograms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Enrolled.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\CompletedTraining.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\PendingTraining.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\UpdateUserData.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\PrintCertificate.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Certificate.cshtml" />
+    <Content Include="Areas\Admin\Views\CertificateInfoes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CertificateInfoes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CertificateInfoes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CertificateInfoes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CertificateInfoes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Certverify.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Certificate.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Certified.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\CreateABP.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\IndexABP.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\PrintCertificateABP.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\EditABP.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\EditProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Luckman\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BatchB\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\TrainingList.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\EditTraining.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\TrainingDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\MainList.cshtml" />
+    <Content Include="Content\xl\demo\download.xls" />
+    <Content Include="Content\xl\serve.json" />
+    <Content Include="Content\xl\table2excel.jquery.json" />
+    <Content Include="Content\FileSaver.js-master\FileSaver.js-master\.github\FUNDING.yml" />
+    <Content Include="Content\FileSaver.js-master\FileSaver.js-master\dist\FileSaver.min.js.map" />
+    <Content Include="Areas\Admin\Views\Users\SortOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\AdminEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\BatchRegEx.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\TrainingResponse.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Certverifydf.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicantCategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicantCategories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicantCategories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicantCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicantCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\IList.cshtml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\201921_123652891.jpg" />
+    <Content Include="Uploads\201924_151730708.jpg" />
+    <Content Include="Uploads\201925_13281940.jpg" />
+    <Content Include="Views\Data\Success.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Secured\About.cshtml" />
+    <Content Include="Views\Secured\Contact.cshtml" />
+    <Content Include="Views\Secured\Index.cshtml" />
+    <Content Include="Views\Data\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Data\ConfirmEmail.cshtml" />
+    <Content Include="Views\Data\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Data\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Data\ForgotPassword.cshtml" />
+    <Content Include="Views\Data\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Data\Login.cshtml" />
+    <Content Include="Views\Data\Apply.cshtml" />
+    <Content Include="Views\Data\ResetPassword.cshtml" />
+    <Content Include="Views\Data\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Data\SendCode.cshtml" />
+    <Content Include="Views\Data\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Data\CompleteAreaOfInterst.cshtml" />
+    <Content Include="Views\Shared\_ClientLayout.cshtml" />
+    <Content Include="Views\Secured\ProgramHistory.cshtml" />
+    <Content Include="Views\Secured\LeadershipTeam.cshtml" />
+    <Content Include="Views\Secured\Partners.cshtml" />
+    <Content Include="Views\Secured\Testimonies.cshtml" />
+    <Content Include="Views\Secured\FAQs.cshtml" />
+    <Content Include="Views\Secured\AwardAndRegonition.cshtml" />
+    <Content Include="Views\Secured\AboutEdi.cshtml" />
+    <Content Include="Views\Shared\_EmptyLayout.cshtml" />
+    <Content Include="Views\Data\FillForm.cshtml" />
+    <Content Include="Views\Secured\_LatestNews.cshtml" />
+    <Content Include="Views\Secured\_MorePost.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Blog\Delete.cshtml" />
+    <Content Include="Views\Blog\Details.cshtml" />
+    <Content Include="Views\Blog\Edit.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Data\CourseRegistration.cshtml" />
+    <Content Include="Views\Shared\_Viewlay.cshtml" />
+    <Content Include="Views\Secured\_FooterPosts.cshtml" />
+    <Content Include="Views\Secured\_Gallery.cshtml" />
+    <Content Include="Views\Shared\_FormLayout.cshtml" />
+    <Content Include="Views\Data\SchoolRegistration.cshtml" />
+    <Content Include="Views\Secured\_NewLayout.cshtml" />
+    <Content Include="Views\Secured\_Slider.cshtml" />
+    <Content Include="Views\Secured\Programone.cshtml" />
+    <Content Include="Views\Data\VerifyAccount.cshtml" />
+    <Content Include="Views\Shared\_Loading.cshtml" />
+    <Content Include="Views\Data\AccountInitialization.cshtml" />
+    <Content Include="Views\Data\Continue.cshtml" />
+    <Content Include="Views\Shared\_ResponseMessagePartial.cshtml" />
+    <Content Include="Views\Shared\_YoungMindLayout.cshtml" />
+    <Content Include="Views\YoungMinds\Index.cshtml" />
+    <Content Include="Views\Shared\_CertVerifyLayout.cshtml" />
+    <Content Include="Views\TechClub\Join1.cshtml" />
+    <Content Include="Views\TechClub\Delete.cshtml" />
+    <Content Include="Views\TechClub\Edit.cshtml" />
+    <Content Include="Views\TechClub\Index.cshtml" />
+    <Content Include="Views\Shared\_TechClubLay.cshtml" />
+    <Content Include="Views\Shared\TechLanding.cshtml" />
+    <Content Include="Views\TechClub\List.cshtml" />
+    <Content Include="Views\TechClub\Details.cshtml" />
+    <Content Include="Views\TechClub\Join.cshtml" />
+    <Content Include="Views\ABP\Verify.cshtml" />
+    <Content Include="Views\ABP\ABPCertificate.cshtml" />
+    <Content Include="Views\Data\Reg.cshtml" />
+    <Content Include="Views\Data\CertList.cshtml" />
+    <Content Include="Views\Data\CertListMain.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Data\SearchNumber.cshtml" />
+    <Content Include="Views\Data\RegUpdate.cshtml" />
+    <Content Include="Views\Data\BatchB.cshtml" />
+    <Content Include="Views\TechClub\Verify.cshtml" />
+    <Content Include="Views\Secured\JDPC.cshtml" />
+    <Content Include="Views\Secured\AGSMEIS.cshtml" />
+    <Content Include="Views\Data\JDPC.cshtml" />
+    <Content Include="Views\Data\Success.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\EDI\Models\" />
+    <Folder Include="Areas\EncryptedKey\Models\" />
+    <Folder Include="BusinessPlan\" />
+    <Folder Include="ExcelUpload\" />
+    <Folder Include="Slider\" />
+    <Folder Include="Uploads\Advert\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906191432134_states.resx">
+      <DependentUpon>201906191432134_states.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909151745116_newupdateyoungminds.resx">
+      <DependentUpon>201909151745116_newupdateyoungminds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909182019034_hjh.resx">
+      <DependentUpon>201909182019034_hjh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909221319509_ini.resx">
+      <DependentUpon>201909221319509_ini.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001060820125_NirsalUpdate.resx">
+      <DependentUpon>202001060820125_NirsalUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001141220232_UserUpgrade.resx">
+      <DependentUpon>202001141220232_UserUpgrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001141314589_dataupdate.resx">
+      <DependentUpon>202001141314589_dataupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261112260_certificate.resx">
+      <DependentUpon>202002261112260_certificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002262315106_certverify.resx">
+      <DependentUpon>202002262315106_certverify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002262356481_cert-update.resx">
+      <DependentUpon>202002262356481_cert-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281042117_cert.resx">
+      <DependentUpon>202002281042117_cert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004111131471_hope.resx">
+      <DependentUpon>202004111131471_hope.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009211634049_abp-cert.resx">
+      <DependentUpon>202009211634049_abp-cert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101080512578_update3.resx">
+      <DependentUpon>202101080512578_update3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101182303482_tes.resx">
+      <DependentUpon>202101182303482_tes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101182340440_tesf.resx">
+      <DependentUpon>202101182340440_tesf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101201111148_tesfl.resx">
+      <DependentUpon>202101201111148_tesfl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101201724329_ghd.resx">
+      <DependentUpon>202101201724329_ghd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101202131583_ghdl.resx">
+      <DependentUpon>202101202131583_ghdl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101211239401_apply.resx">
+      <DependentUpon>202101211239401_apply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102140002373_data.resx">
+      <DependentUpon>202102140002373_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102180802432_jd.resx">
+      <DependentUpon>202102180802432_jd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091645512_dff.resx">
+      <DependentUpon>202108091645512_dff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108180518035_gh.resx">
+      <DependentUpon>202108180518035_gh.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56332</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:43556/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:43556/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

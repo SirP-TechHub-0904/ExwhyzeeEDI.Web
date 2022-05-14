@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.YoungMind>
+
+@{
+    ViewBag.Title = "List";
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Registered Students</h3>
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                          
+                            <th>
+                                Full Name
+                            </th>
+
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+                               
+                                <td>
+                                    <a href="@Url.Action("Details",new { id = item.Id })">
+                                        @Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.OtherName)
+                                    </a>
+                                </td>
+
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateRegistered.Date)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+
+                                <td>
+
+                                    <a href="tel:@item.Phone">
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </a>
+                                </td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+@section Style {
+
+    <link rel="stylesheet" href="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}

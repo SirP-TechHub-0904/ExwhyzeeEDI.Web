@@ -1,0 +1,47 @@
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ENTREPRENEURSHIP DEVELOPMENT INSTITUTE</title>
+
+    <link rel="icon" href="~/Content/images/ico.png" type="image/x-icon" />
+    <!-- Bootstrap -->
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!-- Styling -->
+
+    <link href="~/Content/overrides.css" rel="stylesheet" />
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <link href="~/Content/invoice.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+</head>
+<body>
+    @RenderBody()
+    
+
+    <p class="text-center hidden-print"><a href="@Url.Action("Index", "Dashboard", new { area = "EDI" })">« Back to Dashboard</a></p>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+
+        
+        var x = document.getElementById("name123").value;
+        var namm = x + ' EDI Invoice'+ '.pdf';
+        console.log(x + "dd");
+        console.log(namm);
+        console.log("sd");
+        function myFunction() {
+            let doc = new jsPDF('p', 'pt', 'a4');
+            doc.addHTML(document.body, function () {
+                doc.save(namm);
+            });
+        }
+    </script>
+</body>
+</html>

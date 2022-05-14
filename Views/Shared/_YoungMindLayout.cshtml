@@ -1,0 +1,817 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1.0">
+    <meta name="description" content="Submit your application to start the admissions process!">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="https://d11p8zzranqxa6.cloudfront.net/images/global/cd_profile_icon_favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://www.codingdojo.com/apply">
+
+    <title>Coding Bootcamp Application Form | Coding Dojo</title>
+
+    <!-- For Fancybox and Swiper CSS-->
+    <link rel="stylesheet" href="~/Content/youngmind/jquery.fancybox.css">
+    <link rel="stylesheet" href="~/Content/youngmind/swiper.min.css">
+
+    <!-- Combined JS of JQuery, Vimeo, Swiper and Fancy Box JS -->
+    <script src="~/Content/youngmind/vendor_minify.js"></script>
+    <!-- For Compiled Vendor Assets -->
+    <link href="~/Content/youngmind/new_vendor_minify.min.css" rel="stylesheet">
+    <script src="~/Content/youngmind/new_vendor_minify.min.js"></script>
+
+    <!-- Phone Number Country dropdown -->
+    <!-- Custom CSS and JS -->
+    <link rel="stylesheet" href="~/Content/youngmind/application_recent_minify.min.css">
+    <script async="" src="~/Content/youngmind/application_recent_minify.min.js"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <style type="text/css">
+        .fancybox-margin {
+            margin-right: 17px;
+        }
+       
+    </style>
+</head>
+<body>
+  
+
+    <div class="application_header">
+        <div class="content top">
+            <img src="~/Content/slider/logo EDI.png" alt="EDI">
+            <div class="text_content">
+                <h2>Changing Your Future Starts Here</h2>
+                <p>The goal of the admission process is to make sure you're ready for the challenges of the program, and if Coding Dojo is the right fit for you. We look for commitment, motivation, teamwork and grit.</p>
+            </div>
+        </div>
+        <div class="content bottom new_apply">
+            
+        </div>
+    </div>
+    <div class="application_form_wrapper">
+        <div class="application_form_details tab_1_content">
+
+            <form id="application_form" action="https://www.codingdojo.com/new_applications/auto_save_application" method="POST" class="basic_info_form">
+              
+                <div class="form_navigation side_container">
+                    
+                    <h4>APPLY FORM</h4>
+                    <ul id="application_progress" role="tablist" class="form_navigation_options">
+                        <li id="start_application_info" class="active tab_completed">
+                            <a href="javascript:void(0);" class="form_navigation_btn"><span class="glyphicon glyphicon-ok"></span><span class="navigation_label">Start Application</span></a>
+                        </li>
+                        <li id="program_selection" class=" ">
+                            <a href="javascript:void(0);" class="form_navigation_btn"><span class="glyphicon glyphicon-ok"></span><span class="navigation_label">Select Program</span></a>
+                        </li>
+                        <li id="background_info" class="  ">
+                            <a href="javascript:void(0);" class="form_navigation_btn"><span class="glyphicon glyphicon-ok"></span><span class="navigation_label">Background</span></a>
+                        </li>
+                        <li id="applicant_info" class="">
+                            <a href="javascript:void(0);" class="form_navigation_btn">
+                                <span class="glyphicon glyphicon-ok"></span><span class="navigation_label">Tell us about yourself</span>
+                                <span class="essay_number">
+                                    ( 0 out of 3 )
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form_navigation_content side_container">
+                    <div class="form_nav_details" id="form_tab_wrapper">
+                        <div id="start_application_info_tab" class="start_application_info_tab">
+                            <div class="application_form_contents">
+                                <h3>Let's Get Started</h3>
+
+                                <p class="report_issue_link">Having issues? <a href="javascript:void(0)" data-toggle="modal" class="report_mistake" data-target="#report_mistake_modal">Report here</a>.</p>
+
+                                <label for="first_name_detail">
+                                    <span class="application_question focus">First Name</span>
+                                    <input type="text" class="form-control firstname" id="first_name_detail" name="first_name" placeholder="">
+                                </label>
+                                <label for="last_name_detail">
+                                    <span class="application_question focus">Last Name</span>
+                                    <input type="text" class="form-control lastname" id="last_name_detail" name="last_name" placeholder="">
+                                </label>
+                                <label for="email_address_detail">
+                                    <span class="application_question focus">Email</span>
+                                    <span class="invalid_email_note hidden focus"><i class="fas fa-exclamation-circle"></i> Email address is not reachable</span>
+                                    <input type="email" class="form-control email_address" id="email_address_detail" name="email_address" placeholder="" onpaste="return false;" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false">
+                                </label>
+                                <!-- <label for="retype_email_address_detail">
+                                    <span class="application_question">Retype Email</span>
+                                    <input type="email" class="form-control retype_email_address" id="retype_email_address_detail" name="retype_email_address" placeholder="" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete="off">
+                                </label> -->
+                                <!-- <div id="skype_id_container">
+                                    <p>
+                                        <span>You have an international phone number!</span>
+                                        <span>Please also enter a Skype ID to reach you</span>
+                                    </p>
+                                    <input id="skype_id" name="skype_id" type="text" placeholder="Skype ID" class="form-control hidden">
+                                </div> -->
+                                <label for="country_detail">
+                                    <span class="application_question country_label">Country</span>
+                                    <select id="country_detail" class="form-control" name="country" style="border: 1px solid rgb(204, 204, 204);">
+
+                                        <option data-country-iso="US" value="1">United States</option>
+
+                                        <option data-country-iso="CA" value="2">Canada</option>
+
+                                        <option data-country-iso="AF" value="3">Afghanistan</option>
+
+                                        <option data-country-iso="AL" value="4">Albania</option>
+
+                                        <option data-country-iso="DZ" value="5">Algeria</option>
+
+                                        <option data-country-iso="AS" value="6">American Samoa</option>
+
+                                        <option data-country-iso="AD" value="7">Andorra</option>
+
+                                        <option data-country-iso="AO" value="8">Angola</option>
+
+                                        <option data-country-iso="AI" value="9">Anguilla</option>
+
+                                        <option data-country-iso="AQ" value="10">Antarctica</option>
+
+                                        <option data-country-iso="AG" value="11">Antigua And Barbuda</option>
+
+                                        <option data-country-iso="AR" value="12">Argentina</option>
+
+                                        <option data-country-iso="AM" value="13">Armenia</option>
+
+                                        <option data-country-iso="AW" value="14">Aruba</option>
+
+                                        <option data-country-iso="AU" value="15">Australia</option>
+
+                                        <option data-country-iso="AT" value="16">Austria</option>
+
+                                        <option data-country-iso="AZ" value="17">Azerbaijan</option>
+
+                                        <option data-country-iso="BS" value="18">Bahamas</option>
+
+                                        <option data-country-iso="BH" value="19">Bahrain</option>
+
+                                        <option data-country-iso="BD" value="20">Bangladesh</option>
+
+                                        <option data-country-iso="BB" value="21">Barbados</option>
+
+                                        <option data-country-iso="BY" value="22">Belarus</option>
+
+                                        <option data-country-iso="BE" value="23">Belgium</option>
+
+                                        <option data-country-iso="BZ" value="24">Belize</option>
+
+                                        <option data-country-iso="BJ" value="25">Benin</option>
+
+                                        <option data-country-iso="BM" value="26">Bermuda</option>
+
+                                        <option data-country-iso="BT" value="27">Bhutan</option>
+
+                                        <option data-country-iso="BO" value="28">Bolivia</option>
+
+                                        <option data-country-iso="BA" value="29">Bosnia And Herzegovina</option>
+
+                                        <option data-country-iso="BW" value="30">Botswana</option>
+
+                                        <option data-country-iso="BV" value="31">Bouvet Island</option>
+
+                                        <option data-country-iso="BR" value="32">Brazil</option>
+
+                                        <option data-country-iso="IO" value="33">British Indian Ocean Territory</option>
+
+                                        <option data-country-iso="BN" value="34">Brunei Darussalam</option>
+
+                                        <option data-country-iso="BG" value="35">Bulgaria</option>
+
+                                        <option data-country-iso="BF" value="36">Burkina Faso</option>
+
+                                        <option data-country-iso="BI" value="37">Burundi</option>
+
+                                        <option data-country-iso="KH" value="38">Cambodia</option>
+
+                                        <option data-country-iso="CM" value="39">Cameroon</option>
+
+                                        <option data-country-iso="CA" value="40">Canada</option>
+
+                                        <option data-country-iso="CV" value="41">Cape Verde</option>
+
+                                        <option data-country-iso="KY" value="42">Cayman Islands</option>
+
+                                        <option data-country-iso="CF" value="43">Central African Republic</option>
+
+                                        <option data-country-iso="TD" value="44">Chad</option>
+
+                                        <option data-country-iso="CL" value="45">Chile</option>
+
+                                        <option data-country-iso="CN" value="46">China</option>
+
+                                        <option data-country-iso="CO" value="47">Colombia</option>
+
+                                        <option data-country-iso="KM" value="48">Comoros</option>
+
+                                        <option data-country-iso="CD" value="49">Congo</option>
+
+                                        <option data-country-iso="CR" value="50">Costa Rica</option>
+
+                                        <option data-country-iso="CI" value="51">Cote D'ivoire</option>
+
+                                        <option data-country-iso="HR" value="52">Croatia</option>
+
+                                        <option data-country-iso="CU" value="53">Cuba</option>
+
+                                        <option data-country-iso="CY" value="54">Cyprus</option>
+
+                                        <option data-country-iso="CZ" value="55">Czech Republic</option>
+
+                                        <option data-country-iso="DK" value="56">Denmark</option>
+
+                                        <option data-country-iso="DJ" value="57">Djibouti</option>
+
+                                        <option data-country-iso="DM" value="58">Dominica</option>
+
+                                        <option data-country-iso="DO" value="59">Dominican Republic</option>
+
+                                        <option data-country-iso="EC" value="60">Ecuador</option>
+
+                                        <option data-country-iso="EG" value="61">Egypt</option>
+
+                                        <option data-country-iso="SV" value="62">El Salvador</option>
+
+                                        <option data-country-iso="GQ" value="63">Equatorial Guinea</option>
+
+                                        <option data-country-iso="ER" value="64">Eritrea</option>
+
+                                        <option data-country-iso="EE" value="65">Estonia</option>
+
+                                        <option data-country-iso="ET" value="66">Ethiopia</option>
+
+                                        <option data-country-iso="FK" value="67">Falkland Islands (malvinas)</option>
+
+                                        <option data-country-iso="FO" value="68">Faroe Islands</option>
+
+                                        <option data-country-iso="FJ" value="69">Fiji</option>
+
+                                        <option data-country-iso="FI" value="70">Finland</option>
+
+                                        <option data-country-iso="FR" value="71">France</option>
+
+                                        <option data-country-iso="GF" value="72">French Guiana</option>
+
+                                        <option data-country-iso="PF" value="73">French Polynesia</option>
+
+                                        <option data-country-iso="TF" value="74">French Southern Territories</option>
+
+                                        <option data-country-iso="GA" value="75">Gabon</option>
+
+                                        <option data-country-iso="GM" value="76">Gambia</option>
+
+                                        <option data-country-iso="GE" value="77">Georgia</option>
+
+                                        <option data-country-iso="DE" value="78">Germany</option>
+
+                                        <option data-country-iso="GH" value="79">Ghana</option>
+
+                                        <option data-country-iso="GI" value="80">Gibraltar</option>
+
+                                        <option data-country-iso="GR" value="81">Greece</option>
+
+                                        <option data-country-iso="GL" value="82">Greenland</option>
+
+                                        <option data-country-iso="GD" value="83">Grenada</option>
+
+                                        <option data-country-iso="GP" value="84">Guadeloupe</option>
+
+                                        <option data-country-iso="GU" value="85">Guam</option>
+
+                                        <option data-country-iso="GT" value="86">Guatemala</option>
+
+                                        <option data-country-iso="GN" value="87">Guinea</option>
+
+                                        <option data-country-iso="GW" value="88">Guinea-bissau</option>
+
+                                        <option data-country-iso="GG" value="89">Guyana</option>
+
+                                        <option data-country-iso="HT" value="90">Haiti</option>
+
+                                        <option data-country-iso="VA" value="91">Holy See</option>
+
+                                        <option data-country-iso="HN" value="92">Honduras</option>
+
+                                        <option data-country-iso="HK" value="93">Hong Kong</option>
+
+                                        <option data-country-iso="HU" value="94">Hungary</option>
+
+                                        <option data-country-iso="IS" value="95">Iceland</option>
+
+                                        <option data-country-iso="IN" value="96">India</option>
+
+                                        <option data-country-iso="ID" value="97">Indonesia</option>
+
+                                        <option data-country-iso="IR" value="98">Iran, Islamic Republic Of</option>
+
+                                        <option data-country-iso="IQ" value="99">Iraq</option>
+
+                                        <option data-country-iso="IE" value="100">Ireland</option>
+
+                                        <option data-country-iso="IL" value="101">Israel</option>
+
+                                        <option data-country-iso="IT" value="102">Italy</option>
+
+                                        <option data-country-iso="JM" value="103">Jamaica</option>
+
+                                        <option data-country-iso="JP" value="104">Japan</option>
+
+                                        <option data-country-iso="JO" value="105">Jordan</option>
+
+                                        <option data-country-iso="KZ" value="106">Kazakhstan</option>
+
+                                        <option data-country-iso="KR" value="107">Kenya</option>
+
+                                        <option data-country-iso="KI" value="108">Kiribati</option>
+
+                                        <option data-country-iso="KR" value="109">South Korea</option>
+
+                                        <option data-country-iso="KW" value="110">Kuwait</option>
+
+                                        <option data-country-iso="KG" value="111">Kyrgyzstan</option>
+
+                                        <option data-country-iso="LA" value="112">Laos</option>
+
+                                        <option data-country-iso="LV" value="113">Latvia</option>
+
+                                        <option data-country-iso="LB" value="114">Lebanon</option>
+
+                                        <option data-country-iso="LS" value="115">Lesotho</option>
+
+                                        <option data-country-iso="LR" value="116">Liberia</option>
+
+                                        <option data-country-iso="LY" value="117">Libyan Arab Jamahiriya</option>
+
+                                        <option data-country-iso="LI" value="118">Liechtenstein</option>
+
+                                        <option data-country-iso="LT" value="119">Lithuania</option>
+
+                                        <option data-country-iso="LU" value="120">Luxembourg</option>
+
+                                        <option data-country-iso="MO" value="121">Macao</option>
+
+                                        <option data-country-iso="MK" value="122">Macedonia, The Former Yugoslav Republic Of</option>
+
+                                        <option data-country-iso="MG" value="123">Madagascar</option>
+
+                                        <option data-country-iso="MW" value="124">Malawi</option>
+
+                                        <option data-country-iso="MY" value="125">Malaysia</option>
+
+                                        <option data-country-iso="MV" value="126">Maldives</option>
+
+                                        <option data-country-iso="ML" value="127">Mali</option>
+
+                                        <option data-country-iso="MT" value="128">Malta</option>
+
+                                        <option data-country-iso="MH" value="129">Marshall Islands</option>
+
+                                        <option data-country-iso="MQ" value="130">Martinique</option>
+
+                                        <option data-country-iso="MR" value="131">Mauritania</option>
+
+                                        <option data-country-iso="MU" value="132">Mauritius</option>
+
+                                        <option data-country-iso="YT" value="133">Mayotte</option>
+
+                                        <option data-country-iso="MX" value="134">Mexico</option>
+
+                                        <option data-country-iso="FM" value="135">Micronesia</option>
+
+                                        <option data-country-iso="MD" value="136">Moldova</option>
+
+                                        <option data-country-iso="MC" value="137">Monaco</option>
+
+                                        <option data-country-iso="MN" value="138">Mongolia</option>
+
+                                        <option data-country-iso="MS" value="139">Montserrat</option>
+
+                                        <option data-country-iso="MA" value="140">Morocco</option>
+
+                                        <option data-country-iso="MZ" value="141">Mozambique</option>
+
+                                        <option data-country-iso="MM" value="142">Myanmar</option>
+
+                                        <option data-country-iso="NA" value="143">Namibia</option>
+
+                                        <option data-country-iso="NR" value="144">Nauru</option>
+
+                                        <option data-country-iso="NP" value="145">Nepal</option>
+
+                                        <option data-country-iso="NL" value="146">Netherlands</option>
+
+                                        <option data-country-iso="AN" value="147">Netherlands Antilles</option>
+
+                                        <option data-country-iso="NC" value="148">New Caledonia</option>
+
+                                        <option data-country-iso="NZ" value="149">New Zealand</option>
+
+                                        <option data-country-iso="NI" value="150">Nicaragua</option>
+
+                                        <option data-country-iso="NE" value="151">Niger</option>
+
+                                        <option data-country-iso="NG" value="152">Nigeria</option>
+
+                                        <option data-country-iso="NU" value="153">Niue</option>
+
+                                        <option data-country-iso="NF" value="154">Norfolk Island</option>
+
+                                        <option data-country-iso="MP" value="155">Northern Mariana Islands</option>
+
+                                        <option data-country-iso="NO" value="156">Norway</option>
+
+                                        <option data-country-iso="OM" value="157">Oman</option>
+
+                                        <option data-country-iso="PK" value="158">Pakistan</option>
+
+                                        <option data-country-iso="PW" value="159">Palau</option>
+
+                                        <option data-country-iso="PS" value="160">Palestinian Territory, Occupied</option>
+
+                                        <option data-country-iso="PA" value="161">Panama</option>
+
+                                        <option data-country-iso="PG" value="162">Papua New Guinea</option>
+
+                                        <option data-country-iso="PY" value="163">Paraguay</option>
+
+                                        <option data-country-iso="PE" value="164">Peru</option>
+
+                                        <option data-country-iso="PH" value="165">Philippines</option>
+
+                                        <option data-country-iso="PN" value="166">Pitcairn</option>
+
+                                        <option data-country-iso="PL" value="167">Poland</option>
+
+                                        <option data-country-iso="PT" value="168">Portugal</option>
+
+                                        <option data-country-iso="PR" value="169">Puerto Rico</option>
+
+                                        <option data-country-iso="QA" value="170">Qatar</option>
+
+                                        <option data-country-iso="RE" value="171">Reunion</option>
+
+                                        <option data-country-iso="RO" value="172">Romania</option>
+
+                                        <option data-country-iso="RU" value="173">Russian Federation</option>
+
+                                        <option data-country-iso="RW" value="174">Rwanda</option>
+
+                                        <option data-country-iso="SH" value="175">Saint Helena</option>
+
+                                        <option data-country-iso="KN" value="176">Saint Kitts And Nevis</option>
+
+                                        <option data-country-iso="LC" value="177">Saint Lucia</option>
+
+                                        <option data-country-iso="PM" value="178">Saint Pierre And Miquelon</option>
+
+                                        <option data-country-iso="VC" value="179">Saint Vincent And The Grenadines</option>
+
+                                        <option data-country-iso="WS" value="180">Samoa</option>
+
+                                        <option data-country-iso="SM" value="181">San Marino</option>
+
+                                        <option data-country-iso="ST" value="182">Sao Tome And Principe</option>
+
+                                        <option data-country-iso="SA" value="183">Saudi Arabia</option>
+
+                                        <option data-country-iso="SN" value="184">Senegal</option>
+
+                                        <option data-country-iso="RS" value="185">Serbia And Montenegro</option>
+
+                                        <option data-country-iso="SC" value="186">Seychelles</option>
+
+                                        <option data-country-iso="SL" value="187">Sierra Leone</option>
+
+                                        <option data-country-iso="SG" value="188">Singapore</option>
+
+                                        <option data-country-iso="SK" value="189">Slovakia</option>
+
+                                        <option data-country-iso="SI" value="190">Slovenia</option>
+
+                                        <option data-country-iso="SB" value="191">Solomon Islands</option>
+
+                                        <option data-country-iso="SO" value="192">Somalia</option>
+
+                                        <option data-country-iso="ZA" value="193">South Africa</option>
+
+                                        <option data-country-iso="GS" value="194">South Georgia And The South Sandwich Islands</option>
+
+                                        <option data-country-iso="ES" value="195">Spain</option>
+
+                                        <option data-country-iso="LK" value="196">Sri Lanka</option>
+
+                                        <option data-country-iso="SD" value="197">Sudan</option>
+
+                                        <option data-country-iso="SR" value="198">Suriname</option>
+
+                                        <option data-country-iso="SJ" value="199">Svalbard And Jan Mayen</option>
+
+                                        <option data-country-iso="SZ" value="200">Swaziland</option>
+
+                                        <option data-country-iso="SE" value="201">Sweden</option>
+
+                                        <option data-country-iso="CH" value="202">Switzerland</option>
+
+                                        <option data-country-iso="SY" value="203">Syrian Arab Republic</option>
+
+                                        <option data-country-iso="TW" value="204">Taiwan</option>
+
+                                        <option data-country-iso="TJ" value="205">Tajikistan</option>
+
+                                        <option data-country-iso="TZ" value="206">Tanzania</option>
+
+                                        <option data-country-iso="TH" value="207">Thailand</option>
+
+                                        <option data-country-iso="TL" value="208">Timor-leste</option>
+
+                                        <option data-country-iso="TG" value="209">Togo</option>
+
+                                        <option data-country-iso="TK" value="210">Tokelau</option>
+
+                                        <option data-country-iso="TO" value="211">Tonga</option>
+
+                                        <option data-country-iso="TT" value="212">Trinidad And Tobago</option>
+
+                                        <option data-country-iso="TN" value="213">Tunisia</option>
+
+                                        <option data-country-iso="TR" value="214">Turkey</option>
+
+                                        <option data-country-iso="TM" value="215">Turkmenistan</option>
+
+                                        <option data-country-iso="TC" value="216">Turks And Caicos Islands</option>
+
+                                        <option data-country-iso="TV" value="217">Tuvalu</option>
+
+                                        <option data-country-iso="UG" value="218">Uganda</option>
+
+                                        <option data-country-iso="UA" value="219">Ukraine</option>
+
+                                        <option data-country-iso="AE" value="220">United Arab Emirates</option>
+
+                                        <option data-country-iso="GB" value="221">United Kingdom</option>
+
+                                        <option data-country-iso="US" value="222">United States</option>
+
+                                        <option data-country-iso="UY" value="223">Uruguay</option>
+
+                                        <option data-country-iso="UZ" value="224">Uzbekistan</option>
+
+                                        <option data-country-iso="VU" value="225">Vanuatu</option>
+
+                                        <option data-country-iso="VE" value="226">Venezuela</option>
+
+                                        <option data-country-iso="VN" value="227">Viet Nam</option>
+
+                                        <option data-country-iso="VG" value="228">Virgin Islands, British</option>
+
+                                        <option data-country-iso="VI" value="229">Virgin Islands, U.S.</option>
+
+                                        <option data-country-iso="WF" value="230">Wallis And Futuna</option>
+
+                                        <option data-country-iso="EH" value="231">Western Sahara</option>
+
+                                        <option data-country-iso="YE" value="232">Yemen</option>
+
+                                        <option data-country-iso="ZM" value="233">Zambia</option>
+
+                                        <option data-country-iso="ZW" value="234">Zimbabwe</option>
+
+                                        <option data-country-iso="XK" value="235">Kosovo</option>
+
+                                        <option data-country-iso="BQ" value="236">Caribbean Netherlands</option>
+
+                                        <option data-country-iso="CX" value="237">Christmas Island</option>
+
+                                        <option data-country-iso="CC" value="238">Cocos</option>
+
+                                        <option data-country-iso="CG" value="239">Congo</option>
+
+                                        <option data-country-iso="CK" value="240">Cook Islands</option>
+
+                                        <option data-country-iso="CW" value="241">Curacao</option>
+
+                                        <option data-country-iso="GY" value="242">Guyana</option>
+
+                                        <option data-country-iso="IM" value="243">Isle of Man</option>
+
+                                        <option data-country-iso="JE" value="244">Jersey</option>
+
+                                        <option data-country-iso="KE" value="245">Kenya</option>
+
+                                        <option data-country-iso="ME" value="246">Montenegro</option>
+
+                                        <option data-country-iso="KP" value="247">North Korea</option>
+
+                                        <option data-country-iso="BL" value="248">Saint Barthelemy</option>
+
+                                        <option data-country-iso="MF" value="249">Collectivity of Saint Martin</option>
+
+                                        <option data-country-iso="SX" value="250">Sint Maarten</option>
+
+                                        <option data-country-iso="SS" value="251">South Sudan</option>
+
+                                        <option data-country-iso="AX" value="252">Aland Islands</option>
+                                    </select>
+                                </label>
+                                <label for="zipcode_detail">
+                                    <span class="application_question focus">City</span>
+                                    <input type="number" class="form-control zipcode" id="zipcode_detail" name="zipcode" placeholder="" disabled="disabled" style="display: none;">
+                                    <input type="text" id="city_detail" name="city" class="form-control" placeholder="" style="display: inline-block;">
+                                </label>
+                                <p class="non_eu_label">
+                                    By starting your application, you'll receive occasional contact about our program.
+                                </p>
+                            </div>
+                            <p class="field_is_required hidden">required</p>
+                        </div>
+                    </div>
+                    <div class="submit_btn_wrapper submit_basic_info_btn_wrapper">
+                        <input type="submit" value="SAVING" id="submit_application_form_btn" class="form-control nxt_form_btn submit_basic_info_btn saving_status">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="industry_validation_wrapper">
+            <ul>
+                <!-- <li>
+                    <span>94%</span>
+                    <p>of alumni land jobs 180 days post-graduation</p>
+                </li> -->
+                <li>
+                    <img src="~/Content/youngmind/course_reviews.png">
+                </li>
+                <!--
+                -->
+                <li>
+                    <span>10+</span>
+                    <p>years of curriculum refinement</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Minimum work hours requirement modal -->
+    <div class="minimum_work_hours_modal_wrapper">
+        <div class="modal_content">
+            <div class="modal_inner_content">
+                <div class="close_btn_wrapper"></div>
+                <p>The minimum work hour requirement for the Online program is 25 hours/week. If you are not able to commit 25 hours a week, we would first suggest that you check out our <a href="https://algorithm.codingdojo.com/" target="_blank">Algorithm App</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diploma modal -->
+    <div class="diploma_modal_wrapper">
+        <div class="modal_content">
+            <div class="modal_inner_content">
+                <div class="close_btn_wrapper"></div>
+                <p>Coding Dojo requires students to possess at least 1 of the 3 following items to enroll:</p>
+                <ul>
+                    <li>High school diploma, GED, or equivalent</li>
+                    <li>Completion or the equivalent of at least one full-time academic semester or academic quarter</li>
+                    <li>For any certificate program, proof of satisfactory score on the certificate exam</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Students modal -->
+    <div class="upcoming_students_modal_wrapper">
+        <div class="modal_content">
+            <div class="modal_inner_content">
+                <div class="close_btn_wrapper"></div>
+                <h2>Update your Application</h2>
+                <p class="upcoming_student_note">You already have a student record in our database. Please contact <a class="contact_email" href="mailto:psm@codingdojo.com" target="_blank">psm@codingdojo.com</a> if you want to update your application information.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Check application cookie -->
+    <div id="check_application_cookie" class="form hidden">
+        <p>We noticed that you already have an opened Coding Dojo Apply page. Please continue your application in the first tab.</p>
+        <button id="close_current_tab" class="cta_blue_button">OK</button>
+    </div>
+
+    <!-- Manual save application -->
+    <div id="send_application" class="form hidden">
+        <h2>Save Application</h2>
+        <form action="https://www.codingdojo.com/pages/save_application" method="post" id="send_application_form">
+            <div class="left_container">
+                <div class="gdpr_requirement">
+                    <p>By submitting your information, you agree and accept the Coding Dojo's <a href="https://www.codingdojo.com/site-terms" target="_blank">Terms of Use</a>, <a href="https://www.codingdojo.com/cookie-policy" target="_blank">Cookie Policy</a> and <a href="https://www.codingdojo.com/privacy-policy" target="_blank">Privacy Policy</a>.</p>
+                    <label for="latest_events">
+                        <input type="checkbox" name="latest_events" id="latest_events" class="form-control latest_events optional" checked="">
+                        <div class="checkbox_marker">
+                            <div class="checkbox_indicator"></div>
+                        </div>
+                        <span>I agree to receive occasional correspondence from Coding Dojo about its programs and latest events.</span>
+                    </label>
+                </div>
+            </div>
+            <div class="right_container">
+                <input name="codingdojo" type="hidden" value="79d55ce1fa0a51c992a0ed620c20ad4d" class="form-control">
+                <input type="email" class="form-control" name="send_email_address" placeholder="Your email address here.">
+                <button class="cta_blue_button">Send</button>
+            </div>
+        </form>
+        <p>Note: We will email you a unique URL that you can visit to continue with your application.</p>
+    </div>
+
+    <div id="form_success_modal" class="hidden">
+        <p>Your application has been successfully saved and we appreciate your interest in joining our bootcamp. You can continue your application anytime with the recovery link we emailed you.</p>
+        <a href="https://www.codingdojo.com/apply#" id="return_to_apply" class="apply_popup_button cta_blue_button">Return to Apply Form</a>
+    </div>
+
+    <!-- For report mistake form -->
+    <div id="report_mistake_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <a title="Close" class="fancybox-item fancybox-close" data-dismiss="modal" href="https://www.codingdojo.com/apply#"></a>
+                <form action="https://www.codingdojo.com/apply#" class="report_mistake_form" method="post">
+                    <h3>Share the issue you found and we'll fix it as soon as we can.</h3>
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="form-group">
+                                <span>Name:</span>
+                                <input name="entry_1021664347" class="form-control" type="text">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <span>Email Address:</span>
+                                <input name="entry_1391659112" class="form-control" type="email">
+                                <span class="invalid_email_note hidden"><i class="fas fa-exclamation-circle"></i> Email address is not reachable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <span>Category:</span>
+                                <select id="selected_category" name="entry_217562519" class="form-control">
+                                    <option value="" disabled="" selected="">Select which applies:</option>
+                                    <option value="Apply Bug">Encountered a Bug in Apply Page</option>
+                                    <option value="Inquiry">Need Help on the Admission Process</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="preferred_location" class="form-group">
+                                <span>Preferred Campus/Program:</span>
+                                <select id="selected_location" name="entry_152592722" class="form-control hidden">
+                                    <option value="" disabled="" selected="">Select your preffered campus or program:</option>
+                                    <option value="General" selected="">General Inquiry</option>
+                                    <option value="Berkeley">Berkeley, CA</option>
+                                    <option value="Boise">Boise, ID</option>
+                                    <option value="Chicago">Chicago, IL</option>
+                                    <option value="Dallas">Dallas, TX</option>
+                                    <option value="Los Angeles">Los Angeles, CA</option>
+                                    <option value="Orange County">Orange County, CA</option>
+                                    <option value="Seattle">Seattle, WA</option>
+                                    <option value="San Jose">Silicon Valley, CA</option>
+                                    <option value="Tulsa">Tulsa, OK</option>
+                                    <option value="Arlington">Arlington, VA</option>
+                                    <option value="Online">Online</option>
+                                </select>
+                            </div>
+                            <div class="online_availability_wrapper">
+                                <p>Our Online Bootcamp is not available for students residing in Texas, Florida, New York, and Massachusetts at this time.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <span>Issue encountered:</span>
+                                <textarea name="entry_1757205018" class="form-control"></textarea>
+                            </div>
+                        </li>
+                        <div class="g-recaptcha" data-sitekey="6Ldzdm4UAAAAALJdEzzjxAs5PcsOi2-ABNV6WVYN"></div>
+                        <input type="hidden" id="recaptcha_response" name="recaptcha_response" value="">
+                        <li>
+                            <input type="submit" class="submit_btn" value="SEND">
+                        </li>
+                    </ul>
+                </form>
+                <div class="success_container">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h3>Your report has been successfully sent. Thank you.</h3>
+                    <p class="report_issue_link">For further assistance, you may also email us at <a href="mailto:help@codingdojo.com" target="_blank">help@codingdojo.com</a>.</p>
+                    <a href="https://www.codingdojo.com/apply#" class="btn" data-dismiss="modal">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","707838112598677");fbq("track","PageView");</script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=707838112598677&amp;ev=PageView&amp;noscript=1" alt="facebook pixel"></noscript>
+    <script type="text/javascript" id="">(function(b,c,e,f,d){b[d]=b[d]||[];var g=function(){var a={ti:"5117040"};a.q=b[d];b[d]=new UET(a);b[d].push("pageLoad")};var a=c.createElement(e);a.src=f;a.async=1;a.onload=a.onreadystatechange=function(){var b=this.readyState;b&&"loaded"!==b&&"complete"!==b||(g(),a.onload=a.onreadystatechange=null)};c=c.getElementsByTagName(e)[0];c.parentNode.insertBefore(a,c)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script><noscript><img src="//bat.bing.com/action/0?ti=5117040&amp;Ver=2" height="0" width="0" style="display:none; visibility: hidden;" alt="bat bing pixel"></noscript>
+    <script type="text/javascript" id="">
+window.heap=window.heap||[];
+heap.load=function(e,d){window.heap.appid=e;window.heap.config=d=d||{};var a=d.forceSSL||"https:"===document.location.protocol,b=document.createElement("script");b.type="text/javascript";b.async=!0;b.src=(a?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);b=function(a){return function(){heap.push([a].concat(Array.prototype.slice.call(arguments,0)))}};a="addEventProperties addUserProperties clearEventProperties identify resetIdentity removeEventProperty setEventProperties track unsetEventProperty".split(" ");for(var c=
+0;c<a.length;c++)heap[a[c]]=b(a[c])};heap.load("2156268856");</script><div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.8122519053508575"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.548008217163392" width="0" height="0" alt="" src="~/Content/youngmind/0"></div>
+    <script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b;a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-36992583-1","auto");ga("send","pageview");</script><form method="post" action="https://www.facebook.com/tr/" target="fb0767683223848348" accept-charset="utf-8" style="display: none;"><iframe src="about:blank" id="fb0767683223848348" name="fb0767683223848348"></iframe><input name="id"><input name="ev"><input name="dl"><input name="rl"><input name="if"><input name="ts"><input name="cd[buttonFeatures]"><input name="cd[buttonText]"><input name="cd[formFeatures]"><input name="cd[pageFeatures]"><input name="cd[parameters]"><input name="sw"><input name="sh"><input name="v"><input name="r"><input name="ec"><input name="o"><input name="fbp"><input name="it"><input name="coo"><input name="es"><input name="rqm"></form>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Author
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Author Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div>
+                  
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FullName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AreaOfSpecialization)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.AreaOfSpecialization)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AboutTheAuthor)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.AboutTheAuthor)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ImagePath)
+                        </dt>
+
+                        <dd>
+                            <img src="~/Uploads/@Model.ImagePath" class="img-responsive" style="height:200px;" />
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

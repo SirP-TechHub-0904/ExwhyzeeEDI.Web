@@ -1,0 +1,213 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.YoungMind>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dateofbirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRegistered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Religion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermanentHomeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModeOfIdentification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentificationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateofOrigin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocalGovernmentArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreYouInAbyVocationNow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecifyVocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoYouHaveICTSkillsForYourBusiness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhatAreaAreYouInterestedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhatTrackAreYouInterestedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CanYouDoMoreWithLessResources)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TellUsHowYouWouldGoAboutThis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhatIsYourCurrentExperienceLevelInInformationTechnology)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreYouReadyToMakeChangesToYourEnvironment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IfYes_HowCanYouMakeChanges)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Referee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KnowAFriendThatYouThinkWillMakeAGreatChangeInHisEnvironment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdeaAndSuggestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassportUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dateofbirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRegistered)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaritalStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Religion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermanentHomeAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModeOfIdentification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentificationNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateofOrigin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocalGovernmentArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreYouInAbyVocationNow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecifyVocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoYouHaveICTSkillsForYourBusiness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhatAreaAreYouInterestedIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhatTrackAreYouInterestedIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CanYouDoMoreWithLessResources)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TellUsHowYouWouldGoAboutThis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhatIsYourCurrentExperienceLevelInInformationTechnology)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreYouReadyToMakeChangesToYourEnvironment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IfYes_HowCanYouMakeChanges)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Referee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KnowAFriendThatYouThinkWillMakeAGreatChangeInHisEnvironment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdeaAndSuggestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassportUrl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
