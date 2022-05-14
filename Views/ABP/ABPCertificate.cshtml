@@ -1,0 +1,63 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.ABP
+
+@{
+    ViewBag.Title = "ABP Certificate";
+
+
+    Layout = "~/Views/Shared/_CertVerifyLayout.cshtml";
+
+}
+
+<div class="row" style="margin:20px auto;">
+    <!-- left column -->
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Certification Confirmation</h3>
+              
+            </div>
+          
+                <div class="box-body">
+                    <img src="~/Content/dataverify.jpg" style="height:100px;margin:0 auto;text-align:center;" />
+                  
+                    <h4>This is to confirm that <strong>@Model.FullName.ToUpper()</strong> with Registration Number <strong>@Model.RegNumber </strong>was 
+                    trained as part of the MANDATORY CAPACITY BUILDING TRAINING
+                    FOR PARTICIPATING FARMERS IN CASSAVA FARMING IN CBN ANCHOR BORROWERS PROGRAMME HELD ON <strong>23 SEPTEMBER, 2020</strong></h4>
+                    <div class="">
+                        <ul style="padding:10px;list-style-type:upper-roman;">
+                            <li>
+                                FARMING AS A BUSINESS
+                              
+                                <ul style="padding:10px;list-style-type:circle;">
+                                    <li>OPPORTUNITIES</li>
+                                    <li>LOANS (ADP, AGMEIS, NIRSAL)</li>
+                                    <li>RECORD KEEPING</li>
+                                </ul>
+                             
+                            </li>
+                            <li>IMPROVED AGRICULTURAL PRACTISES
+                            <ul style="padding:10px;list-style-type:circle;">
+                                <li>NEW WAYS OF FARMING</li>
+                                <li>IMPROVED SEEDLINGS</li>
+                                <li>FERTILIZATION APPLICATION</li>
+                                <li>MECHANIZED FARMING</li>
+                            </ul>
+                            </li>
+                            <li>GROUP DYNAMICS IN AGRICULTURE</li>
+                        </ul>
+                        <h4>Sponsors</h4>
+                        <h5>Central Bank of Nigeria (Main Partner)</h5>
+                        <h5>Von Foods and Farm Limited (Anchor)</h5>
+                        <h5>Exwhyzee Technologies (Trainer)</h5>
+                    </div>
+                </div>
+
+             
+
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+
+</div>

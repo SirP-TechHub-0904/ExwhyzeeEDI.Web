@@ -1,0 +1,232 @@
+﻿
+<html lang="en">
+<head>
+    @*<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">*@
+
+    <!-- Page Title -->
+    <title>ENTREPRENEURSHIP DEVELOPMENT INSTITUTE</title>
+    <link rel="icon" href="~/Content/img/ico.png" type="image/x-icon" />
+    @{
+        @*string authority = HttpContext.Current.Request.Url.Authority;
+        <meta http-equiv="refresh" content="3;url=authority/Secured/Index" />*@
+    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <style>
+        @@-webkit-keyframes timer-slide-lt {
+            0% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
+            }
+        }
+
+        @@keyframes timer-slide-lt {
+            0% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
+            }
+        }
+
+        @@-webkit-keyframes timer-slide-rt {
+            0% {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+        }
+
+        @@keyframes timer-slide-rt {
+            0% {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+        }
+
+        .timer {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+
+            .timer .circle-timer {
+                width: 200px;
+                height: 200px;
+                margin: 2rem auto;
+                position: relative;
+                cursor: pointer;
+            }
+
+                .timer .circle-timer .timer-slot {
+                    position: relative;
+                    width: 100px;
+                    height: 200px;
+                    display: inline-block;
+                    overflow: hidden;
+                    float: left;
+                }
+
+                    .timer .circle-timer .timer-slot .timer-lt, .timer .circle-timer .timer-slot .timer-rt {
+                        border-radius: 50%;
+                        position: relative;
+                        top: 50%;
+                        left: 0;
+                        z-index: 15;
+                        border: 10px solid white;
+                        width: 180px;
+                        height: 180px;
+                        margin-left: -100px;
+                        margin-top: -100px;
+                        border-left-color: transparent;
+                        border-top-color: transparent;
+                        z-index: 5;
+                    }
+
+                    .timer .circle-timer .timer-slot .timer-lt {
+                        -webkit-animation: 10s linear infinite timer-slide-lt;
+                        animation: 10s linear infinite timer-slide-lt;
+                        left: 100%;
+                    }
+
+                    .timer .circle-timer .timer-slot .timer-rt {
+                        -webkit-animation: 10s linear infinite timer-slide-rt;
+                        animation: 10s linear infinite timer-slide-rt;
+                    }
+
+                .timer .circle-timer .count {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 8rem;
+                    color: white;
+                    text-align: center;
+                    line-height: 200px;
+                    font-family: sans-serif;
+                }
+
+                .timer .circle-timer.paused .timer-lt, .timer .circle-timer.paused .timer-rt {
+                    -webkit-animation-play-state: paused;
+                    animation-play-state: paused;
+                    transition: all 0.5s;
+                }
+
+                .timer .circle-timer.paused .timer-lt, .timer .circle-timer.paused .timer-rt, .timer .circle-timer:hover .timer-lt, .timer .circle-timer:hover .timer-rt {
+                    border: 10px solid rgba(255, 255, 255, 0.5);
+                    border-left-color: transparent;
+                    border-top-color: transparent;
+                    transition: all 0.5s;
+                }
+
+                .timer .circle-timer.paused .count {
+                    color: rgba(255, 255, 255, 0.5);
+                    transition: all 0.5s;
+                }
+
+        html {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #8a7545, #E8A20D);
+        }
+    </style>
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+</head>
+<body translate="no">
+    <div style="margin:40px auto !important;text-align:center !important;">
+
+        <img src="~/Content/slider/logo EDI.png" style="margin:0 auto !important;text-align:center !important;" class="img-responsive" />
+    </div>
+    <div class="timer">
+        <div class="circle-timer">
+            <div class="timer-slot">
+                <div class="timer-lt"> </div>
+            </div>
+            <div class="timer-slot">
+                <div class="timer-rt"></div>
+            </div>
+            <div class="count">2</div>
+        </div>
+    </div>
+    <div style="margin:40px auto !important;text-align:center !important;">
+        <h2> Setting up your dashboard in 10sec...</h2>
+    </div>
+    @RenderBody()
+    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script id="rendered-js">
+        var initialCount = 9,
+            count = initialCount,
+            timerPause = false;
+
+        function timer() {
+            if (!timerPause) {
+                count = count - 1;
+                if (count <= -1) {
+                    count = initialCount;
+                    var el = $(".circle-timer");
+                    el.before(el.clone(true)).remove();
+                }
+                $(".timer .count").text(count);
+            }
+        }
+        setInterval(timer, 1000);
+
+        $(".circle-timer").click(function () {
+            $(this).toggleClass('paused');
+            if ($(this).hasClass('paused')) {
+                timerPause = true;
+            } else {
+                timerPause = false;
+            }
+        });
+                  //# sourceURL=pen.js
+    </script>
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

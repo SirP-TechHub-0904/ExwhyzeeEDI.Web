@@ -1,0 +1,91 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Course Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.GetProgramCourse.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.GetProgramCourse.Title)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Topic)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Topic)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Content)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Content)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Duration)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Duration)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FilePath)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FilePath) <br />
+                            <a href="~/Uploads/@Model.FilePath" download>
+                                <span class="btn btn-success">Download</span> 
+                            </a>
+                        </dd>
+                       
+                    </dl>
+                </div>
+             
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,260 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.ExwhyzeeModel>
+
+@using ExwhyzeeEDI.Web.Helper
+@{
+    ViewBag.Title = "Main Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Master List (@Model.Count()) </h3>
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            <style>
+                .btn {
+                    display: inline-block;
+                    padding: 1px 5px;
+                }
+
+                .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+                    padding: 2px;
+                    width: 100%;
+                }
+
+                .table {
+                    font-size: 10px;
+                    font-weight: 600;
+                }
+
+                table.table-fit {
+                    width: auto !important;
+                    table-layout: auto !important;
+                }
+
+                    table.table-fit thead th, table.table-fit tfoot th {
+                        width: auto !important;
+                    }
+
+                    table.table-fit tbody td, table.table-fit tfoot td {
+                        width: auto !important;
+                    }
+            </style>
+            <style type="text/css" media="print">
+                @@page {
+                    size: landscape;
+                }
+
+                @@media print {
+                    * {
+                        display: none;
+                    }
+
+                    #example1 {
+                        display: block;
+                    }
+                }
+            </style>
+            @if (User.IsInRole("BossAdmin"))
+            {
+                <input type="button" onclick="printDiv()" value="Print" />
+                <button class="btn btn-danger" id="button-a" style="">Download Offline Master List</button>
+            }
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-bordered table-hover table-striped dataTable" border="1">
+
+                        <thead>
+                            <tr>
+                                <th colspan="12" style="text-align:center !important;">
+                                    <span style="text-align:center;font-size:19px;">THE LIST</span>
+                                </th>
+                            </tr>
+                            <tr>
+
+                                <th>S/N</th>
+                                
+                                <th>
+                                    Applicant's full name
+                                </th>
+                                <th>Certificate</th>
+
+                                <th>
+                                    BVN
+                                </th>
+                                <th>
+                                    Mobile number
+                                </th>
+                                <th>
+                                    State of Business Location
+                                </th>
+                                <th>
+                                    Gender
+                                </th>
+                                <th>
+                                    Enterprise Development Institute Trained
+                                </th>
+                                <th>
+                                    Sector
+                                </th>
+                                <th>
+                                    Sub-Sector
+                                </th>
+                                <th>
+                                    Equipment Amount (&#8358;)
+                                </th>
+                                <th>
+                                    Working Capital Amount (&#8358;)
+                                </th>
+                                <th>
+                                    Loan Tenor
+                                </th>
+
+                            </tr>
+                        </thead>
+                        @{
+                            int sno = 0;
+                        }
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+
+                            <tr>
+                                @{ sno++; }
+
+                                <td style="white-space: nowrap !important;">
+
+                                    @sno
+                                </td>
+                                <td style="width: 100%;text-transform:uppercase;white-space: nowrap !important;">
+                                    @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Othername)
+                                </td>
+                                <td style="width: 100%;text-transform:uppercase;white-space: nowrap !important;">
+                                    @Html.DisplayFor(modelItem => item.CertificateNumber) 
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BVN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StateOfBusinessLocation)
+                                </td>
+                                <td style="text-transform: uppercase;">
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
+                                <td style="text-transform: uppercase;">
+                                    @Html.DisplayFor(modelItem => item.EDI)
+                                </td>
+                                <td style="text-transform: uppercase;white-space: normal !important;">
+                                    @Html.DisplayFor(modelItem => item.Sector)
+                                </td>
+                                <td style="text-transform: uppercase;">
+                                    @Html.DisplayFor(modelItem => item.SubSector)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EquipmentAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkingCapital)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanTenor)
+                                </td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+</div>
+
+<iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+
+@section Style {
+
+    <link rel="stylesheet" href="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+    <script src="~/Content/xl/src/jquery.table2excel.js"></script>
+    @* <script src="src/jquery.table2excel.js"></script>*@
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        //$(function () {
+        //    $('#example1').DataTable()
+        //    $('#example2').DataTable({
+        //        'paging': true,
+        //        'lengthChange': false,
+        //        'searching': false,
+        //        'ordering': true,
+        //        'info': true,
+        //        'autoWidth': false,
+        //        'lengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+        //    })
+        //})
+        $(document).ready(function () {
+            $('#example1').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
+            });
+            //$('#example1').DataTable({
+            //    dom: 'Bfrtip',
+            //    buttons: [
+            //        'print', 'excel', 'pdf'
+            //    ]
+            //});
+        });
+
+
+    </script>
+    <script lang="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.1/xlsx.full.min.js"></script>
+    <script src="~/Content/FileSaver.js-master/FileSaver.js-master/dist/FileSaver.min.js"></script>
+    <script>
+        var wb = XLSX.utils.table_to_book(document.getElementById('example1'), { sheet: "Sheet JS" });
+        var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+        $("#button-a").click(function () {
+
+            saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Nirsal_List_Exwhyzee' + '.xlsx');
+        });
+    </script>
+
+    <script>
+        function printDiv() {
+            window.frames["print_frame"].document.body.innerHTML = document.getElementById("example1").innerHTML;
+            window.frames["print_frame"].window.focus();
+            window.frames["print_frame"].window.print();
+        }
+    </script>
+}

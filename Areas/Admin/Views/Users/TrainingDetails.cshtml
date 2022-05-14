@@ -1,0 +1,187 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.ExwhyzeeModel
+
+@{
+    ViewBag.Title = "TrainingDetails";
+}<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Details Training</h3>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+            </div>
+            @Html.ActionLink("Edit", "EditTraining", new { id = Model.Id }) |
+
+
+            <div class="box-body">
+
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SortOrder)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SortOrder)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UploadBy)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UploadBy)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Surname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Firstname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Firstname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Othername)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Othername)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.RegistrationNumber)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.RegistrationNumber)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Paid)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Paid)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Uploaded)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Uploaded)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.BVN)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.BVN)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.StateOfBusinessLocation)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.StateOfBusinessLocation)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Gender)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EDI)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.EDI)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Sector)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Sector)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SubSector)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SubSector)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EquipmentAmount)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.EquipmentAmount)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.WorkingCapital)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.WorkingCapital)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LoanTenor)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LoanTenor)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                   

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.UserProgram>
+
+@{
+    ViewBag.Title = "Programs";
+}
+
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Invoice List</h3>
+
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table no-margin">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Course Program</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <a href="pages/examples/invoice.html">
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProgramCourse.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProgramCourse.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentStatus)
+                                </td>
+                                <td>
+
+                                    @Html.ActionLink("View Invoice", "Invoice", "Payments", new { id = item.Id, area = "EncryptedKey" }, new { @class = "btn btn-primary" })
+
+                                </td>
+
+                            </tr>
+                        </a>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+    </div>
+    <!-- /.box-footer -->
+</div>

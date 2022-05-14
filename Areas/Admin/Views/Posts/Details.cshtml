@@ -1,0 +1,97 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Post Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Category.CategoryName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Category.CategoryName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PostTite)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PostTite)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PostContentPreview)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PostContentPreview)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PostContent)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PostContent)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </dt>
+
+                    <dd>
+                        <img src="~/Uploads/@Model.ImageUrl" class="img-responsive" style="height:200px;" />
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DatePosted)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DatePosted)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MetaTitle)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MetaTitle)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MetaDescription)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MetaDescription)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MetaKeywords)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MetaKeywords)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>
+</div>

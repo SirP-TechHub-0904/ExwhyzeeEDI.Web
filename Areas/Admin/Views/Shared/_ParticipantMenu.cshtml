@@ -1,0 +1,29 @@
+﻿
+<li class="header">MENU NAVIGATION</li>
+
+<li><a href="@Url.Action("Index", "Dashboard")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+@if (User.IsInRole("Readonly"))
+{
+
+    <li><a href="@Url.Action("Index", "Luckman", new { area="Admin"})"><i class="fa fa-home"></i> <span>Luck Man Program</span></a></li>
+    <li><a href="@Url.Action("MainList", "Users", new { area="Admin"})"><i class="fa fa-home"></i> <span>Master List</span></a></li>
+
+}
+
+<li><a href="@Url.Action("Details", "BusinessPlans")"><i class="fa fa-book"></i> <span>Business Plan</span></a></li>
+<li><a href="#"><i class="fa fa-bookmark"></i> <span>Curriculum</span></a></li>
+<li><a href="#"><i class="fa fa-calendar"></i> <span>School Calender</span></a></li>
+<li><a href="#"><i class="fa fa-book"></i> <span>Course Materials</span></a></li>
+<li><a href="#"><i class="fa fa-money"></i> <span>Fundings</span></a></li>
+<li><a href="#"><i class="fa fa-bookmark-o"></i> <span>Dialy Report</span></a></li>
+<li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Govt Update</span></a></li>
+<li><a href="#"><i class="fa fa-building"></i> <span>Easternpreneurs</span></a></li>
+<li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+@if (User.IsInRole("Data"))
+{
+    <li><a href="@Url.Action("Index", "Users", new { area = "Admin" })"><i class="fa fa-circle-o"></i> All Users</a></li>
+    <li><a href="@Url.Action("TrainingList", "Users", new { area = "Admin" })"><i class="fa fa-circle-o"></i> Training List</a></li>
+
+}
+
+    

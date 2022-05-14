@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "Verify";
+}
+
+
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Edit Training</h3>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+            </div>
+
+            @using (Html.BeginForm("Verify", "TechClub", FormMethod.Post, new { enctype = "multipart/form-data", id = "myFormy" }))
+            {
+                @Html.AntiForgeryToken()
+
+
+                <div class="box-body">
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                       
+                     
+
+                        <div class="form-group">
+                            @Html.Label("BVN", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("BVN", new { htmlAttributes = new { @class = "form-control", type = "number", id = "input2", maxlength = "11", } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            @Html.Label("bvn confirmation", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <button type="button" onclick="confirmBVN()" style="border-radius:0 !important;" class="btn btn-danger btn-xs">click to confirm bvn</button>
+
+                                <strong style="color:red;font-weight:900;"><h5 style="padding:0;margin:0;">Make sure that the bvn name that pops up  is the same with the name of the person above</h5></strong>
+                                <div id="outputmain"></div>
+                            </div>
+                        </div>
+
+
+                      
+                        
+
+                        <input id="mytext" type="hidden" />
+                        <div id="foodd"></div>
+                        <button type="button" onclick="loancheckingReg()" style="border-radius:0 !important;" class="btn btn-primary btn-flat">Calculate</button>
+                     
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @*<input type="submit" value="Update" class="btn btn-primary" />*@
+                                <button type="button" id="submitBtn">Submit Form</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $("#submitBtn").click(function () {
+            //var x = document.getElementById('mytext').value;
+            //console.log(x);
+            //console.log("myt");
+            //var ere = x.search('correct');
+            //console.log(ere);
+            //console.log("err");
+            //var ew = x.includes('correct');
+            //console.log(ew);
+            //console.log("ewerr");
+            //if (x != "") {
+            //    if (ew == false) {
+
+            //        console.log("wrong");
+            //        $("#myFormy").stop();
+            //    } else {
+            //        $("#myFormy").submit(); // Submit the form
+            //        console.log("correct");
+            //    }
+            //} else {
+            //    console.log("wrong33");
+            //    $("#myFormy").stop();
+            //}
+            $("#myFormy").submit();
+        });
+    });
+
+    function validateForm() {
+        var x = document.getElementById('machine').value;
+        //console.log(x);
+        //console.log("myt");
+        //var ere = x.search('N');
+        //console.log(ere);
+        //console.log("err");
+        //var ew = x.includes('N');
+        //if (ew == -1) {
+        //    return false;
+        //} else {
+            return true;
+
+    }
+    </script>
+    <script>
+    console.log("=d");
+
+        console.log("=dsadf");
+
+          function confirmBVN() {
+
+              var number = document.getElementById('input2').value;
+              var student = {};
+              student.phone = number
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("BVNCheck", "TechClub")",
+                data: JSON.stringify(student),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    document.getElementById("mytext").value = data;
+                    $("#outputmain").append(
+                        //"<div class=\"alert-box\" data-alert>" + data+"<a class=\"close\">&times;</a></div>"
+                        "<div class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4>" + data + "</h4></div>"
+                    );
+                    $(this).unbind("click");
+                }
+
+            });
+            console.log(student + "jj")
+        }
+
+    </script>
+
+}
+

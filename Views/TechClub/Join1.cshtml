@@ -1,0 +1,397 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.YoungMind
+
+@{
+    ViewBag.Title = "Exwhyzee Tech Club";
+
+    Layout = "~/Views/Shared/_TechClubLay.cshtml";
+
+}
+<style>
+    label {
+        margin-bottom: 0px !important;
+        margin-top: 19px !important;
+    }
+
+    h6 {
+        color: #c36552;
+        font-weight: 900;
+        margin: 50px 0 0 0 !important;
+    }
+</style>
+
+
+@using (Html.BeginForm("Join", "TechClub", new { ReturnUrl = ViewBag.ReturnUrl, userId = ViewBag.userId, SchoolId = ViewBag.SchoolId }, FormMethod.Post, new { id = "Form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="">
+    @* <h4 style="margin-bottom:0px;">Complete Application</h4>*@
+    <hr style="margin-bottom:0px;margin-top:5px;" />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h6 class="">Personal Data</h6>
+        </div>
+
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "" })
+            <select class="form-control" name="Title">
+                <option value="Mr">Mr</option>
+                <option value="Mr">Mrs</option>
+                <option value="Mr">Miss</option>
+            </select>
+
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Surname", required = "required", id = "U1", onkeyup = "myFunction1()" } })
+            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", required = "required", id = "U2", onkeyup = "myFunction2()" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.OtherName, htmlAttributes: new { @class = "" })
+            @Html.EditorFor(model => model.OtherName, new { htmlAttributes = new { @class = "form-control", placeholder = "Other Names", required = "required", id = "U3", onkeyup = "myFunction3()" } })
+            @Html.ValidationMessageFor(model => model.OtherName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { })
+
+            <select class="form-control selecting" required="required" name="Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.Dateofbirth, htmlAttributes: new { })
+            <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy" required="required">
+                <input class="form-control" name="DateOfBirth" type="text" placeholder="MM/DD/YYYY" />
+                <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
+            </div>
+            @*<input type="date" name="DateOfBirth" class="form-control" />*@
+            @Html.ValidationMessageFor(model => model.Dateofbirth, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.MaritalStatus, htmlAttributes: new { })
+
+            <select class="form-control selecting" required="required" name="MaritalStatus">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widow">Widow</option>
+                <option value="Widower">Widower</option>
+                <option value="Divorced">Divorced</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.Religion, htmlAttributes: new { })
+
+            <select class="form-control selecting" required="required" name="Religion">
+                <option value="Christian">Christian</option>
+                <option value="Muslim">Muslim</option>
+
+            </select>
+            @Html.ValidationMessageFor(model => model.Religion, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", required = "required", id = "U1", onkeyup = "myFunction1()" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-6">
+
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone", type="number", required = "required", id = "U2", onkeyup = "myFunction2()" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "Password", required = "required", id = "U1", onkeyup = "myFunction1()" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-6">
+
+            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", type = "Password", required = "required", id = "U1", onkeyup = "myFunction1()" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h6 class="">Contact Information</h6>
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.ContactAddress, htmlAttributes: new { })
+
+            @Html.EditorFor(model => model.ContactAddress, new { htmlAttributes = new { @class = "form-control", required = "required", id = "U4", onkeyup = "myFunction4()" } })
+            @Html.ValidationMessageFor(model => model.ContactAddress, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.PermanentHomeAddress, htmlAttributes: new { })
+
+            @Html.EditorFor(model => model.PermanentHomeAddress, new { htmlAttributes = new { @class = "form-control", required = "required", id = "U5", onkeyup = "myFunction5()" } })
+            @Html.ValidationMessageFor(model => model.PermanentHomeAddress, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.ModeOfIdentification, htmlAttributes: new { })
+
+            <select class="form-control selecting" required="required" name="ModeOfIdentification">
+                <option value="International Passport">International Passport</option>
+                <option value="National ID">National ID</option>
+                <option value="Drivers License">Drivers License</option>
+                <option value="Voters Card">Voters Card</option>
+                <option value="School ID">School ID</option>
+
+            </select>
+            @Html.ValidationMessageFor(model => model.ModeOfIdentification, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.IdentificationNumber, htmlAttributes: new { })
+
+            @Html.EditorFor(model => model.IdentificationNumber, new { htmlAttributes = new { @class = "form-control", id = "U6", required = "required", onkeyup = "myFunction6()" } })
+            @Html.ValidationMessageFor(model => model.IdentificationNumber, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-md-6">
+
+            @Html.LabelFor(model => model.StateofOrigin, htmlAttributes: new { @class = "control-label" })
+
+            @Html.DropDownList("StateofOrigin", ViewBag.StateofOrigin as SelectList, "Select a State", new { id = "StateOfOrigin", @class = "form-control selecting" })                @Html.ValidationMessageFor(model => model.StateofOrigin, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-6">
+
+            @Html.LabelFor(model => model.LocalGovernmentArea, htmlAttributes: new { @class = "control-label" })
+
+            <select id="LGA" name="LocalGovernmentArea" class="form-control selecting"></select>
+            @Html.ValidationMessageFor(model => model.LocalGovernmentArea, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-12">
+
+            @Html.LabelFor(model => model.Hobby, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Hobby, new { htmlAttributes = new { @class = "form-control", id = "U30", required = "", onkeyup = "myFunction30()" } })
+            @Html.ValidationMessageFor(model => model.Hobby, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h6>Development Information</h6>
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.WhatAreaAreYouInterestedIn, htmlAttributes: new { })
+
+            @Html.EditorFor(model => model.WhatAreaAreYouInterestedIn, new { htmlAttributes = new { @class = "form-control", required = "required", id = "U7", onkeyup = "myFunction7()" } })
+            @Html.ValidationMessageFor(model => model.WhatAreaAreYouInterestedIn, "", new { @class = "text-danger" })
+        </div>
+
+
+
+
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.CanYouDoMoreWithLessResources, htmlAttributes: new { })
+
+
+            <select class="form-control selecting" required="required" name="CanYouDoMoreWithLessResources">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.CanYouDoMoreWithLessResources, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-12">
+            @Html.Label("If above if yes. Tell us how you can achieve that", htmlAttributes: new { })
+
+            <textarea name="TellUsHowYouWouldGoAboutThis" rows="10" class="form-control" aria-invalid="false" id="U12" onkeyup="myFunction12()"></textarea>
+            @Html.ValidationMessageFor(model => model.TellUsHowYouWouldGoAboutThis, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.WhatIsYourCurrentExperienceLevelInInformationTechnology, htmlAttributes: new { })
+
+            <textarea name="WhatIsYourCurrentExperienceLevelInInformationTechnology" rows="10" class="form-control" aria-invalid="false" id="U12" onkeyup="myFunction12()"></textarea>
+            @Html.ValidationMessageFor(model => model.WhatIsYourCurrentExperienceLevelInInformationTechnology, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.AreYouReadyToMakeChangesToYourEnvironment, htmlAttributes: new { })
+
+
+            <select class="form-control selecting" required="required" name="AreYouReadyToMakeChangesToYourEnvironment">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.AreYouReadyToMakeChangesToYourEnvironment, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.KnowAFriendThatYouThinkWillMakeAGreatChangeInHisEnvironment, htmlAttributes: new { })
+
+            <textarea name="KnowAFriendThatYouThinkWillMakeAGreatChangeInHisEnvironment" rows="10" class="form-control" aria-invalid="false" id="U12" onkeyup="myFunction12()"></textarea>
+            @Html.ValidationMessageFor(model => model.KnowAFriendThatYouThinkWillMakeAGreatChangeInHisEnvironment, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.IdeaAndSuggestion, htmlAttributes: new { })
+
+            <textarea name="IdeaAndSuggestion" rows="10" class="form-control" aria-invalid="false" id="U12" onkeyup="myFunction12()"></textarea>
+            @Html.ValidationMessageFor(model => model.IdeaAndSuggestion, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.SocialMedia, htmlAttributes: new { })
+
+            <textarea name="SocialMedia" rows="10" class="form-control" aria-invalid="false" id="U12" onkeyup="myFunction12()"></textarea>
+            @Html.ValidationMessageFor(model => model.SocialMedia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="clearfix"></div>
+    <br />
+    <div class="">
+        <input type="submit" value="Join" class="btn btn-default" />
+    </div>
+</div>
+    <br />
+    <br />
+
+}
+
+
+@*</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/jscript">
+        $(function () {
+            $('#StateOfOrigin').change(function () {
+                $.getJSON('/Data/LgaList/' + $('#StateOfOrigin').val(), function (data) {
+                    var items = '<option>Select a Local Government</option>';
+                    $.each(data, function (i, local) {
+                        items += "<option value='" + local.Value + "'>" + local.Text + "</option>";
+                    });
+                    $('#LGA').html(items);
+                });
+            });
+        });
+    </script>
+
+    <script src="http://exwhyzee.ng/libraries/admin/main.js"></script>
+
+    @*<script>
+
+            function myFunction1() {
+                var x = document.getElementById("U1");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction2() {
+                var x = document.getElementById("U2");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction3() {
+                var x = document.getElementById("U3");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction4() {
+                var x = document.getElementById("U4");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction5() {
+                var x = document.getElementById("U5");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction6() {
+                var x = document.getElementById("U6");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction7() {
+                var x = document.getElementById("U7");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction8() {
+                var x = document.getElementById("U8");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction() {
+                var x = document.getElementById("U9");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction11() {
+                var x = document.getElementById("U11");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction10() {
+                var x = document.getElementById("U10");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction12() {
+                var x = document.getElementById("U12");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction13() {
+                var x = document.getElementById("U13");
+                x.value = x.value.toUpperCase();
+            }
+            function myFunction14() {
+                var x = document.getElementById("U14");
+                x.value = x.value.toUpperCase();
+            }
+        </script>*@
+}

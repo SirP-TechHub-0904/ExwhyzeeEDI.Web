@@ -1,0 +1,59 @@
+﻿@model ExwhyzeeEDI.Web.Models.Entities.BusinessPlan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Business Plan Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.BusinessName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.BusinessName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.BusinessProfile)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.BusinessProfile)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.BusinessPlanUrl)
+                        </dt>
+
+                        <dd>
+                            <a href="~/BusinessPlan/@Model.BusinessPlanUrl" download>
+                                Download Business Plan
+                            </a>
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

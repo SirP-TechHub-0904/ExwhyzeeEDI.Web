@@ -1,0 +1,162 @@
+﻿@model ExwhyzeeEDI.Web.Models.Dtos.ProfileDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProfileDto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateofbirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dateofbirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModeOfIdentification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModeOfIdentification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentificationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentificationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateofOrigin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateofOrigin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalGovernmentArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocalGovernmentArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentOccupation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentOccupation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaOfInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaOfInterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecificAreaOfInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecificAreaOfInterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

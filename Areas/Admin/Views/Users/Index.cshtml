@@ -1,0 +1,259 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Profile>
+@using ExwhyzeeEDI.Web.Helper
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Registered Students</h3>
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            <form asp-page="./Index" method="get">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+
+                                    <input type="date" name="DateOne" placeholder="Start Date" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <input type="date" name="DateTwo" placeholder="End Date" class="form-control" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+
+                                    <input type="submit" value="Get Update" class="btn btn-primary" style="width:100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <style>
+                .alert {
+                    border-radius: 3px;
+                    padding: 0px;
+                }
+            </style>
+            <div class="" style="margin:0 20px;">
+                <div id="food"></div>
+            </div>
+
+            <h4 class="text-center" style="color:#ff0000;font-weight:900;">RAW LIST</h4>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover table-striped dataTable" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>
+                                Reg. Number
+                            </th>
+                            <th>
+                                Full Name
+                            </th>
+
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Need Certicate
+                            </th>
+                            <th>
+                                Need Plan
+                            </th>
+                            @*<th>Payment</th>*@
+    <th></th>
+                            @*<th>By</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @{ sno++; }
+                                @sno
+                            </td>
+                            <td style="word-wrap:break-word;font-size:9px;">
+                                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+                            </td>
+                            <td style="word-wrap:break-word;">
+                                <a href="@Url.Action("Details",new { id = item.UserId })">
+                                    @Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.OtherName)
+                                </a>
+                                <input hidden="hidden" id="regnumber" value="@item.UserId" />
+                            </td>
+
+
+
+                            <td>
+                                @item.DateRegistered.ToShortDateString()
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+
+                            </td>
+                            <td>
+ @Html.DisplayFor(modelItem => item.NeedCertificate)                            
+                                @Html.ActionLink("Certificate", "RC", new { UserId = item.UserId }, new { @class = "btn btn-danger", target = "_blank" })
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NeedBusinessPlan)       
+                                @Html.ActionLink("Biz Plan", "BP", new { UserId = item.UserId }, new { @class = "btn btn-primary", target = "_blank" })
+
+                            </td>
+                            <td>
+                                @* <button type="button" onclick="checkingReg()" style="border-radius:0 !important;" class="btn btn-primary btn-xs">Add to paid</button>*@
+                                @Html.ActionLink("Validate User", "UpdatePaid", new { UserId = item.UserId }, new { @class = "btn btn-primary", target = "_blank" })
+  
+                            </td>
+                            @*<td style="word-wrap:break-word;font-size:9px;">
+                                @Html.DisplayFor(modelItem => item.RegisteredBy)
+                            </td>*@
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.User.Email)
+        </td>
+        <td>
+            @if (item.PaidForTraining == true)
+            {
+                <text>Paid</text>
+            }
+            else
+            {
+                <text>Not Paid</text>
+
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserStatus)
+        </td>*@
+
+                            @*<td>
+            <div class="dropdown">
+                <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+                    Action
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="max-width:none !important;">
+                    <li>
+                        @Html.ActionLink("Program", "RegisteredProgram", new { uid = item.UserId }, new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Details", "Details", new { id = item.UserId }, new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Update User", "UpdateUserData", new { UserId = item.UserId }, new { @class = "" })
+                    </li>
+                </ul>
+            </div>
+
+        </td>*@
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+@section Style {
+
+    <link rel="stylesheet" href="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+    <script>
+                function checkingReg() {
+
+                    var number = document.getElementById('regnumber').value;
+                    console.log(number)
+                    console.log("number")
+            var student = {};
+            student.UserId = number
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdatePaid", "Users")",
+                data: JSON.stringify(student),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    $("#food").append(
+                        //"<div class=\"alert-box\" data-alert>" + data+"<a class=\"close\">&times;</a></div>"
+                        "<div class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4>" + data + "</h4></div>"
+                    );
+                    $(this).unbind("click");
+                }
+
+            });
+            console.log(student + "jj")
+        }
+
+    </script>
+
+}

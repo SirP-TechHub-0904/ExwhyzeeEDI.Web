@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Slider>
+
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/themes/default/default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/themes/default/default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/themes/light/light.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/themes/dark/dark.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/themes/bar/bar.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="http://exwhyzee.ng/libraries/nivo-slider/demo/style.css" type="text/css" media="screen" />
+
+
+<section class="slider-container">
+    <div class="slider-wrapper theme-default">
+
+        <div id="slider" class="nivoSlider" style="margin-bottom:0px !important;box-shadow:none !important;">
+
+            @foreach (var image in Model)
+            {
+                if (image.SliderPath != null)
+                {
+
+                    <img data-u="image" src="~/Slider/@image.SliderPath" data-thumb="/Slider/@image.SliderPath" alt="" />
+
+
+                }
+            }
+
+        </div>
+    </div>
+</section>
+
+

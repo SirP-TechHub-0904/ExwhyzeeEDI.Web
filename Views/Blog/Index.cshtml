@@ -1,0 +1,151 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using System.Text.RegularExpressions;
+@helper Truncate(string input, int lenght)
+{
+    try
+    {
+
+        if (input.Length <= lenght)
+        {
+            @Html.Raw(input)
+        }
+        else
+        {
+            @Html.Raw(input.Substring(0, input.IndexOf(" ", lenght)).ToString())
+        }
+
+    }
+    catch (Exception c) { }
+}
+<style>
+    .blog .hentry .entry-header .entry-time1, .single-post .hentry .entry-header .entry-time, .blog .hentry .entry-header .entry-meta a:hover, .single-post {
+        color: #18ba60;
+    }
+</style>
+
+<div id="site-content">
+    <div id="page-breadcrumbs">
+        <div class="wrapper">
+
+            <nav role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb">
+                <h2 class="trail-browse">You are here:</h2>
+                <ul class="trail-items" itemscope="" itemtype="">
+                    <li itemprop="itemListElement" itemscope="" itemtype="" class="trail-item trail-begin">
+                        <a href="/" rel="home" itemprop="item"><span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="" class="trail-item trail-end">
+                        <span itemprop="item"><span itemprop="name">Blog</span></span><meta itemprop="position" content="2">
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- /#page-header -->
+
+
+    <div id="page-body">
+        <div class="wrapper">
+
+            <div class="content-wrap">
+                <main id="main-content" class="content" itemprop="mainContentOfPage">
+                    <div class="main-content-wrap">
+
+                        <div class="content-inner">
+                            <div class="vc_row wpb_row vc_row-fluid">
+                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                    <div class="vc_column-inner">
+                                        <div class="wpb_wrapper">
+                                            <div class="blog-shortcode  blog-grid blog-three-columns has-post-content post-thumbnail-cover">
+
+                                                <div class="blog-entries">
+                                                    <div class="entries-wrapper">
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <article class="post-102 post type-post status-publish format-standard has-post-thumbnail hentry category-sales-enablement tag-business tag-sales tag-training">
+                                                                <div class="entry-wrapper">
+
+
+                                                                    <div class="entry-cover">
+                                                                        <h4 class="entry-time">
+                                                                            <span class="entry-day">
+                                                                                @item.DatePosted.ToString("dd")
+                                                                            </span>
+                                                                            <span class="entry-month">
+                                                                                @item.DatePosted.ToString("MMM")
+                                                                            </span>
+
+                                                                        </h4>
+                                                                        <a href="@Url.Action("Details", "Blog", new { id = item.Id })">
+                                                                            <img width="600" height="413" src="~/Uploads/@item.ImageUrl" class="attachment-portfolio-medium-crop size-portfolio-medium-crop wp-post-image" alt="">
+                                                                        </a>
+                                                                    </div>
+
+
+
+                                                                    <div class="entry-content-wrap">
+                                                                        <div class="entry-header">
+                                                                            <h2 class="entry-title">
+                                                                                <a href="@Url.Action("Details", "Blog", new { id = item.Id })">@item.PostTite</a>
+                                                                            </h2>
+                                                                        </div>
+
+
+                                                                        <div class="entry-content">
+
+                                                                            @Truncate(item.PostContentPreview, 150)
+                                                                        </div>
+
+
+                                                                        <div class="entry-footer">
+
+                                                                            <div class="entry-meta">
+                                                                                <i class="fa fa-user"></i>
+                                                                                <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="">
+                                                                                    <a href="#" class="entry-author-link" itemprop="url" rel="author">
+                                                                                        <span class="entry-author-name" itemprop="name">EDI</span>
+                                                                                    </a>
+                                                                                </span>
+                                                                                <i class="fa fa-folder-open"></i>
+                                                                                <span class="entry-categories">
+                                                                                    <a href="#" rel="category tag">CBN / Exwhyzee Tech</a>
+                                                                                </span>
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </article>
+
+
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.content-inner -->
+
+                    </div>
+                </main>
+
+
+            </div>
+            <!-- /.content-wrap -->
+
+        </div>
+        <!-- /.wrapper -->
+    </div>
+    <!-- /#page-body -->
+
+</div>

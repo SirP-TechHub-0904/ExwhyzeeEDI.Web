@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Account Initialization";
+    string host = HttpContext.Current.Request.Url.Authority;
+    <meta http-equiv="refresh" content="1;url=http://@host/EDI/Dashboard" />
+    string b = "";
+    Layout = "~/Views/Shared/_Loading.cshtml";
+    }
+

@@ -1,0 +1,270 @@
+﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.ExwhyzeeModel>
+
+@using ExwhyzeeEDI.Web.Helper
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Training (@Model.Count()) </h3>
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            <style>
+                .btn {
+                    display: inline-block;
+                    padding: 1px 5px;
+                }
+
+                .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+                    padding: 2px;
+                }
+              
+                .table {
+                    width: 100%;
+                }
+
+                   
+
+                    .table tbody tr td {
+                        padding: 10px;
+                        background: #f2f2f2;
+                        font-size: 14px;
+                    }
+
+                .add, .edit, .save, .delete {
+                    outline: none;
+                    background: none;
+                    border: none;
+                }
+
+                .edit, .save, .delete {
+                    padding: 5px 10px;
+                    cursor: pointer;
+                }
+
+                .add {
+                    float: right;
+                    background: transparent;
+                    border: 1px solid #ffffff;
+                    color: #ffffff;
+                    font-size: 13px;
+                    padding: 0;
+                    padding: 3px 5px;
+                    cursor: pointer;
+                }
+
+                    .add:hover {
+                        background: #ffffff;
+                        color: #00adee;
+                    }
+
+                .save {
+                    display: none;
+                    background: #32AD60;
+                    color: #ffffff;
+                }
+
+                    .save:hover {
+                        background: #27854a;
+                    }
+
+                .edit {
+                    background: #2199e8;
+                    color: #ffffff;
+                }
+
+                    .edit:hover {
+                        background: #147dc2;
+                    }
+
+                .delete {
+                    background: #EC5840;
+                    color: #ffffff;
+                }
+
+                    .delete:hover {
+                        background: #e23317;
+                    }
+            </style>
+
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover table-striped dataTable" border="1">
+
+                    <thead>
+                        <tr>
+
+                            <th>S/N</th>
+                           <th>Sorder</th>
+                            
+                            <th>
+                                BVN
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Surname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Firstname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Othername)
+                            </th>
+                            <th>Phone</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+
+                            <th>Paid</th>
+                            <th>
+                                Uploaded by
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            
+                        <tr>
+                            <td>
+                                @{ sno++; }
+                                @sno
+                            </td>
+                            <td class="">
+                                <a href="@Url.Action("SortOrder", new { id = item.Id })">
+                                    @item.SortOrder
+
+                                    </a>
+</td>
+                           
+
+                            <td style="word-break: break-all;font-size:9px;">
+                                @Html.DisplayFor(modelItem => item.BVN)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("TrainingDetails", new { id = item.Id })">
+                                    @Html.DisplayFor(modelItem => item.Surname)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Firstname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Othername)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+
+                            </td>
+                            <td>
+                                @item.Date.ToShortDateString()
+                            </td>
+                            <td style="word-break: break-all;">
+                                @if (item.Paid == true)
+                                {
+                                    <span>Paid</span>
+                                }
+                                else
+                                {
+                                    <span>---</span>
+                                }
+                            </td>
+                            <td>
+                               @item.UploadBy
+                            </td>
+                            <td>
+                                @if (User.IsInRole("BossAdmin"))
+                                {
+                                    @Html.ActionLink("X", "Deletex", "Users", new { id = item.Id, Area = "Admin" }, new { @class = "btn btn-danger" })
+                                }
+
+                                </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+@section Style {
+
+    <link rel="stylesheet" href="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="http://exwhyzee.ng/libraries/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+  
+    <script>
+        $(document).on('click', '.edit', function () {
+            $(this).parent().siblings('td.data').each(function () {
+                var content = $(this).html();
+                $(this).html('<input value="' + content + '" />');
+            });
+
+            $(this).siblings('.save').show();
+            $(this).siblings('.delete').hide();
+            $(this).hide();
+        });
+
+        $(document).on('click', '.save', function () {
+
+            $('input').each(function () {
+                var content = $(this).val();
+
+
+
+
+                $(this).html(content);
+                //$(this).contents().unwrap();
+            });
+            $(this).siblings('.edit').show();
+            $(this).siblings('.delete').show();
+            $(this).hide();
+
+        });
+
+
+    </script>
+}
