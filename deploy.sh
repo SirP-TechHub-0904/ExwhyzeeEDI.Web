@@ -109,9 +109,9 @@ if [ -f "$APP_DIR/.env" ]; then
   fi
 
   if grep -q "^ASPNETCORE_URLS=" "$APP_DIR/.env"; then
-    sed -i "s|^ASPNETCORE_URLS=.*|ASPNETCORE_URLS=http://127.0.0.1:$PORT|" "$APP_DIR/.env"
+    sed -i "s|^ASPNETCORE_URLS=.*|ASPNETCORE_URLS=http://0.0.0.0:$PORT|" "$APP_DIR/.env"
   else
-    echo "ASPNETCORE_URLS=http://127.0.0.1:$PORT" >> "$APP_DIR/.env"
+    echo "ASPNETCORE_URLS=http://0.0.0.0:$PORT" >> "$APP_DIR/.env"
   fi
 fi
 
@@ -142,7 +142,7 @@ SyslogIdentifier=exwhyzee-edi
 User=$CURRENT_USER
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
-Environment=ASPNETCORE_URLS=http://127.0.0.1:$PORT
+Environment=ASPNETCORE_URLS=http://0.0.0.0:$PORT
 EnvironmentFile=-$APP_DIR/.env
 
 [Install]
