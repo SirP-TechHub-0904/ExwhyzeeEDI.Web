@@ -91,16 +91,15 @@ jobs:
           # ============================================================
           # 4. INITIALIZE OR RESTORE .ENV (FIRST DEPLOY VS UPDATE)
           # ============================================================
-          if [ -f "/tmp/edi_current.env.bak" ]; then
+          if [ -n "$DOTENV_SECRET" ]; then
+            echo "Applying .env configuration from GitHub Secret..."
+            echo "$DOTENV_SECRET" | sudo tee "$APP_DIR/.env" > /dev/null
+          elif [ -f "/tmp/edi_current.env.bak" ]; then
             echo "Restoring existing .env configuration..."
             sudo mv /tmp/edi_current.env.bak "$APP_DIR/.env"
-          else
-            echo "First deploy detected: Creating .env file..."
-            if [ -n "$DOTENV_SECRET" ]; then
-              echo "$DOTENV_SECRET" | sudo tee "$APP_DIR/.env" > /dev/null
-            elif [ -f "$APP_DIR/.env.example" ]; then
-              sudo cp "$APP_DIR/.env.example" "$APP_DIR/.env"
-            fi
+          elif [ -f "$APP_DIR/.env.example" ]; then
+            echo "Creating initial .env from template..."
+            sudo cp "$APP_DIR/.env.example" "$APP_DIR/.env"
           fi
 
           # Ensure the assigned port is reflected in .env
