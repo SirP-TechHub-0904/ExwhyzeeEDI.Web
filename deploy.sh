@@ -54,6 +54,11 @@ fi
 chmod 600 "$APP_DIR/.env" 2>/dev/null || true
 
 # Ensure runtime directories exist
+mkdir -p "$APP_DIR/wwwroot/Uploads"
+mkdir -p "$APP_DIR/wwwroot/Uploads/Gallery"
+mkdir -p "$APP_DIR/wwwroot/ExcelUpload"
+mkdir -p "$APP_DIR/wwwroot/BusinessPlan"
+mkdir -p "$APP_DIR/wwwroot/Slider"
 mkdir -p "$APP_DIR/Uploads"
 mkdir -p "$APP_DIR/Uploads/Gallery"
 mkdir -p "$APP_DIR/ExcelUpload"

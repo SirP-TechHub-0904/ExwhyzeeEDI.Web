@@ -102,22 +102,44 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Initialize AppPaths
+AppPaths.ContentRootPath = app.Environment.ContentRootPath;
+AppPaths.WebRootPath = app.Environment.WebRootPath ?? Path.Combine(app.Environment.ContentRootPath, "wwwroot");
+
+// Case-normalization middleware for static files on Linux (e.g. /content/ -> /Content/)
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value;
+    if (!string.IsNullOrEmpty(path))
+    {
+        if (path.StartsWith("/content/", StringComparison.OrdinalIgnoreCase) && !path.StartsWith("/Content/"))
+        {
+            context.Request.Path = "/Content" + path.Substring(8);
+        }
+        else if (path.StartsWith("/scripts/", StringComparison.OrdinalIgnoreCase) && !path.StartsWith("/Scripts/"))
+        {
+            context.Request.Path = "/Scripts" + path.Substring(8);
+        }
+    }
+    await next();
+});
+
+// Primary static files middleware (serves wwwroot natively)
 app.UseStaticFiles();
 
-// Serve legacy content and upload directories directly
-var staticFolders = new[] { "Content", "Scripts", "Uploads", "Slider", "BusinessPlan", "ExcelUpload", "fonts", "nivo-slider" };
-foreach (var folder in staticFolders)
+// Fallback for upload folders in content root (if any)
+var extraFolders = new[] { "Uploads", "Slider", "BusinessPlan", "ExcelUpload" };
+foreach (var folder in extraFolders)
 {
     var folderPath = Path.Combine(app.Environment.ContentRootPath, folder);
-    if (!Directory.Exists(folderPath))
+    if (Directory.Exists(folderPath))
     {
-        Directory.CreateDirectory(folderPath);
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(folderPath),
+            RequestPath = "/" + folder
+        });
     }
-    app.UseStaticFiles(new StaticFileOptions
-    {
-        FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(folderPath),
-        RequestPath = "/" + folder
-    });
 }
 
 app.UseRouting();

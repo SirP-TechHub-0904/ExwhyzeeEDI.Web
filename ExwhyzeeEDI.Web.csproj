@@ -38,7 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Content\**;Scripts\**;Slider\**;fonts\**;nivo-slider\**;favicon.ico" CopyToPublishDirectory="PreserveNewest" />
     <None Include=".env.example" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 

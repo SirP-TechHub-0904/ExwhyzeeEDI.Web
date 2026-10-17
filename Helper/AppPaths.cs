@@ -17,17 +17,25 @@ namespace ExwhyzeeEDI.Web.Helper
 
         public static string WebRootPath
         {
-            get => _webRootPath ?? ContentRootPath;
+            get => _webRootPath ?? Path.Combine(ContentRootPath, "wwwroot");
             set => _webRootPath = value;
         }
 
         public static string MapPath(string relativePath)
         {
             if (string.IsNullOrEmpty(relativePath))
-                return ContentRootPath;
+                return WebRootPath;
 
             relativePath = relativePath.TrimStart('~', '/', '\\');
-            return Path.Combine(ContentRootPath, relativePath);
+            var webPath = Path.Combine(WebRootPath, relativePath);
+            if (File.Exists(webPath) || Directory.Exists(webPath))
+                return webPath;
+
+            var contentPath = Path.Combine(ContentRootPath, relativePath);
+            if (File.Exists(contentPath) || Directory.Exists(contentPath))
+                return contentPath;
+
+            return webPath;
         }
 
         public static async Task SaveAsAsync(this IFormFile file, string destinationPath)

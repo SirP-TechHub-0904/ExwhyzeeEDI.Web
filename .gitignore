@@ -30,6 +30,18 @@ BusinessPlan/*
 ExcelUpload/*
 !ExcelUpload/.gitkeep
 
+wwwroot/Slider/*
+!wwwroot/Slider/.gitkeep
+wwwroot/Uploads/*
+!wwwroot/Uploads/*/
+!wwwroot/Uploads/.gitkeep
+!wwwroot/Uploads/**/.gitkeep
+wwwroot/BusinessPlan/*
+!wwwroot/BusinessPlan/.gitkeep
+wwwroot/ExcelUpload/*
+!wwwroot/ExcelUpload/.gitkeep
+
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
