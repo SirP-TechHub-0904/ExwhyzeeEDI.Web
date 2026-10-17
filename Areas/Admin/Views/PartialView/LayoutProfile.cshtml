@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Profile
+@model ExwhyzeeEDI.Web.Models.Entities.Profile
 
 @if (Model != null)
 {
@@ -7,7 +7,7 @@
       
         @if (!String.IsNullOrEmpty(Model.PassportUrl))
         {
-            <img src="~/Uploads/@Model.PassportUrl" class="img-circle img-responsive" />
+            <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.PassportUrl, "Uploads")" class="img-circle img-responsive" />
 
         }
         else

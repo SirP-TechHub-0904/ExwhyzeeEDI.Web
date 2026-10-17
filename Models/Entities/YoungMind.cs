@@ -1,9 +1,9 @@
-﻿using FluentValidation;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace ExwhyzeeEDI.Web.Models.Entities
 {
@@ -101,6 +101,39 @@ namespace ExwhyzeeEDI.Web.Models.Entities
 
         [Display(Name = "Passport")]
         public string PassportUrl { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string WhatAreaAreYouInterestedIn { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string WhatTrackAreYouInterestedIn { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string CanYouDoMoreWithLessResources { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string TellUsHowYouWouldGoAboutThis { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string WhatIsYourCurrentExperienceLevelInInformationTechnology { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string Email { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string Phone { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string Password { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string ConfirmPassword { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string SpecifyVocation { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string DoYouHaveICTSkillsForYourBusiness { get; set; }
     }
 
     //public class PlaceValidator : AbstractValidator<YoungMind>

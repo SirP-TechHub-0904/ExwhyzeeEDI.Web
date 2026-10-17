@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 

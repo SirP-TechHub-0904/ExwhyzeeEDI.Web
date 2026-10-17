@@ -1,23 +1,18 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using ExwhyzeeEDI.Web.Models.Dtos;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
-using Microsoft.AspNet.Identity.EntityFramework;
-using static ExwhyzeeEDI.Web.ApplicationSignInManager;
 using System.Net.Mail;
-using System.Web.UI.WebControls;
-using System.Collections.Specialized;
 using System.Net;
 using ExwhyzeeEDI.Web.DataServices.PaymentService;
 
@@ -32,9 +27,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         private ApplicationRoleManager _roleManager;
         private IPaymentServices _paymentServices = new PaymentServices();
 
-        public DataController()
-        {
-        }
+
 
         public DataController(PaymentServices paymentServices, ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
@@ -105,7 +98,7 @@ namespace ExwhyzeeEDI.Web.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             var user = await UserManager.FindByEmailAsync(model.Email);
-            switch (result)
+            switch (result.ToStatus())
             {
 
                 case SignInStatus.Success:
@@ -189,7 +182,7 @@ namespace ExwhyzeeEDI.Web.Controllers
                 var roleresult2 = await RoleManager.CreateAsync(role2);
                 if (!roleresult2.Succeeded)
                 {
-                    ModelState.AddModelError("", roleresult2.Errors.First());
+                    ModelState.AddModelError("", roleresult2.Errors.First().Description);
                     //return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
             }
@@ -207,7 +200,7 @@ namespace ExwhyzeeEDI.Web.Controllers
                 var roleresult = await RoleManager.CreateAsync(role);
                 if (!roleresult.Succeeded)
                 {
-                    ModelState.AddModelError("", roleresult.Errors.First());
+                    ModelState.AddModelError("", roleresult.Errors.First().Description);
                     //return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
             }
@@ -220,7 +213,7 @@ namespace ExwhyzeeEDI.Web.Controllers
                 var roleresult2 = await RoleManager.CreateAsync(role2);
                 if (!roleresult2.Succeeded)
                 {
-                    ModelState.AddModelError("", roleresult2.Errors.First());
+                    ModelState.AddModelError("", roleresult2.Errors.First().Description);
                     //return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
             }
@@ -232,7 +225,7 @@ namespace ExwhyzeeEDI.Web.Controllers
                 var roleresult3 = await RoleManager.CreateAsync(role3);
                 if (!roleresult3.Succeeded)
                 {
-                    ModelState.AddModelError("", roleresult3.Errors.First());
+                    ModelState.AddModelError("", roleresult3.Errors.First().Description);
                     //return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
 
@@ -240,7 +233,7 @@ namespace ExwhyzeeEDI.Web.Controllers
                 var roleresult4 = await RoleManager.CreateAsync(role4);
                 if (!roleresult4.Succeeded)
                 {
-                    ModelState.AddModelError("", roleresult3.Errors.First());
+                    ModelState.AddModelError("", roleresult4.Errors.First().Description);
                     //return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
             }
@@ -431,59 +424,38 @@ namespace ExwhyzeeEDI.Web.Controllers
                     {
                         string message = "";
 
-                        MailMessage mail = new MailMessage();
-                        MailMessage mail2 = new MailMessage();
+                        string htmlPath = Server.MapPath("~/Views/Data/Success.html");
+                        string emailBody = System.IO.File.Exists(htmlPath) ? System.IO.File.ReadAllText(htmlPath) : "";
+                        emailBody = emailBody.Replace("{bHead}", "")
+                                             .Replace("{bbody}", "")
+                                             .Replace("{doyou}", "Admin")
+                                             .Replace("{doyoubody}", "")
+                                             .Replace("{activate}", "")
+                                             .Replace("{smalltitle}", admsg);
 
-                        //set the addresses 
-                        mail.From = new MailAddress("noreply@edi.exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
+                        var mail = new MailMessage("noreply@edi.exwhyzee.ng", "ifeanyingama@gmail.com")
+                        {
+                            Subject = "New Applicant",
+                            Body = emailBody,
+                            IsBodyHtml = true
+                        };
+                        var mail2 = new MailMessage("noreply@edi.exwhyzee.ng", "onwukaemeka41@gmail.com")
+                        {
+                            Subject = "New Applicant",
+                            Body = emailBody,
+                            IsBodyHtml = true
+                        };
 
-                        //
-                        //set the content Server.MapPath("~/status.txt")
-                        string AppPath = Request.PhysicalApplicationPath;
-                        //StreamReader sr = new StreamReader(AppPath + "../Views/Account/HtmlPage1.html");
-                        StreamReader sr = new StreamReader(Server.MapPath("~/Views/Data/Success.html"));
+                        string smtpHost = EnvLoader.Get("SMTP_HOST", "mail.edi.exwhyzee.ng");
+                        string smtpUser = EnvLoader.Get("SMTP_USER", "noreply@edi.exwhyzee.ng");
+                        string smtpPass = EnvLoader.Get("SMTP_PASS", "");
 
-                        mail.Body = sr.ReadToEnd();
-                        mail2.Body = sr.ReadToEnd();
-                        sr.Close();
-
-                        MailDefinition md = new MailDefinition();
-                        md.From = "noreply@edi.exwhyzee.ng";
-                        md.IsBodyHtml = true;
-                        md.Subject = "New Applicant";
-
-                        //
-                        ListDictionary replacements = new ListDictionary();
-                        ///
-                        replacements.Add("{bHead}", "");
-                        replacements.Add("{bbody}", "");
-                        replacements.Add("{doyou}", "Admin");
-                        //replacements.Add("{subjectt}", "Welcome");
-                        replacements.Add("{doyoubody}", "");
-                        ///
-
-                        replacements.Add("{activate}", "");
-                        replacements.Add("{smalltitle}", admsg);
-
-                        mail = md.CreateMailMessage("ifeanyingama@gmail.com", replacements, mail.Body, new System.Web.UI.Control());
-
-
-
-                        //send the message 
-                        SmtpClient smtp = new SmtpClient("mail.edi.exwhyzee.ng");
-
-                        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                        NetworkCredential Credentials = new NetworkCredential("noreply@edi.exwhyzee.ng", "[REDACTED_SMTP_PASSWORD]");
-                        smtp.Credentials = Credentials;
-                        
-                        //
-                        mail2 = md.CreateMailMessage("onwukaemeka41@gmail.com", replacements, mail2.Body, new System.Web.UI.Control());
-
-
-                        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                        smtp.Credentials = Credentials;
-                        smtp.Send(mail2);
-                        smtp.Send(mail);
+                        using (SmtpClient smtp = new SmtpClient(smtpHost))
+                        {
+                            smtp.Credentials = new NetworkCredential(smtpUser, smtpPass);
+                            smtp.Send(mail2);
+                            smtp.Send(mail);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -597,20 +569,32 @@ namespace ExwhyzeeEDI.Web.Controllers
                     ///
                     try
                     {
-
-                        if (upload != null && upload.ContentLength > 0)
+                        if (upload != null && upload.Length > 0)
                         {
+                            var cloudinary = HttpContext.RequestServices.GetService(typeof(ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService)) as ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService;
+                            if (cloudinary != null && cloudinary.IsConfigured())
+                            {
+                                try
+                                {
+                                    var cloudUrl = cloudinary.UploadFileAsync(upload, "Uploads").GetAwaiter().GetResult();
+                                    if (!string.IsNullOrEmpty(cloudUrl))
+                                    {
+                                        xyz.PassportPhoto = cloudUrl;
+                                    }
+                                }
+                                catch {}
+                            }
 
-
-                            string date1s = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                            string name = date1s + "-" + profile.Surname;
-                            string fileName = Path.GetFileName(name);
-                            xyz.PassportPhoto = fileName;
-                            fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
-                            upload.SaveAs(fileName);
-
+                            if (string.IsNullOrEmpty(xyz.PassportPhoto))
+                            {
+                                string date1s = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                                string name = date1s + "-" + profile.Surname;
+                                string fileName = Path.GetFileName(name);
+                                xyz.PassportPhoto = fileName;
+                                fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                                upload.SaveAs(fileName);
+                            }
                         }
-
                     }
                     catch (Exception c)
                     {
@@ -618,20 +602,32 @@ namespace ExwhyzeeEDI.Web.Controllers
                     }
                     try
                     {
-
-                        if (upload != null && upload.ContentLength > 0)
+                        if (upload != null && upload.Length > 0)
                         {
+                            var cloudinary = HttpContext.RequestServices.GetService(typeof(ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService)) as ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService;
+                            if (cloudinary != null && cloudinary.IsConfigured())
+                            {
+                                try
+                                {
+                                    var cloudUrl = cloudinary.UploadFileAsync(upload, "Uploads").GetAwaiter().GetResult();
+                                    if (!string.IsNullOrEmpty(cloudUrl))
+                                    {
+                                        xyz.IDUpload = cloudUrl;
+                                    }
+                                }
+                                catch {}
+                            }
 
-
-                            string datez1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                            string name = datez1 + "-" + profile.Surname;
-                            string fileName = Path.GetFileName(name);
-                            xyz.IDUpload = fileName;
-                            fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
-                            upload.SaveAs(fileName);
-
+                            if (string.IsNullOrEmpty(xyz.IDUpload))
+                            {
+                                string datez1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                                string name = datez1 + "-" + profile.Surname;
+                                string fileName = Path.GetFileName(name);
+                                xyz.IDUpload = fileName;
+                                fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                                upload.SaveAs(fileName);
+                            }
                         }
-
                     }
                     catch (Exception c)
                     {
@@ -689,59 +685,31 @@ namespace ExwhyzeeEDI.Web.Controllers
                     {
                         string message = "";
 
-                        MailMessage mail = new MailMessage();
-                        MailMessage mail2 = new MailMessage();
+                        string htmlPath = Server.MapPath("~/Views/Data/Success.html");
+                        string emailBody = System.IO.File.Exists(htmlPath) ? System.IO.File.ReadAllText(htmlPath) : "";
+                        emailBody = emailBody.Replace("{bHead}", "")
+                                             .Replace("{bbody}", "")
+                                             .Replace("{doyou}", "Admin")
+                                             .Replace("{doyoubody}", "")
+                                             .Replace("{activate}", "")
+                                             .Replace("{smalltitle}", admsg);
 
-                        //set the addresses 
-                        mail.From = new MailAddress("noreply@edi.exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
+                        var mail = new MailMessage("noreply@edi.exwhyzee.ng", "ifeanyingama@gmail.com")
+                        {
+                            Subject = "New Applicant",
+                            Body = emailBody,
+                            IsBodyHtml = true
+                        };
 
-                        //
-                        //set the content Server.MapPath("~/status.txt")
-                        string AppPath = Request.PhysicalApplicationPath;
-                        //StreamReader sr = new StreamReader(AppPath + "../Views/Account/HtmlPage1.html");
-                        StreamReader sr = new StreamReader(Server.MapPath("~/Views/Data/Success.html"));
+                        string smtpHost = EnvLoader.Get("SMTP_HOST", "mail.edi.exwhyzee.ng");
+                        string smtpUser = EnvLoader.Get("SMTP_USER", "noreply@edi.exwhyzee.ng");
+                        string smtpPass = EnvLoader.Get("SMTP_PASS", "");
 
-                        mail.Body = sr.ReadToEnd();
-                        mail2.Body = sr.ReadToEnd();
-                        sr.Close();
-
-                        MailDefinition md = new MailDefinition();
-                        md.From = "noreply@edi.exwhyzee.ng";
-                        md.IsBodyHtml = true;
-                        md.Subject = "New Applicant";
-
-                        //
-                        ListDictionary replacements = new ListDictionary();
-                        ///
-                        replacements.Add("{bHead}", "");
-                        replacements.Add("{bbody}", "");
-                        replacements.Add("{doyou}", "Admin");
-                        //replacements.Add("{subjectt}", "Welcome");
-                        replacements.Add("{doyoubody}", "");
-                        ///
-
-                        replacements.Add("{activate}", "");
-                        replacements.Add("{smalltitle}", admsg);
-
-                        mail = md.CreateMailMessage("ifeanyingama@gmail.com", replacements, mail.Body, new System.Web.UI.Control());
-
-
-
-                        //send the message 
-                        SmtpClient smtp = new SmtpClient("mail.edi.exwhyzee.ng");
-
-                        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                        NetworkCredential Credentials = new NetworkCredential("noreply@edi.exwhyzee.ng", "[REDACTED_SMTP_PASSWORD]");
-                        smtp.Credentials = Credentials;
-
-                        //
-                       // mail2 = md.CreateMailMessage("onwukaemeka41@gmail.com", replacements, mail2.Body, new System.Web.UI.Control());
-
-
-                        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                        smtp.Credentials = Credentials;
-                        smtp.Send(mail2);
-                        smtp.Send(mail);
+                        using (SmtpClient smtp = new SmtpClient(smtpHost))
+                        {
+                            smtp.Credentials = new NetworkCredential(smtpUser, smtpPass);
+                            smtp.Send(mail);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -1238,17 +1206,31 @@ namespace ExwhyzeeEDI.Web.Controllers
                 try
                 {
 
-                    if (upload != null && upload.ContentLength > 0)
+                    if (upload != null && upload.Length > 0)
                     {
+                        var cloudinary = HttpContext.RequestServices.GetService(typeof(ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService)) as ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService;
+                        if (cloudinary != null && cloudinary.IsConfigured())
+                        {
+                            try
+                            {
+                                var cloudUrl = cloudinary.UploadFileAsync(upload, "Uploads").GetAwaiter().GetResult();
+                                if (!string.IsNullOrEmpty(cloudUrl))
+                                {
+                                    model.PassportUrl = cloudUrl;
+                                }
+                            }
+                            catch {}
+                        }
 
-
-                        string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                        string name = date1 + "-" + upload.FileName;
-                        string fileName = Path.GetFileName(name);
-                        model.PassportUrl = fileName;
-                        fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
-                        upload.SaveAs(fileName);
-
+                        if (string.IsNullOrEmpty(model.PassportUrl))
+                        {
+                            string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                            string name = date1 + "-" + upload.FileName;
+                            string fileName = Path.GetFileName(name);
+                            model.PassportUrl = fileName;
+                            fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                            upload.SaveAs(fileName);
+                        }
                     }
 
                 }
@@ -1322,51 +1304,13 @@ namespace ExwhyzeeEDI.Web.Controllers
                 // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 try
                 {
-                    string message = "";
-
-                    MailMessage mail = new MailMessage();
-
-                    //set the addresses 
-                    mail.From = new MailAddress("noreply@edi.exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
-
-                    //
-                    //set the content Server.MapPath("~/status.txt")
-                    string AppPath = Request.PhysicalApplicationPath;
-                    //StreamReader sr = new StreamReader(AppPath + "../Views/Account/HtmlPage1.html");
-                    StreamReader sr = new StreamReader(Server.MapPath("~/Views/Data/Success.html"));
-
-                    mail.Body = sr.ReadToEnd();
-                    sr.Close();
-
-                    MailDefinition md = new MailDefinition();
-                    md.From = "noreply@edi.exwhyzee.ng";
-                    md.IsBodyHtml = true;
-                    md.Subject = "Welcome to EXWHYZEE EDI";
-
-                    //
-                    ListDictionary replacements = new ListDictionary();
-                    ///
-                    replacements.Add("{bHead}", "EXWHYZEE ENTREPRENEURSHIP DEVELOPMENT INSTITUTE");
-                    replacements.Add("{bbody}", "MISSION: By the year 2025, and beyond. We must have created atleast 1000 entrepreneurs in the South East and Nation atlarge who are self sustained, This we intend to do by providing world class entrepreneurship training, mentorship, providing access to continous funding and building global market linkage.");
-                    replacements.Add("{doyou}", "WELCOME, " + user.UserName);
-                    //replacements.Add("{subjectt}", "Welcome");
-                    replacements.Add("{doyoubody}", "The Easternpreneurs is a forum and platform put together by project consultants, portfolio business managers, commercial law consultants and investment consultants to provide a network for entrepreneurs, commercial and business agencies and companies for interaction, business roundtable, investors exchange platform and development of international trade and business connections.");
-                    ///
-
-                    replacements.Add("{activate}", "Activation Number: " + callbk);
-                    replacements.Add("{smalltitle}", "Benefits of E.D.I");
-
-                    mail = md.CreateMailMessage(user.Email, replacements, mail.Body, new System.Web.UI.Control());
-
-
-
-                    //send the message 
-                    SmtpClient smtp = new SmtpClient("mail.edi.exwhyzee.ng");
-
-                    //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                    NetworkCredential Credentials = new NetworkCredential("noreply@edi.exwhyzee.ng", "[REDACTED_SMTP_PASSWORD]");
-                    smtp.Credentials = Credentials;
-                    smtp.Send(mail);
+                    try
+                    {
+                        await HelperClass.SendMail(user.Email, "Activation Number: " + callbk);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1515,7 +1459,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         public async Task<ActionResult> AccountInitialization(string userId)
         {
             var user = await UserManager.FindByIdAsync(userId);
-            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            await SignInManager.SignInAsync(user, isPersistent: false);
 
             var userprogram = await db.UserPrograms.Where(x => x.UserId == user.Id && x.PaymentStatus == Models.Entities.Enum.UserProgramPaymentStatus.Pending).FirstOrDefaultAsync();
             var Cprogram = await db.ProgramCourses.FirstOrDefaultAsync(x => x.Id == userprogram.ProgramCourseId);
@@ -1690,8 +1634,8 @@ namespace ExwhyzeeEDI.Web.Controllers
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-            switch (result)
+            var result = await SignInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, isPersistent: false);
+            switch (result.ToStatus())
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
@@ -1703,8 +1647,9 @@ namespace ExwhyzeeEDI.Web.Controllers
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    ViewBag.LoginProvider = loginInfo.LoginProvider;
+                    var email = loginInfo.Principal.FindFirstValue(ClaimTypes.Email);
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
             }
         }
 
@@ -1732,10 +1677,10 @@ namespace ExwhyzeeEDI.Web.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await UserManager.AddLoginAsync(user, new UserLoginInfo(info.LoginProvider, info.ProviderKey, info.ProviderDisplayName ?? info.LoginProvider));
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await SignInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -1750,9 +1695,9 @@ namespace ExwhyzeeEDI.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public async Task<ActionResult> LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            await SignInManager.SignOutAsync();
             return RedirectToAction("Index", "Secured");
         }
 
@@ -1788,33 +1733,26 @@ namespace ExwhyzeeEDI.Web.Controllers
                         db.ExwhyzeeModels.Add(s);
                         await db.SaveChangesAsync();
                         data = "User Added";
-                        return Json(data, JsonRequestBehavior.AllowGet);
+                        return Json(data);
                     }
                     else
                     {
                         data = "Phone number found. kindly confirm";
-                        return Json(data, JsonRequestBehavior.AllowGet);
+                        return Json(data);
                     }
                 }
 
             }
             data = "Unable to Process";
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data);
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (db != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    db.Dispose();
                 }
             }
 
@@ -1837,7 +1775,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("", error.Description);
             }
         }
 
@@ -1868,14 +1806,14 @@ namespace ExwhyzeeEDI.Web.Controllers
             public string RedirectUri { get; set; }
             public string UserId { get; set; }
 
-            public override void ExecuteResult(ControllerContext context)
+            public override void ExecuteResult(ActionContext context)
             {
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
-                    properties.Dictionary[XsrfKey] = UserId;
+                    properties.Items[XsrfKey] = UserId;
                 }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+                context.HttpContext.ChallengeAsync(LoginProvider, properties).GetAwaiter().GetResult();
             }
         }
         #endregion

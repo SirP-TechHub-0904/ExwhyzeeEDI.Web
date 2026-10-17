@@ -1,22 +1,32 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using System.IO;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class BusinessPlansController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        private readonly ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService? _cloudinary;
+
+        public BusinessPlansController() : this(new ApplicationDbContext(), null) { }
+
+        public BusinessPlansController(ApplicationDbContext context, ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService? cloudinary = null)
+        {
+            db = context;
+            _cloudinary = cloudinary;
+        }
 
         // GET: Admin/BusinessPlans
         public async Task<ActionResult> Index()
@@ -40,17 +50,30 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
+                    if (_cloudinary != null && _cloudinary.IsConfigured())
+                    {
+                        try
+                        {
+                            var cloudUrl = await _cloudinary.UploadFileAsync(upload, "BusinessPlan");
+                            if (!string.IsNullOrEmpty(cloudUrl))
+                            {
+                                businessPlan.BusinessPlanUrl = cloudUrl;
+                            }
+                        }
+                        catch {}
+                    }
 
-
-                    string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                    string name = date1 + "-" + upload.FileName;
-                    string fileName = Path.GetFileName(name);
-                    businessPlan.BusinessPlanUrl = fileName;
-                    fileName = Path.Combine(Server.MapPath("~/BusinessPlan/"), fileName);
-                    upload.SaveAs(fileName);
-
+                    if (string.IsNullOrEmpty(businessPlan.BusinessPlanUrl))
+                    {
+                        string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                        string name = date1 + "-" + upload.FileName;
+                        string fileName = Path.GetFileName(name);
+                        businessPlan.BusinessPlanUrl = fileName;
+                        fileName = Path.Combine(Server.MapPath("~/BusinessPlan/"), fileName);
+                        upload.SaveAs(fileName);
+                    }
                 }
                 var user = User.Identity.GetUserId();
                 var userinfo = await db.Users.FirstOrDefaultAsync(x => x.Id == user);
@@ -90,7 +113,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BusinessName,BusinessProfile,BusinessPlanUrl,Date")] BusinessPlan businessPlan)
+        public async Task<ActionResult> Create([Bind("Id,BusinessName,BusinessProfile,BusinessPlanUrl,Date")] BusinessPlan businessPlan)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +145,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,BusinessName,BusinessProfile,BusinessPlanUrl,Date")] BusinessPlan businessPlan)
+        public async Task<ActionResult> Edit([Bind("Id,BusinessName,BusinessProfile,BusinessPlanUrl,Date")] BusinessPlan businessPlan)
         {
             if (ModelState.IsValid)
             {

@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using System.IO;
@@ -14,9 +14,17 @@ using System.Net.Sockets;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class GalleriesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        private readonly ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService _cloudinaryService;
+
+        public GalleriesController(ApplicationDbContext context, ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService cloudinaryService)
+        {
+            db = context;
+            _cloudinaryService = cloudinaryService;
+        }
 
         // GET: Admin/Galleries
         public async Task<ActionResult> Index()
@@ -63,16 +71,22 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
                         foreach (var image in upload)
                         {
 
-                            if (image != null && image.ContentLength > 0)
+                            if (image != null && image.Length > 0)
                             {
-
-
-                                string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                                string name = date1 + "-" + image.FileName;
-                                string fileName = Path.GetFileName(name);
-                                gallery.ImageUrl = fileName;
-                                fileName = Path.Combine(Server.MapPath("~/Uploads/Gallery/"), fileName);
-                                image.SaveAs(fileName);
+                                if (_cloudinaryService.IsConfigured())
+                                {
+                                    var url = await _cloudinaryService.UploadImageAsync(image, "gallery");
+                                    gallery.ImageUrl = url;
+                                }
+                                else
+                                {
+                                    string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                                    string name = date1 + "-" + image.FileName;
+                                    string fileName = Path.GetFileName(name);
+                                    gallery.ImageUrl = fileName;
+                                    fileName = Path.Combine(Server.MapPath("~/Uploads/Gallery/"), fileName);
+                                    image.SaveAs(fileName);
+                                }
                                 gallery.DateUpload = DateTime.UtcNow;
                                 db.Galleries.Add(gallery);
                                 await db.SaveChangesAsync();
@@ -112,7 +126,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ImageUrl")] Gallery gallery)
+        public async Task<ActionResult> Edit([Bind("Id,ImageUrl")] Gallery gallery)
         {
             if (ModelState.IsValid)
             {

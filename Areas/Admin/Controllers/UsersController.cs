@@ -1,11 +1,11 @@
-﻿using ExwhyzeeEDI.Web.Models;
+using ExwhyzeeEDI.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.Entity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using ExwhyzeeEDI.Web.Models.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -15,22 +15,22 @@ using System.Drawing.Imaging;
 using ExwhyzeeEDI.Web.Models.Dtos;
 using RestSharp;
 using Newtonsoft.Json;
+using ExcelDataReader;
+using QRCoder;
+using Microsoft.AspNetCore.Identity;
 using System.Text.RegularExpressions;
-using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {//SuperAdmin
     [Authorize(Roles = "SuperAdmin,Data,Readonly,MainList,BossAdmin")]
+    [Area("Admin")]
     public class UsersController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public UsersController()
-        {
-        }
+
 
         public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -423,13 +423,13 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
                 string apiurl = $"https://api.flutterwave.com/v3/kyc/bvns/" + phone;
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)768 | (SecurityProtocolType)3072;
                 var client = new RestClient(apiurl);
-                var request = new RestRequest(Method.GET);
+                var request = new RestRequest("", Method.Get);
                 request.AddHeader("content-type", "application/json");
-                request.AddHeader("authorization", "[REDACTED_PAYMENT_KEY]");
+                request.AddHeader("authorization", EnvLoader.Get("FLUTTERWAVE_SECRET_KEY", ""));
 
 
-                IRestResponse response = client.Execute(request);
-                var contents = response.Content.ToString();
+                RestResponse response = client.Execute(request);
+                var contents = response.Content?.ToString() ?? "";
                 //var json = await response.Content.ReadAsStringAsync();
                 string outp = "";
                 var mainresponse = JsonConvert.DeserializeObject<BVN_Response>(contents);
@@ -727,6 +727,14 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
             return ms.ToArray();
         }
 
+        private byte[] GenerateQrCodeByteArray(string text)
+        {
+            using var qrGenerator = new QRCodeGenerator();
+            var qrCodeData = qrGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q);
+            var qrCode = new PngByteQRCode(qrCodeData);
+            return qrCode.GetGraphic(20);
+        }
+
 
         public async Task<ActionResult> UpdateCertStatus(string UserId)
         {
@@ -777,22 +785,18 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 
             }
             catch (Exception c) { }
-            Zen.Barcode.CodeQrBarcodeDraw barcode = Zen.Barcode.BarcodeDrawFactory.CodeQr;
             string userinfo = "";
             try
-
             {
                 userinfo = data.Surname + " with Ref. " + data.CertificateId + " is Valid. follow link to verify. http://edi.exwhyzee.ng/Admin/Users/Certificate";
-                var img = barcode.Draw(userinfo, 100);
-                byte[] imgBytes = turnImageToByteArray(img);
+                byte[] imgBytes = GenerateQrCodeByteArray(userinfo);
                 string imgString = Convert.ToBase64String(imgBytes);
                 ViewBag.img = imgBytes;
             }
             catch (Exception c)
             {
                 userinfo = data.FirstName + " with Ref. " + data.CertificateId + " is Valid. follow link to verify. http://edi.exwhyzee.ng/Admin/Users/Certificate";
-                var img = barcode.Draw(userinfo, 100);
-                byte[] imgBytes = turnImageToByteArray(img);
+                byte[] imgBytes = GenerateQrCodeByteArray(userinfo);
                 string imgString = Convert.ToBase64String(imgBytes);
                 ViewBag.img = imgBytes;
             }
@@ -851,22 +855,18 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 
             ABP data = await db.ABPs.FirstOrDefaultAsync(x => x.Id == id);
 
-            Zen.Barcode.CodeQrBarcodeDraw barcode = Zen.Barcode.BarcodeDrawFactory.CodeQr;
             string userinfo = "";
             try
-
             {
                 userinfo = data.FullName + " with Ref. " + data.RegNumber + " is Valid. http://edi.exwhyzee.ng/Admin/Users/ABPCertificate";
-                var img = barcode.Draw(userinfo, 100);
-                byte[] imgBytes = turnImageToByteArray(img);
+                byte[] imgBytes = GenerateQrCodeByteArray(userinfo);
                 string imgString = Convert.ToBase64String(imgBytes);
                 ViewBag.img = imgBytes;
             }
             catch (Exception c)
             {
                 userinfo = data.FullName + " with Ref. " + data.RegNumber + " is Valid. http://edi.exwhyzee.ng/Admin/Users/ABPCertificate";
-                var img = barcode.Draw(userinfo, 100);
-                byte[] imgBytes = turnImageToByteArray(img);
+                byte[] imgBytes = GenerateQrCodeByteArray(userinfo);
                 string imgString = Convert.ToBase64String(imgBytes);
                 ViewBag.img = imgBytes;
             }
@@ -989,7 +989,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
             string path = "";
             string nameswitheerror = "";
             int sn = 1;
-            if (excelfile == null || excelfile.ContentLength == 0)
+            if (excelfile == null || excelfile.Length == 0)
             {
                 TempData["error"] = "Please select an excel file";
                 return RedirectToAction("BatchReg");
@@ -1010,33 +1010,34 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 
                     excelfile.SaveAs(path);
 
-                    //Read Data From Excel file
-                    Excel.Application application = new Excel.Application();
-                    Excel.Workbook workbook = application.Workbooks.Open(path);
-                    Excel.Worksheet worksheet = workbook.ActiveSheet;
-                    Excel.Range range = worksheet.UsedRange;
-
+                    //Read Data From Excel file using ExcelDataReader
                     try
                     {
-                        for (int row = 3; row <= range.Rows.Count; row++)
+                        using (var stream = System.IO.File.Open(path, FileMode.Open, FileAccess.Read))
                         {
-                            try
+                            using (var reader = ExcelReaderFactory.CreateReader(stream))
                             {
-                                string userCheck = ((Excel.Range)range.Cells[row, 1]).Text;
+                                var dataSet = reader.AsDataSet();
+                                var table = dataSet.Tables[0];
 
-
-                                string a1 = ((Excel.Range)range.Cells[row, 2]).Text;
-                                string bvn = ((Excel.Range)range.Cells[row, 3]).Text;
-                                string pho = ((Excel.Range)range.Cells[row, 4]).Text;
-                                string statofbiz = ((Excel.Range)range.Cells[row, 5]).Text;
-                                string arw = ((Excel.Range)range.Cells[row, 6]).Text;
-                                string gender = ((Excel.Range)range.Cells[row, 7]).Text;
-                                string edi = ((Excel.Range)range.Cells[row, 8]).Text;
-                                string sec = ((Excel.Range)range.Cells[row, 9]).Text;
-                                string sub = ((Excel.Range)range.Cells[row, 10]).Text;
-                                string eqp = ((Excel.Range)range.Cells[row, 11]).Text;
-                                string work = ((Excel.Range)range.Cells[row, 12]).Text;
-                                string ltenor = ((Excel.Range)range.Cells[row, 13]).Text;
+                                for (int row = 2; row < table.Rows.Count; row++)
+                                {
+                                    try
+                                    {
+                                        var dataRow = table.Rows[row];
+                                        string userCheck = dataRow[0]?.ToString() ?? "";
+                                        string a1 = dataRow[1]?.ToString() ?? "";
+                                        string bvn = dataRow[2]?.ToString() ?? "";
+                                        string pho = dataRow[3]?.ToString() ?? "";
+                                        string statofbiz = dataRow[4]?.ToString() ?? "";
+                                        string arw = dataRow[5]?.ToString() ?? "";
+                                        string gender = dataRow[6]?.ToString() ?? "";
+                                        string edi = dataRow[7]?.ToString() ?? "";
+                                        string sec = dataRow[8]?.ToString() ?? "";
+                                        string sub = dataRow[9]?.ToString() ?? "";
+                                        string eqp = dataRow[10]?.ToString() ?? "";
+                                        string work = dataRow[11]?.ToString() ?? "";
+                                        string ltenor = dataRow[12]?.ToString() ?? "";
                                 //
 
                                 Random _random = new Random();
@@ -1141,8 +1142,9 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
                             }
                         }
                     }
-
-                    catch (Exception e)
+                }
+            }
+            catch (Exception e)
                     {
                         ee = e.ToString();
                     }

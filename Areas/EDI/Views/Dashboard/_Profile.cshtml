@@ -1,11 +1,11 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Profile
+@model ExwhyzeeEDI.Web.Models.Entities.Profile
 @using ExwhyzeeEDI.Web.Models;
 <div class="col-md-6">
 
     <!-- Profile Image -->
     <div class="box box-primary">
         <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="~/Uploads/@Model.PassportUrl" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.PassportUrl, "Uploads")" alt="User profile picture">
 
             <h3 class="profile-username text-center">@Html.DisplayFor(model => model.Title) @Html.DisplayFor(model => model.Surname) @Html.DisplayFor(model => model.FirstName)</h3>
 

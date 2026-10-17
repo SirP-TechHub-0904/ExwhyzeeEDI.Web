@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Author
+@model ExwhyzeeEDI.Web.Models.Entities.Author
 
 @{
                 /**/
@@ -76,7 +76,7 @@
                 <div class="form-group">
                     @Html.Label("Previous Image", htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        <img src="~/Uploads/@Model.ImagePath" class="img-responsive" style="height:200px;" />
+                        <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.ImagePath, "Uploads")" class="img-responsive" style="height:200px;" />
                     </div>
                 </div>
                 <div class="form-group">

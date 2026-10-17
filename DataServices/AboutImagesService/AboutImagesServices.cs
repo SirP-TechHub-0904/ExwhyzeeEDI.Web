@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
+using ExwhyzeeEDI.Web.Helper;
 
 namespace ExwhyzeeEDI.Web.DataServices.AboutImagesService
 {
@@ -17,28 +18,22 @@ namespace ExwhyzeeEDI.Web.DataServices.AboutImagesService
         {
             try
             {
-
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
                     string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
                     string name = date1 + "-" + upload.FileName;
                     string fileName = Path.GetFileName(name);
                     model.ImageUrl = fileName;
-                    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/Advert/"), fileName);
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/Advert/"), fileName);
                     upload.SaveAs(fileName);
                     db.AboutUsImages.Add(model);
                     await db.SaveChangesAsync();
-
                 }
                 return model.ImageUrl;
             }
             catch (Exception c)
             {
-
             }
-
 
             return "404";
         }
@@ -47,12 +42,12 @@ namespace ExwhyzeeEDI.Web.DataServices.AboutImagesService
         {
             var item = await db.AboutUsImages.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (File.Exists(HttpContext.Current.Server.MapPath("~/Uploads/Advert/" + item.ImageUrl)))
-            {
-                File.Delete(HttpContext.Current.Server.MapPath("~/Uploads/Advert/" + item.ImageUrl));
-            }
             if (item != null)
             {
+                if (File.Exists(Server.MapPath("~/Uploads/Advert/" + item.ImageUrl)))
+                {
+                    File.Delete(Server.MapPath("~/Uploads/Advert/" + item.ImageUrl));
+                }
                 db.AboutUsImages.Remove(item);
                 await db.SaveChangesAsync();
             }
@@ -62,38 +57,31 @@ namespace ExwhyzeeEDI.Web.DataServices.AboutImagesService
         {
             try
             {
-
-
-                if (File.Exists(HttpContext.Current.Server.MapPath("~/Uploads/Advert/" + models.ImageUrl)))
+                if (File.Exists(Server.MapPath("~/Uploads/Advert/" + models.ImageUrl)))
                 {
-                    File.Delete(HttpContext.Current.Server.MapPath("~/Uploads/Advert/" + models.ImageUrl));
+                    File.Delete(Server.MapPath("~/Uploads/Advert/" + models.ImageUrl));
                 }
             }
             catch (Exception c) { }
+
             try
             {
-
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
                     string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
                     string name = date1 + "-" + upload.FileName;
                     string fileName = Path.GetFileName(name);
                     models.ImageUrl = fileName;
-                    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/Advert/"), fileName);
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/Advert/"), fileName);
                     upload.SaveAs(fileName);
                     db.Entry(models).State = EntityState.Modified;
                     await db.SaveChangesAsync();
-
                 }
                 return "OK";
             }
             catch (Exception c)
             {
-
             }
-
 
             return "404";
         }
@@ -109,9 +97,7 @@ namespace ExwhyzeeEDI.Web.DataServices.AboutImagesService
             var items = db.AboutUsImages.Where(x => x.ImageName != "");
             if (!String.IsNullOrEmpty(searchString))
             {
-
                 items = items.Where(s => s.ImageName.ToUpper().Contains(searchString.ToUpper()));
-
             }
             return await items.ToListAsync();
         }

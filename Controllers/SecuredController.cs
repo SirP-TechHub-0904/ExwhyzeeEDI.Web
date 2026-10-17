@@ -1,4 +1,4 @@
-﻿using ExwhyzeeEDI.Web.Models;
+using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Dtos;
 using Newtonsoft.Json;
 using RestSharp;
@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ExwhyzeeEDI.Web.Controllers
 {
@@ -28,13 +28,13 @@ namespace ExwhyzeeEDI.Web.Controllers
                 string apiurl = $"https://api.flutterwave.com/v3/kyc/bvns/" + phone;
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)768 | (SecurityProtocolType)3072;
                 var client = new RestClient(apiurl);
-                var request = new RestRequest(Method.GET);
+                var request = new RestRequest("", Method.Get);
                 request.AddHeader("content-type", "application/json");
-                request.AddHeader("authorization", "[REDACTED_PAYMENT_KEY]");
+                request.AddHeader("authorization", EnvLoader.Get("FLUTTERWAVE_SECRET_KEY", ""));
 
 
-                IRestResponse response = client.Execute(request);
-                var contents = response.Content.ToString();
+                RestResponse response = client.Execute(request);
+                var contents = response.Content?.ToString() ?? "";
                 //var json = await response.Content.ReadAsStringAsync();
                 string outp = "";
                 var mainresponse = JsonConvert.DeserializeObject<BVN_Response>(contents);
@@ -138,14 +138,8 @@ namespace ExwhyzeeEDI.Web.Controllers
 
         public ActionResult _FooterPosts()
         {
-            var post = db.Posts.OrderBy(x => x.DatePosted).ToList();
-            if (post.Count() > 6)
-            {
-                post = post.Skip(3).Take(3).ToList();
-            }
-
-
-            return PartialView(post.Take(3));
+            var post = db.Posts.OrderBy(x => x.DatePosted).Skip(3).Take(3).ToList();
+            return PartialView(post);
         }
 
         public ActionResult _Gallery()

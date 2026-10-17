@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Gallery>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Gallery>
 
 @{
     ViewBag.Title = "Index";
@@ -41,7 +41,7 @@
                                     @sno
                                 </td>
                                 <td>
-                                    <img src="~/Uploads/Gallery/@item.ImageUrl" alt="" class="img-responsive" style="height:200px;">
+                                    <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.ImageUrl, "Uploads/Gallery")" alt="" class="img-responsive" style="height:200px;">
 
                                 </td>
                                 <td>

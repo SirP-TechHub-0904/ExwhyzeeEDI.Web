@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Course
+@model ExwhyzeeEDI.Web.Models.Entities.Course
 
 @{
     ViewBag.Title = "Details";
@@ -73,7 +73,8 @@
 
                         <dd>
                             @Html.DisplayFor(model => model.FilePath) <br />
-                            <a href="~/Uploads/@Model.FilePath" download>
+                            @{ var courseFileUrl = ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.FilePath, "Uploads"); }
+                            <a href="@courseFileUrl" target="_blank" download>
                                 <span class="btn btn-success">Download</span> 
                             </a>
                         </dd>

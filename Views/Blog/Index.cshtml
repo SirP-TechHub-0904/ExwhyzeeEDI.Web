@@ -1,25 +1,22 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
 
 @{
     ViewBag.Title = "Index";
 }
 @using System.Text.RegularExpressions;
-@helper Truncate(string input, int lenght)
-{
-    try
+@functions {
+    public string Truncate(string input, int length)
     {
-
-        if (input.Length <= lenght)
+        try
         {
-            @Html.Raw(input)
+            if (string.IsNullOrEmpty(input)) return "";
+            if (input.Length <= length) return input;
+            int idx = input.IndexOf(" ", length);
+            if (idx > 0) return input.Substring(0, idx);
+            return input.Substring(0, Math.Min(length, input.Length));
         }
-        else
-        {
-            @Html.Raw(input.Substring(0, input.IndexOf(" ", lenght)).ToString())
-        }
-
+        catch { return input ?? ""; }
     }
-    catch (Exception c) { }
 }
 <style>
     .blog .hentry .entry-header .entry-time1, .single-post .hentry .entry-header .entry-time, .blog .hentry .entry-header .entry-meta a:hover, .single-post {
@@ -81,7 +78,7 @@
 
                                                                         </h4>
                                                                         <a href="@Url.Action("Details", "Blog", new { id = item.Id })">
-                                                                            <img width="600" height="413" src="~/Uploads/@item.ImageUrl" class="attachment-portfolio-medium-crop size-portfolio-medium-crop wp-post-image" alt="">
+                                                                            <img width="600" height="413" src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.ImageUrl, "Uploads")" class="attachment-portfolio-medium-crop size-portfolio-medium-crop wp-post-image" alt="">
                                                                         </a>
                                                                     </div>
 

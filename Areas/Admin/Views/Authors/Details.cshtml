@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Author
+@model ExwhyzeeEDI.Web.Models.Entities.Author
 
 @{
     ViewBag.Title = "Details";
@@ -63,7 +63,7 @@
                         </dt>
 
                         <dd>
-                            <img src="~/Uploads/@Model.ImagePath" class="img-responsive" style="height:200px;" />
+                            <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.ImagePath, "Uploads")" class="img-responsive" style="height:200px;" />
                         </dd>
 
                     </dl>

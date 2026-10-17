@@ -1,17 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Dtos;
 
 namespace ExwhyzeeEDI.Web.Areas.EDI.Controllers
 {
+    [Area("EDI")]
     public class ProfileAccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -49,7 +50,7 @@ namespace ExwhyzeeEDI.Web.Areas.EDI.Controllers
         //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,Title,Surname,FirstName,OtherName,Gender,Dateofbirth,MaritalStatus,ModeOfIdentification,IdentificationNumber,ContactAddress,StateofOrigin,LocalGovernmentArea,CurrentOccupation,AreaOfInterest,SpecificAreaOfInterest,Username,Email,PhoneNumber")] ProfileDto profileDto)
+        //public async Task<ActionResult> Create([Bind("Id,Title,Surname,FirstName,OtherName,Gender,Dateofbirth,MaritalStatus,ModeOfIdentification,IdentificationNumber,ContactAddress,StateofOrigin,LocalGovernmentArea,CurrentOccupation,AreaOfInterest,SpecificAreaOfInterest,Username,Email,PhoneNumber")] ProfileDto profileDto)
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -81,7 +82,7 @@ namespace ExwhyzeeEDI.Web.Areas.EDI.Controllers
         //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "Id,Title,Surname,FirstName,OtherName,Gender,Dateofbirth,MaritalStatus,ModeOfIdentification,IdentificationNumber,ContactAddress,StateofOrigin,LocalGovernmentArea,CurrentOccupation,AreaOfInterest,SpecificAreaOfInterest,Username,Email,PhoneNumber")] ProfileDto profileDto)
+        //public async Task<ActionResult> Edit([Bind("Id,Title,Surname,FirstName,OtherName,Gender,Dateofbirth,MaritalStatus,ModeOfIdentification,IdentificationNumber,ContactAddress,StateofOrigin,LocalGovernmentArea,CurrentOccupation,AreaOfInterest,SpecificAreaOfInterest,Username,Email,PhoneNumber")] ProfileDto profileDto)
         //{
         //    if (ModelState.IsValid)
         //    {

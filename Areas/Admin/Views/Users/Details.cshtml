@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Profile
+@model ExwhyzeeEDI.Web.Models.Entities.Profile
 
 @{
     ViewBag.Title = "Details";
@@ -297,7 +297,7 @@
                                 </dt>
 
                                 <dd>
-                                    <img src="~/Uploads/@Model.PassportUrl" class="img-responsive" style="max-width:300px;" />
+                                    <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.PassportUrl, "Uploads")" class="img-responsive" style="max-width:300px;" />
                                 </dd>
 
                                 <dt>

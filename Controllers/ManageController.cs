@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using ExwhyzeeEDI.Web.Models;
 
 namespace ExwhyzeeEDI.Web.Controllers
@@ -16,9 +14,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
-        {
-        }
+
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -82,7 +78,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
-            var result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            var result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey, loginProvider));
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -118,15 +114,6 @@ namespace ExwhyzeeEDI.Web.Controllers
             }
             // Generate the token and send it
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
-            {
-                var message = new IdentityMessage
-                {
-                    Destination = model.Number,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
-            }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
@@ -290,7 +277,8 @@ namespace ExwhyzeeEDI.Web.Controllers
                 return View("Error");
             }
             var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
-            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+            var schemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
+            var otherLogins = schemes.Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
             {
@@ -349,7 +337,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("", error.Description);
             }
         }
 

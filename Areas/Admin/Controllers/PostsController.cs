@@ -1,21 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using System.IO;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class PostsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        private readonly ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService _cloudinaryService;
+
+        public PostsController(ApplicationDbContext context, ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService cloudinaryService)
+        {
+            db = context;
+            _cloudinaryService = cloudinaryService;
+        }
 
         // GET: Admin/Posts
         public async Task<ActionResult> Index()
@@ -56,18 +64,22 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
             post.DatePosted = DateTime.UtcNow;
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
-                    string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                    string name = date1 + "-" + upload.FileName;
-                    string fileName = Path.GetFileName(name);
-                    post.ImageUrl = fileName;
-                    fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
-                    upload.SaveAs(fileName);
-                   
-
+                    if (_cloudinaryService.IsConfigured())
+                    {
+                        var url = await _cloudinaryService.UploadImageAsync(upload, "posts");
+                        post.ImageUrl = url;
+                    }
+                    else
+                    {
+                        string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                        string name = date1 + "-" + upload.FileName;
+                        string fileName = Path.GetFileName(name);
+                        post.ImageUrl = fileName;
+                        fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                        upload.SaveAs(fileName);
+                    }
                 }
                 
                 db.Posts.Add(post);
@@ -104,18 +116,22 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
-                    string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                    string name = date1 + "-" + upload.FileName;
-                    string fileName = Path.GetFileName(name);
-                    post.ImageUrl = fileName;
-                    fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
-                    upload.SaveAs(fileName);
-
-
+                    if (_cloudinaryService.IsConfigured())
+                    {
+                        var url = await _cloudinaryService.UploadImageAsync(upload, "posts");
+                        post.ImageUrl = url;
+                    }
+                    else
+                    {
+                        string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                        string name = date1 + "-" + upload.FileName;
+                        string fileName = Path.GetFileName(name);
+                        post.ImageUrl = fileName;
+                        fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                        upload.SaveAs(fileName);
+                    }
                 }
                 post.DatePosted = DateTime.UtcNow;
                 db.Entry(post).State = EntityState.Modified;

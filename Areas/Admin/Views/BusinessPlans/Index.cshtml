@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.BusinessPlan>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.BusinessPlan>
 
 @{
     ViewBag.Title = "Index";
@@ -62,7 +62,8 @@
                                     @Html.DisplayFor(modelItem => item.BusinessProfile)
                                 </td>
                                 <td>
-                                    <a href="~/BusinessPlan/@item.BusinessPlanUrl" download>
+                                    @{ var bpUrl = ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.BusinessPlanUrl, "BusinessPlan"); }
+                                    <a href="@bpUrl" target="_blank" download>
                                         Download Business Plan
                                     </a>
                                 </td>

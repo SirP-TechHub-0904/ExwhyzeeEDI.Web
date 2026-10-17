@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.BusinessPlan
+@model ExwhyzeeEDI.Web.Models.Entities.BusinessPlan
 
 @{
     ViewBag.Title = "Details";
@@ -38,7 +38,8 @@
                         </dt>
 
                         <dd>
-                            <a href="~/BusinessPlan/@Model.BusinessPlanUrl" download>
+                            @{ var bpUrl = ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.BusinessPlanUrl, "BusinessPlan"); }
+                            <a href="@bpUrl" target="_blank" download>
                                 Download Business Plan
                             </a>
                         </dd>

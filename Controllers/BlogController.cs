@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 
@@ -50,7 +50,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,PostTite,PostContent,ImageUrl,DatePosted,CategoryId,MetaTitle,MetaDescription,MetaKeywords")] Post post)
+        public async Task<ActionResult> Create([Bind("Id,PostTite,PostContent,ImageUrl,DatePosted,CategoryId,MetaTitle,MetaDescription,MetaKeywords")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace ExwhyzeeEDI.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PostTite,PostContent,ImageUrl,DatePosted,CategoryId,MetaTitle,MetaDescription,MetaKeywords")] Post post)
+        public async Task<ActionResult> Edit([Bind("Id,PostTite,PostContent,ImageUrl,DatePosted,CategoryId,MetaTitle,MetaDescription,MetaKeywords")] Post post)
         {
             if (ModelState.IsValid)
             {

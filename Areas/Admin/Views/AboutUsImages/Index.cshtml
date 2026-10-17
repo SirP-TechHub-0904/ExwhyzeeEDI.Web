@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.AboutUsImage>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.AboutUsImage>
 
 @{
     ViewBag.Title = "Index";
@@ -59,8 +59,9 @@
                                     @Html.DisplayFor(modelItem => item.ImageName)
                                 </td>
                                 <td>
-                                    <a href="~/Uploads/Advert/@item.ImageUrl">
-                                        <img src="~/Uploads/Advert/@item.ImageUrl" class="img-responsive" style="height:200px;" />
+                                    @{ var aUrl = ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.ImageUrl, "Uploads/Advert"); }
+                                    <a href="@aUrl" target="_blank">
+                                        <img src="@aUrl" class="img-responsive" style="height:200px;" />
                                     </a>
                                 </td>
                                 <td>

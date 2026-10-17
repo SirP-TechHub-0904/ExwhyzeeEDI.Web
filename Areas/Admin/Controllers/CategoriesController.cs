@@ -1,17 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -81,7 +82,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CategoryName,DateCreated,Description,MetaTitle,MetaDescription,MetaKeywords")] Category category)
+        public async Task<ActionResult> Edit([Bind("Id,CategoryName,DateCreated,Description,MetaTitle,MetaDescription,MetaKeywords")] Category category)
         {
             if (ModelState.IsValid)
             {

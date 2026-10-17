@@ -1,5 +1,5 @@
-﻿@model ExwhyzeeEDI.Web.Models.ManageLoginsViewModel
-@using Microsoft.Owin.Security
+@model ExwhyzeeEDI.Web.Models.ManageLoginsViewModel
+@using Microsoft.AspNetCore.Authentication
 @{
     ViewBag.Title = "Manage your external logins";
 }
@@ -8,12 +8,11 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 @{
-    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-    if (loginProviders.Count() == 0) {
+    var loginProviders = Model.OtherLogins;
+    if (loginProviders.Count == 0 && Model.CurrentLogins.Count == 0) {
         <div>
             <p>
-                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
-                for details on setting up this ASP.NET application to support logging in via external services.
+                There are no external authentication services configured.
             </p>
         </div>
     }
@@ -29,17 +28,16 @@
                         <tr>
                             <td>@account.LoginProvider</td>
                             <td>
-                                @if (ViewBag.ShowRemoveButton)
+                                @if (ViewBag.ShowRemoveButton == true)
                                 {
-                                    using (Html.BeginForm("RemoveLogin", "Manage"))
-                                    {
+                                    <form asp-action="RemoveLogin" asp-controller="Manage" method="post">
                                         @Html.AntiForgeryToken()
                                         <div>
-                                            @Html.Hidden("loginProvider", account.LoginProvider)
-                                            @Html.Hidden("providerKey", account.ProviderKey)
+                                            <input type="hidden" name="loginProvider" value="@account.LoginProvider" />
+                                            <input type="hidden" name="providerKey" value="@account.ProviderKey" />
                                             <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
                                         </div>
-                                    }
+                                    </form>
                                 }
                                 else
                                 {
@@ -53,18 +51,17 @@
         }
         if (Model.OtherLogins.Count > 0)
         {
-            using (Html.BeginForm("LinkLogin", "Manage"))
-            {
+            <form asp-action="LinkLogin" asp-controller="Manage" method="post">
                 @Html.AntiForgeryToken()
                 <div id="socialLoginList">
                 <p>
-                    @foreach (AuthenticationDescription p in Model.OtherLogins)
+                    @foreach (AuthenticationScheme p in Model.OtherLogins)
                     {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                        <button type="submit" class="btn btn-default" id="@p.Name" name="provider" value="@p.Name" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
                     }
                 </p>
                 </div>
-            }
+            </form>
         }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
+using ExwhyzeeEDI.Web.Helper;
 
 namespace ExwhyzeeEDI.Web.DataServices.ImageService
 {
@@ -18,28 +19,22 @@ namespace ExwhyzeeEDI.Web.DataServices.ImageService
         {
             try
             {
-
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
                     string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
                     string name = date1 + "-" + upload.FileName;
                     string fileName = Path.GetFileName(name);
                     model.ImagePath = fileName;
-                    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/"), fileName);
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
                     upload.SaveAs(fileName);
                     db.ImageFiles.Add(model);
                     await db.SaveChangesAsync();
-
                 }
                 return model.ImagePath;
             }
             catch (Exception c)
             {
-
             }
-
 
             return "404";
         }
@@ -48,12 +43,12 @@ namespace ExwhyzeeEDI.Web.DataServices.ImageService
         {
             var item = await db.ImageFiles.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (File.Exists(HttpContext.Current.Server.MapPath("~/Uploads/" + item.ImagePath)))
-            {
-                File.Delete(HttpContext.Current.Server.MapPath("~/Uploads/" + item.ImagePath));
-            }
             if (item != null)
             {
+                if (File.Exists(Server.MapPath("~/Uploads/" + item.ImagePath)))
+                {
+                    File.Delete(Server.MapPath("~/Uploads/" + item.ImagePath));
+                }
                 db.ImageFiles.Remove(item);
                 await db.SaveChangesAsync();
             }
@@ -63,38 +58,31 @@ namespace ExwhyzeeEDI.Web.DataServices.ImageService
         {
             try
             {
-
-
-                if (File.Exists(HttpContext.Current.Server.MapPath("~/Uploads/" + models.ImagePath)))
+                if (File.Exists(Server.MapPath("~/Uploads/" + models.ImagePath)))
                 {
-                    File.Delete(HttpContext.Current.Server.MapPath("~/Uploads/" + models.ImagePath));
+                    File.Delete(Server.MapPath("~/Uploads/" + models.ImagePath));
                 }
             }
             catch (Exception c) { }
+
             try
             {
-
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
                     string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
                     string name = date1 + "-" + upload.FileName;
                     string fileName = Path.GetFileName(name);
                     models.ImagePath = fileName;
-                    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/"), fileName);
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
                     upload.SaveAs(fileName);
                     db.Entry(models).State = EntityState.Modified;
                     await db.SaveChangesAsync();
-
                 }
                 return "OK";
             }
             catch (Exception c)
             {
-
             }
-
 
             return "404";
         }
@@ -110,9 +98,7 @@ namespace ExwhyzeeEDI.Web.DataServices.ImageService
             var items = db.ImageFiles.Where(x => x.ImagePath != "");
             if (!String.IsNullOrEmpty(searchString))
             {
-
                 items = items.Where(s => s.Description.ToUpper().Contains(searchString.ToUpper()));
-
             }
             return await items.ToListAsync();
         }

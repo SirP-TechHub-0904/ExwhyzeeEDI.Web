@@ -1,11 +1,11 @@
-﻿using ExwhyzeeEDI.Web.Models;
+using ExwhyzeeEDI.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ExwhyzeeEDI.Web.Controllers
 {

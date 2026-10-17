@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Slider>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Slider>
 
 @{
     ViewBag.Title = "Index";
@@ -48,9 +48,9 @@
                                     @sno
                                 </td>
                                 <td>
-                                    <a href="~/Uploads/@item.SliderPath">
-                                        <img src="~/Uploads/@item.SliderPath" class="img-responsive" style="height:200px;" />
-
+                                    @{ var sUrl = ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.SliderPath, "Slider"); }
+                                    <a href="@sUrl" target="_blank">
+                                        <img src="@sUrl" class="img-responsive" style="height:200px;" />
                                     </a>
                                 </td>
                                 <td>

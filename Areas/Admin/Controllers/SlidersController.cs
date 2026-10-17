@@ -1,21 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using System.IO;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class SlidersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        private readonly ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService _cloudinaryService;
+
+        public SlidersController(ApplicationDbContext context, ExwhyzeeEDI.Web.DataServices.CloudinaryService.ICloudinaryService cloudinaryService)
+        {
+            db = context;
+            _cloudinaryService = cloudinaryService;
+        }
 
         // GET: Admin/Sliders
         public async Task<ActionResult> Index()
@@ -53,18 +61,22 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.Length > 0)
                 {
-
-
-                    string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
-                    string name = date1 + "-" + upload.FileName;
-                    string fileName = Path.GetFileName(name);
-                    slider.SliderPath = fileName.Replace(" ", "_");
-                    fileName = Path.Combine(Server.MapPath("~/Slider/"), fileName);
-                    upload.SaveAs(fileName);
-                  
-
+                    if (_cloudinaryService.IsConfigured())
+                    {
+                        var url = await _cloudinaryService.UploadImageAsync(upload, "sliders");
+                        slider.SliderPath = url;
+                    }
+                    else
+                    {
+                        string date1 = DateTime.UtcNow.AddHours(1).ToString("ssfff");
+                        string name = date1 + "-" + upload.FileName;
+                        string fileName = Path.GetFileName(name);
+                        slider.SliderPath = fileName.Replace(" ", "_");
+                        fileName = Path.Combine(Server.MapPath("~/Slider/"), fileName);
+                        upload.SaveAs(fileName);
+                    }
                 }
                 db.Sliders.Add(slider);
                 await db.SaveChangesAsync();
@@ -94,7 +106,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,SliderPath")] Slider slider)
+        public async Task<ActionResult> Edit([Bind("Id,SliderPath")] Slider slider)
         {
             if (ModelState.IsValid)
             {

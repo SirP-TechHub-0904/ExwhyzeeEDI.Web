@@ -1,11 +1,11 @@
-﻿using ExwhyzeeEDI.Web.Models;
+using ExwhyzeeEDI.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.Entity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using ExwhyzeeEDI.Web.Models.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -13,11 +13,11 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
-using System.Data.Entity.SqlServer;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
     [Authorize]
+    [Area("Admin")]
     public class BatchBController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -1,0 +1,232 @@
+name: Deploy Exwhyzee EDI to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 9 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore ExwhyzeeEDI.Web.csproj
+
+      - name: Build & Publish Release
+        run: |
+          dotnet publish ExwhyzeeEDI.Web.csproj -c Release -o ./publish
+          # Archive the published files
+          tar -czvf app.tar.gz -C ./publish .
+
+      - name: Deploy to Hostinger via SSH
+        env:
+          HOST: ${{ secrets.HOSTINGER_SERVER_IP }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          PORT: ${{ secrets.HOSTINGER_SSH_PORT || 22 }}
+          KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          DOTENV_SECRET: ${{ secrets.DOTENV }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p $PORT -H $HOST >> ~/.ssh/known_hosts
+
+          # Transfer published package to server
+          scp -P $PORT app.tar.gz $USER@$HOST:/tmp/app.tar.gz
+
+          # Run remote deployment script on Hostinger VPS
+          ssh -p $PORT $USER@$HOST "DOTENV_SECRET=\"$DOTENV_SECRET\" bash -s" << 'EOF'
+            set -e
+
+            APP_DIR="/var/www/exwhyzee-edi"
+            sudo mkdir -p $APP_DIR
+
+            # ============================================================
+            # 1. DETECT / ASSIGN FREE PORT
+            # ============================================================
+            APP_PORT=""
+
+            # Check if app already has a configured port in existing .env
+            if [ -f "$APP_DIR/.env" ]; then
+              EXISTING_PORT=$(grep -E "^PORT=" "$APP_DIR/.env" | cut -d'=' -f2 | tr -d ' "\r' | head -n1 || true)
+              if [ -n "$EXISTING_PORT" ]; then
+                APP_PORT=$EXISTING_PORT
+                echo "Using existing configured port: $APP_PORT"
+              fi
+            fi
+
+            # If no port is configured yet, search for the first free port starting from 5005
+            if [ -z "$APP_PORT" ]; then
+              echo "Scanning for a free port starting from 5005..."
+              APP_PORT=$(python3 -c "
+import socket
+for p in range(5005, 5200):
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind(('127.0.0.1', p))
+        s.close()
+        print(p)
+        break
+    except:
+        continue
+" 2>/dev/null || true)
+
+              # Fallback if python3 is unavailable
+              if [ -z "$APP_PORT" ]; then
+                APP_PORT=5005
+                while ss -tuln 2>/dev/null | grep -q ":$APP_PORT "; do
+                  APP_PORT=$((APP_PORT + 1))
+                done
+              fi
+              echo "Assigned free port: $APP_PORT"
+            fi
+
+            # ============================================================
+            # 2. PRESERVE EXISTING .ENV (IF ANY)
+            # ============================================================
+            if [ -f "$APP_DIR/.env" ]; then
+              sudo cp "$APP_DIR/.env" /tmp/edi_current.env.bak
+            fi
+
+            # ============================================================
+            # 3. EXTRACT NEW RELEASE
+            # ============================================================
+            sudo tar -xzvf /tmp/app.tar.gz -C $APP_DIR/
+            rm -f /tmp/app.tar.gz
+
+            # ============================================================
+            # 4. INITIALIZE OR RESTORE .ENV (FIRST DEPLOY VS UPDATE)
+            # ============================================================
+            if [ -f "/tmp/edi_current.env.bak" ]; then
+              echo "Restoring existing .env configuration..."
+              sudo mv /tmp/edi_current.env.bak "$APP_DIR/.env"
+            else
+              echo "First deploy detected: Creating .env file..."
+              if [ -n "$DOTENV_SECRET" ]; then
+                echo "$DOTENV_SECRET" | sudo tee "$APP_DIR/.env" > /dev/null
+              elif [ -f "$APP_DIR/.env.example" ]; then
+                sudo cp "$APP_DIR/.env.example" "$APP_DIR/.env"
+              fi
+            fi
+
+            # Ensure the assigned port is reflected in .env
+            if [ -f "$APP_DIR/.env" ]; then
+              if grep -q "^PORT=" "$APP_DIR/.env"; then
+                sudo sed -i "s|^PORT=.*|PORT=$APP_PORT|" "$APP_DIR/.env"
+              else
+                echo "PORT=$APP_PORT" | sudo tee -a "$APP_DIR/.env" > /dev/null
+              fi
+
+              if grep -q "^ASPNETCORE_URLS=" "$APP_DIR/.env"; then
+                sudo sed -i "s|^ASPNETCORE_URLS=.*|ASPNETCORE_URLS=http://127.0.0.1:$APP_PORT|" "$APP_DIR/.env"
+              else
+                echo "ASPNETCORE_URLS=http://127.0.0.1:$APP_PORT" | sudo tee -a "$APP_DIR/.env" > /dev/null
+              fi
+
+              if grep -q "^ASPNETCORE_ENVIRONMENT=" "$APP_DIR/.env"; then
+                sudo sed -i "s|^ASPNETCORE_ENVIRONMENT=.*|ASPNETCORE_ENVIRONMENT=Production|" "$APP_DIR/.env"
+              else
+                echo "ASPNETCORE_ENVIRONMENT=Production" | sudo tee -a "$APP_DIR/.env" > /dev/null
+              fi
+            fi
+
+            # ============================================================
+            # 5. PREPARE RUNTIME DIRECTORIES & PERMISSIONS
+            # ============================================================
+            sudo mkdir -p "$APP_DIR/Uploads"
+            sudo mkdir -p "$APP_DIR/Uploads/Gallery"
+            sudo mkdir -p "$APP_DIR/ExcelUpload"
+            sudo mkdir -p "$APP_DIR/BusinessPlan"
+            sudo mkdir -p "$APP_DIR/Slider"
+
+            sudo chown -R www-data:www-data $APP_DIR
+            sudo chmod -R 755 $APP_DIR
+
+            # ============================================================
+            # 6. CONFIGURE SYSTEMD SERVICE
+            # ============================================================
+            SERVICE_FILE="/etc/systemd/system/exwhyzee-edi.service"
+            echo "Configuring systemd service ($SERVICE_FILE) on port $APP_PORT..."
+
+            sudo bash -c "cat > $SERVICE_FILE" << SERVICE
+[Unit]
+Description=Exwhyzee EDI .NET 9 Web Application
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/exwhyzee-edi
+ExecStart=/usr/bin/dotnet /var/www/exwhyzee-edi/ExwhyzeeEDI.Web.dll
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=exwhyzee-edi
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+Environment=ASPNETCORE_URLS=http://127.0.0.1:$APP_PORT
+
+[Install]
+WantedBy=multi-user.target
+SERVICE
+
+            sudo systemctl daemon-reload
+            sudo systemctl enable exwhyzee-edi.service
+            sudo systemctl restart exwhyzee-edi.service
+
+            # ============================================================
+            # 7. CONFIGURE NGINX REVERSE PROXY
+            # ============================================================
+            NGINX_AVAILABLE="/etc/nginx/sites-available"
+            NGINX_ENABLED="/etc/nginx/sites-enabled"
+            if [ -d "$NGINX_AVAILABLE" ]; then
+              NGINX_CONF="$NGINX_AVAILABLE/edi.exwhyzee.ng"
+              echo "Configuring Nginx reverse proxy ($NGINX_CONF) -> http://127.0.0.1:$APP_PORT..."
+              sudo bash -c "cat > $NGINX_CONF" << NGINX
+server {
+    listen 80;
+    server_name edi.exwhyzee.ng www.edi.exwhyzee.ng;
+
+    client_max_body_size 50M;
+
+    location / {
+        proxy_pass         http://127.0.0.1:$APP_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade \$http_upgrade;
+        proxy_set_header   Connection keep-alive;
+        proxy_set_header   Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+        proxy_set_header   X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto \$scheme;
+    }
+}
+NGINX
+              sudo ln -sf "$NGINX_CONF" "$NGINX_ENABLED/edi.exwhyzee.ng"
+              sudo nginx -t && sudo systemctl reload nginx || echo "Nginx reload warning: please check nginx config manually if needed."
+            fi
+
+            # ============================================================
+            # 8. VERIFY HEALTH
+            # ============================================================
+            sleep 3
+            if sudo systemctl is-active --quiet exwhyzee-edi.service; then
+              echo "=========================================================="
+              echo "DEPLOYMENT SUCCESSFUL!"
+              echo "Service is active and running on http://127.0.0.1:$APP_PORT"
+              echo "=========================================================="
+            else
+              echo "Service failed to start. Journalctl logs:"
+              sudo journalctl -u exwhyzee-edi.service -n 50 --no-pager
+              exit 1
+            fi
+          EOF

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
 
 
 
@@ -20,7 +20,7 @@
                     </span>
                 </h4>
                 <a href="@Url.Action("Details", "Blog", new { id = item.Id })">
-                    <img width="600" height="413" src="~/Uploads/@item.ImageUrl" class="attachment-portfolio-medium-crop size-portfolio-medium-crop wp-post-image" alt="">
+                    <img width="600" height="413" src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.ImageUrl, "Uploads")" class="attachment-portfolio-medium-crop size-portfolio-medium-crop wp-post-image" alt="">
                 </a>
             </div>
 

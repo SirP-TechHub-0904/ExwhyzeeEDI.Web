@@ -1,4 +1,4 @@
-﻿<html lang="en-US" class="no-js js_active  vc_desktop  vc_transform  vc_transform skrollr skrollr-desktop">
+<html lang="en-US" class="no-js js_active  vc_desktop  vc_transform  vc_transform skrollr skrollr-desktop">
 <head>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link rel="icon" href="~/Content/assest/image/ico.png" type="image/x-icon" />
@@ -615,21 +615,9 @@
                         <i class="fa fa-envelope"></i>
                         edi@exwhyzee.ng
                         <span style="border-color:white">
-                            @if (!Request.Browser.IsMobileDevice)
-                            {
-                                <span>|</span>
-                            }
-                            else
-                            {
-                                <span><br /></span>
-                            }
+                            <span>|</span>
                         </span> contact@edi.exwhyzee.ng
-
-                        @if (Request.Browser.IsMobileDevice)
-                        {
-                            
-                            <span><br /></span>
-                        }
+                        <span> | </span>
                         <i class="fa fa-phone"></i>
                         +234 802 999 1100
                     </div>
@@ -979,11 +967,12 @@
         /* ]]> */
     </script>
 
-    <script type="text/javascript" src="https://v1.exwhyzee.ng/nivo-slider/jquery.nivo.slider.js"></script>
+    <script type="text/javascript" src="~/nivo-slider/jquery.nivo.slider.js"></script>
     <script type="text/javascript">
 
-        $(window).load(function () {
-            $('#slider').nivoSlider({
+        $(window).on('load', function () {
+            if ($('#slider').length) {
+                $('#slider').nivoSlider({
 
                 animSpeed: 4000,                   // Slide transition speed
                 pauseTime: 9000,                  // How long each slide will show

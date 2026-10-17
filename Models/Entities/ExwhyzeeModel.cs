@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace ExwhyzeeEDI.Web.Models.Entities
 {
@@ -44,5 +44,11 @@ namespace ExwhyzeeEDI.Web.Models.Entities
         public string ParishState { get; set; }
         public string PassportPhoto { get; set; }
         public string IDUpload { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string NeedCertificate { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string NeedBusinessPlan { get; set; }
     }
 }

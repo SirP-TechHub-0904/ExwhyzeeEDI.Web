@@ -10,6 +10,26 @@
 *.userosscache
 *.sln.docstates
 
+# Environment and sensitive secrets
+.env
+.env.*
+!.env.example
+publish/
+app.tar.gz
+*.bak
+
+# User upload directories (hosted on Cloudinary)
+Slider/*
+!Slider/.gitkeep
+Uploads/*
+!Uploads/*/
+!Uploads/.gitkeep
+!Uploads/**/.gitkeep
+BusinessPlan/*
+!BusinessPlan/.gitkeep
+ExcelUpload/*
+!ExcelUpload/.gitkeep
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

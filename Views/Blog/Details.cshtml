@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Post
+@model ExwhyzeeEDI.Web.Models.Entities.Post
 
 @{
     ViewBag.Title = "Details";
@@ -33,7 +33,7 @@
                 <div class="col-md-8">
                     <h4 class="no-margin-top">@Model.PostTite</h4>
                     <div class="text-center">
-                        <img src="~/Uploads/@Model.ImageUrl" class="img-responsive" style="margin:0 auto !important;max-height:200px;" alt="">
+                        <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.ImageUrl, "Uploads")" class="img-responsive" style="margin:0 auto !important;max-height:200px;" alt="">
 
                     </div>
                     <p class="">

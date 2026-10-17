@@ -1,4 +1,4 @@
-﻿@model ExwhyzeeEDI.Web.Models.Entities.Gallery
+@model ExwhyzeeEDI.Web.Models.Entities.Gallery
 
 @{
     ViewBag.Title = "Edit";
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        <img src="~/Uploads/Gallery/@Model.ImageUrl" alt="" class="img-responsive img-fullwidth">
+                        <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(Model.ImageUrl, "Uploads/Gallery")" alt="" class="img-responsive img-fullwidth">
 
                     </div>
                 </div>

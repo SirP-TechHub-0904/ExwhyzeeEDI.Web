@@ -1,29 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using ExwhyzeeEDI.Web.DataServices.ProgramCourseService;
-using PagedList;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProgramCoursesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private IProgramCourseServices _programCourseServices = new ProgramCourseServices();
 
 
-        public ProgramCoursesController()
-        {
 
-        }
         public ProgramCoursesController(
             ProgramCourseServices programCourseServices
             )
@@ -140,12 +137,12 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var programCourse = await _programCourseServices.Get(id);
             if (programCourse == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(programCourse);
         }

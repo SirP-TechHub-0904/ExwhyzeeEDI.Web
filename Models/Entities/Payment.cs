@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using static ExwhyzeeEDI.Web.Models.Entities.Enum;
 
 namespace ExwhyzeeEDI.Web.Models.Entities
@@ -21,5 +21,19 @@ namespace ExwhyzeeEDI.Web.Models.Entities
         public string ApprovedBy { get; set; }
         public PaymentType PaymentType { get; set; }
         public string Note { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public DateTime? PaymentDate
+        {
+            get => PaymentCompleteDate != default ? PaymentCompleteDate : PaymentInitalizedDate;
+            set
+            {
+                if (value.HasValue)
+                {
+                    PaymentCompleteDate = value.Value;
+                    PaymentInitalizedDate = value.Value;
+                }
+            }
+        }
     }
 }

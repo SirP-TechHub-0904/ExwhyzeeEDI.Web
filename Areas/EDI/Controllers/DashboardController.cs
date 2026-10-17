@@ -1,17 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using ExwhyzeeEDI.Web.Models.Dtos;
 
 namespace ExwhyzeeEDI.Web.Areas.EDI.Controllers
 {
+    [Area("EDI")]
     public class DashboardController : Controller
     {
 
@@ -20,8 +21,7 @@ namespace ExwhyzeeEDI.Web.Areas.EDI.Controllers
         // GET: EDI/Dashboard
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public DashboardController()
-        { }
+
         public DashboardController(ApplicationUserManager userManager)
         {
             UserManager = userManager;

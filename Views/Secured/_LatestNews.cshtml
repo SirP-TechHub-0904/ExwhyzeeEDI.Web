@@ -1,24 +1,19 @@
-﻿@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
+@model IEnumerable<ExwhyzeeEDI.Web.Models.Entities.Post>
 
 @using System.Text.RegularExpressions;
-@helper Truncate(string input, int lenght)
-{
-    /**/
-
-    try
+@functions {
+    public string Truncate(string input, int length)
     {
-        if(input != null) { 
-        if (input.Length <= lenght)
+        try
         {
-            @Html.Raw(input)
+            if (string.IsNullOrEmpty(input)) return "";
+            if (input.Length <= length) return input;
+            int idx = input.IndexOf(" ", length);
+            if (idx > 0) return input.Substring(0, idx);
+            return input.Substring(0, Math.Min(length, input.Length));
         }
-        else
-        {
-            @Html.Raw(input.Substring(0, input.IndexOf(" ", lenght)).ToString())
-            }
-        }
+        catch { return input ?? ""; }
     }
-    catch (Exception c) { }
 }
 
 
@@ -33,7 +28,7 @@
     <div class="img-holder hvr-rectangle-out">
         @if (!String.IsNullOrEmpty(item.ImageUrl))
         {
-            <img src="~/Uploads/@item.ImageUrl" alt="" class="">
+            <img src="@ExwhyzeeEDI.Web.Models.HelperClass.ResolveImageUrl(item.ImageUrl, "Uploads")" alt="" class="">
 
         }
         <div class="date">

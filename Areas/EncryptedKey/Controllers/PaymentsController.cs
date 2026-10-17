@@ -1,21 +1,22 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using ExwhyzeeEDI.Web.DataServices.PaystackService;
-using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNetCore.Identity;
 using ExwhyzeeEDI.Web.DataServices.PaymentService;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExwhyzeeEDI.Web.Areas.EncryptedKey.Controllers
 {
+    [Area("EncryptedKey")]
     public class PaymentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -23,9 +24,7 @@ namespace ExwhyzeeEDI.Web.Areas.EncryptedKey.Controllers
         private IPaymentServices _paymentServices = new PaymentServices();
         private ApplicationUserManager _userManager;
 
-        public PaymentsController()
-        {
-        }
+
 
         public PaymentsController(PaystackTransactionService paystackTransactionService, ApplicationUserManager userManager,
             PaymentServices paymentServices)
@@ -72,7 +71,7 @@ namespace ExwhyzeeEDI.Web.Areas.EncryptedKey.Controllers
                 return HttpNotFound();
             }
             //
-            var secretKey = "[REDACTED_PAYMENT_KEY]";
+            var secretKey = EnvLoader.Get("PAYSTACK_SECRET_KEY", "");
 
             int amountInKobo = (int)programCOurse.Amount * 100;
 
@@ -120,9 +119,8 @@ namespace ExwhyzeeEDI.Web.Areas.EncryptedKey.Controllers
         public async Task<ActionResult> Complete()
         {
             //
-            //var secretKey = _config["SecretKey"];
-            var secretKey = "[REDACTED_PAYMENT_KEY]";
-            var tranxRef = HttpContext.Request["reference"].ToString();
+            var secretKey = EnvLoader.Get("PAYSTACK_SECRET_KEY", "");
+            var tranxRef = HttpContext.Request.Query["reference"].ToString();
             if (tranxRef != null)
             {
                 var response = await _paystackTransactionService.VerifyTransaction(tranxRef, secretKey);
@@ -227,7 +225,7 @@ namespace ExwhyzeeEDI.Web.Areas.EncryptedKey.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,UserId,SchoolId,UserProgramId,Amount,PaymentDate,PaymentStatus")] Payment payment)
+        public async Task<ActionResult> Create([Bind("Id,UserId,SchoolId,UserProgramId,Amount,PaymentDate,PaymentStatus")] Payment payment)
         {
             if (ModelState.IsValid)
             {
@@ -259,7 +257,7 @@ namespace ExwhyzeeEDI.Web.Areas.EncryptedKey.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,UserId,SchoolId,UserProgramId,Amount,PaymentDate,PaymentStatus")] Payment payment)
+        public async Task<ActionResult> Edit([Bind("Id,UserId,SchoolId,UserProgramId,Amount,PaymentDate,PaymentStatus")] Payment payment)
         {
             if (ModelState.IsValid)
             {

@@ -1,20 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ExwhyzeeEDI.Web.Models;
 using ExwhyzeeEDI.Web.Models.Entities;
 using ExwhyzeeEDI.Web.DataServices.ImageService;
 using ExwhyzeeEDI.Web.DataServices.CourseService;
-using PagedList;
 
 namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CoursesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -23,10 +23,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
         private ICourseServices _courseServices = new CourseServices();
 
 
-        public CoursesController()
-        {
 
-        }
         public CoursesController(
             ImageServices imageServices,
             CourseServices courseServices
