@@ -155,7 +155,7 @@ The application uses `EnvLoader` to load variables from a root `.env` file or fr
 | `SMTP_PASS` | SMTP account password | `your_smtp_password` |
 | `SMTP_FROM` | Default sender email address | `noreply@edi.exwhyzee.ng` |
 | `ADMIN_NOTIFICATION_EMAILS` | Target emails for administrative alerts | `admin@exwhyzee.ng` |
-| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud account identifier | `yffz4ii9` |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud account identifier | `your-cloud-name` |
 | `CLOUDINARY_API_KEY` | Cloudinary API Key | `[REDACTED_SECRET_KEY]` |
 | `CLOUDINARY_API_SECRET` | Cloudinary API Secret | `your_cloudinary_api_secret` |
 | `CLOUDINARY_ROOT_FOLDER` | Remote folder namespace on Cloudinary | `edi` |
@@ -247,11 +247,11 @@ All media files (galleries, blog images, sliders, participant profile pictures) 
 
 ### URL Resolution Strategy
 
-Views and controllers resolve asset paths through [`HelperClass.ResolveImageUrl(rawPath, fallbackFolder)`](file:///c:/Users/JURAY/source/repos/ExwhyzeeEDI.Web/Models/HelperClass.cs):
+Views and controllers resolve asset paths through [`HelperClass.ResolveImageUrl(rawPath, fallbackFolder)`](Models/HelperClass.cs):
 
 ```csharp
 // Returns the Cloudinary CDN URL directly if already migrated:
-// https://res.cloudinary.com/yffz4ii9/image/upload/v1/edi/uploads/gallery/sample.jpg
+// https://res.cloudinary.com/your-cloud-name/image/upload/v1/edi/uploads/gallery/sample.jpg
 //
 // If a local filename or legacy path is passed, it constructs the local fallback:
 // /Uploads/Gallery/sample.jpg
@@ -306,3 +306,16 @@ Get-Process -Name ExwhyzeeEDI.Web -ErrorAction SilentlyContinue | Stop-Process -
 ## License
 
 This project is proprietary software developed for the **Exwhyzee Entrepreneurship Development Initiative (EDI)**. All rights reserved. Unauthorized copying, distribution, or reproduction of this repository is strictly prohibited.
+
+---
+
+## Institutional Impact & Scale (AGSMEIS / NIRSAL Program Support)
+
+- **₦1 Billion+ Cumulative Loan Volume Supported**: Engineered to streamline entrepreneurship training, business plan appraisal, and vendor/beneficiary verification for government-backed credit programs (**AGSMEIS**) serving **3,000+ beneficiaries**.
+
+## Author
+
+**Peter Emeka Onwuka**  
+Chief Technology Officer & Enterprise Systems Architect  
+- GitHub: [@SirP-TechHub-0904](https://github.com/SirP-TechHub-0904)  
+- LinkedIn: [Peter Emeka Onwuka](https://www.linkedin.com/in/onwuka-peter-emeka)

@@ -1047,7 +1047,7 @@ namespace ExwhyzeeEDI.Web.Areas.Admin.Controllers
 
                                 // var Vnumber = _random.Next(0, 9999).ToString("D4");
                                 var user = new ApplicationUser { UserName = emaild, Email = emaild, PhoneNumber = pho, VerifyCode = Vnumber, SchoolId = 5 };
-                                var result = await UserManager.CreateAsync(user, "[REDACTED_BOOTSTRAP_PASSWORD]");
+                                var result = await UserManager.CreateAsync(user, (System.Environment.GetEnvironmentVariable("DEFAULT_USER_PASSWORD") ?? ""));
                                 string[] sio = a1.Split(' ');
                                 if (result.Succeeded)
                                 {

@@ -242,7 +242,7 @@ namespace ExwhyzeeEDI.Web.Controllers
             {
 
                 var user = new ApplicationUser { UserName = "super@gmail.com", Email = "super@gmail.com", PhoneNumber = "000" };
-                var result = await UserManager.CreateAsync(user, "[REDACTED_BOOTSTRAP_PASSWORD]");
+                var result = await UserManager.CreateAsync(user, (System.Environment.GetEnvironmentVariable("ADMIN_SEED_PASSWORD") ?? ""));
                 if (result.Succeeded)
                 {
                     //create role
